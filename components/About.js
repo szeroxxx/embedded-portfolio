@@ -33,14 +33,55 @@ export default function About() {
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8 }}
-        className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col lg:flex-row items-center relative z-10 gap-8 lg:gap-12"
+        className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col lg:flex-row items-start relative z-10 gap-8 lg:gap-12"
       >
-        {/* Text content */}
+        {/* Profile Image and Name - Left Side */}
         <motion.div
-          className="w-full lg:w-1/2 text-center lg:text-left"
+          className="w-full lg:w-1/3 flex flex-col items-center lg:items-start"
           initial={{ x: -100, opacity: 0 }}
           animate={{ x: 0, opacity: 1 }}
           transition={{ delay: 0.2, duration: 0.8 }}
+        >
+          <motion.div
+            className="relative"
+            whileHover={{ scale: 1.05 }}
+            transition={{ type: "spring", stiffness: 300 }}
+          >
+            <div className="absolute -inset-0.5 bg-gradient-to-r from-blue-500 to-purple-600 rounded-full blur opacity-75 animate-pulse" />
+            <img
+              src="/profilepic.jpg"
+              alt="Profile Photo"
+              className="relative rounded-full w-48 h-48 sm:w-64 sm:h-64 object-cover border-2 border-white/50"
+            />
+          </motion.div>
+
+          {/* Name with cool styling */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.4, duration: 0.8 }}
+            className="mt-6 text-center lg:text-left w-full"
+          >
+            <h2 className="text-3xl sm:text-4xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-blue-400 via-purple-400 to-blue-400 tracking-wider mb-2">
+              Dhara Rajpura
+            </h2>
+            <motion.p
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 0.6 }}
+              className="text-gray-300 text-sm tracking-widest uppercase"
+            >
+              Embedded Systems Expert
+            </motion.p>
+          </motion.div>
+        </motion.div>
+
+        {/* Content - Right Side */}
+        <motion.div
+          className="w-full lg:w-2/3 text-center lg:text-left"
+          initial={{ x: 100, opacity: 0 }}
+          animate={{ x: 0, opacity: 1 }}
+          transition={{ delay: 0.4, duration: 0.8 }}
         >
           <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4 leading-tight">
             <motion.span
@@ -60,10 +101,10 @@ export default function About() {
             <span className="text-white block sm:inline"> Engineer.</span>
           </h1>
           <motion.p
-            className="text-base sm:text-lg text-gray-300 mb-6 max-w-2xl mx-auto lg:mx-0"
+            className="text-base sm:text-lg text-gray-300 mb-6"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
-            transition={{ delay: 0.4 }}
+            transition={{ delay: 0.6 }}
           >
             Passionate about creating innovative solutions through hardware
             design and implementation. Turning complex problems into elegant
@@ -75,7 +116,7 @@ export default function About() {
             className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
-            transition={{ delay: 0.6 }}
+            transition={{ delay: 0.8 }}
           >
             <motion.button
               whileHover={{ scale: 1.05 }}
@@ -101,60 +142,6 @@ export default function About() {
             >
               About me
             </motion.button>
-          </motion.div>
-        </motion.div>
-
-        {/* Profile Image */}
-        {/* Profile Image and Name */}
-        <motion.div
-          className="w-full lg:w-1/2 flex flex-col items-center lg:items-end mt-8 lg:mt-0"
-          initial={{ x: 100, opacity: 0 }}
-          animate={{ x: 0, opacity: 1 }}
-          transition={{ delay: 0.4, duration: 0.8 }}
-        >
-          <motion.div
-            className="relative"
-            whileHover={{ scale: 1.05 }}
-            transition={{ type: "spring", stiffness: 300 }}
-          >
-            <div className="absolute -inset-0.5 bg-gradient-to-r from-blue-500 to-purple-600 rounded-full blur opacity-75 animate-pulse" />
-            <img
-              src="/profilepic.jpg"
-              alt="Profile Photo"
-              className="relative rounded-full w-48 h-48 sm:w-64 sm:h-64 object-cover border-2 border-white/50"
-            />
-          </motion.div>
-
-          {/* Name with cool styling */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.6, duration: 0.8 }}
-            className="mt-6 text-center"
-          >
-            <h2 className="relative">
-              {/* Decorative line before */}
-              <span className="absolute hidden lg:inline-block left-[-60px] top-1/2 w-12 h-[2px] bg-gradient-to-r from-transparent to-purple-500"></span>
-
-              {/* Name */}
-              <span className="text-3xl sm:text-4xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-blue-400 via-purple-400 to-blue-400 tracking-wider">
-                Dhara Rajpura
-              </span>
-
-              {/* Decorative line after */}
-              <span className="absolute hidden lg:inline-block right-[-60px] top-1/2 w-12 h-[2px] bg-gradient-to-r from-purple-500 to-transparent"></span>
-            </h2>
-
-            {/* Optional subtle subtitle */}
-            <motion.p
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              t
-              ransition={{ delay: 0.8 }}
-              className="mt-2 text-gray-300 text-sm tracking-widest uppercase"
-            >
-              Embedded Systems Expert
-            </motion.p>
           </motion.div>
         </motion.div>
       </motion.div>
