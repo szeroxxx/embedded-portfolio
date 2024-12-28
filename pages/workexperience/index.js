@@ -1,69 +1,121 @@
 "use client";
 
-import React from "react";
+import React, { useState } from "react";
 import { motion } from "framer-motion";
-import { useRouter } from 'next/router';
+import { useRouter } from "next/router";
 
 const ExperienceCard = ({ title, company, duration, description, index }) => {
+  const [isSelected, setIsSelected] = useState(false);
+
   return (
     <motion.div
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.5, delay: index * 0.2 }}
-      className="relative p-8 rounded-xl transition-all duration-300 
-                   transform hover:-translate-y-2 hover:shadow-[0_0_20px_rgba(0,100,255,0.3)]
-                   before:absolute before:inset-0 before:bg-gradient-to-r 
-                   before:from-black/40 before:to-black/20 before:rounded-xl
-                   before:backdrop-blur-sm before:-z-10
-                   after:absolute after:inset-0 after:bg-gradient-to-r 
-                   after:from-blue-500/5 after:to-purple-500/5 after:rounded-xl after:-z-20"
+      onClick={() => setIsSelected(!isSelected)}
+      className={`relative p-8 rounded-xl transition-all duration-500 ease-out cursor-pointer
+                   transform hover:-translate-y-2 group
+                   ${
+                     isSelected
+                       ? "bg-gradient-to-br from-indigo-900/40 to-purple-900/40 scale-[1.02]"
+                       : "hover:shadow-[0_0_20px_rgba(0,100,255,0.3)]"
+                   }
+                   before:absolute before:inset-0 before:rounded-xl before:backdrop-blur-sm before:-z-10
+                   ${
+                     isSelected
+                       ? "before:bg-gradient-to-r before:from-indigo-900/40 before:to-purple-900/40"
+                       : "before:bg-gradient-to-r before:from-black/40 before:to-black/20"
+                   }`}
     >
-      <div className="relative overflow-hidden backdrop-blur-[2px]">
-        <motion.div whileHover={{ scale: 1.02 }} className="relative z-10">
-          <h3
-            className="text-2xl font-bold mb-2 
-                           bg-gradient-to-r from-blue-300 to-purple-300 
-                           bg-clip-text text-transparent"
-          >
-            {title}
-          </h3>
-          <h4 className="text-lg font-semibold mb-2 text-blue-200/90">
-            {company}
-          </h4>
-          <div
-            className="inline-block px-3 py-1 mb-3 
-                           bg-gradient-to-r from-blue-500/10 to-purple-500/10 
-                           border border-blue-400/20 rounded-full 
-                           text-sm text-blue-100/90"
-          >
-            {duration}
-          </div>
-          <ul className="space-y-3 mt-4">
-            {description.map((item, idx) => (
-              <motion.li
-                key={idx}
-                initial={{ opacity: 0, x: -20 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ duration: 0.3, delay: idx * 0.1 }}
-                className="flex items-start space-x-2 group"
+      {isSelected && (
+        <div className="absolute inset-0 -z-20 bg-gradient-to-br from-indigo-500/20 to-purple-500/20 blur-xl rounded-xl" />
+      )}
+
+      <div className="relative overflow-hidden">
+        <motion.h3
+          layout="position"
+          className={`text-2xl font-bold mb-3 tracking-wide transition-all duration-300
+                       ${
+                         isSelected
+                           ? "bg-gradient-to-r from-blue-300 via-indigo-300 to-purple-300"
+                           : "bg-gradient-to-r from-blue-300 to-purple-300"
+                       } 
+                       bg-clip-text text-transparent`}
+        >
+          {title}
+        </motion.h3>
+        <h4
+          className={`text-lg font-semibold mb-2 transition-all duration-300
+                         ${
+                           isSelected
+                             ? "text-indigo-200 drop-shadow-[0_0_8px_rgba(129,140,248,0.3)]"
+                             : "text-blue-200/90"
+                         }`}
+        >
+          {company}
+        </h4>
+        <div
+          className={`inline-block px-4 py-1.5 mb-4 rounded-full text-sm transition-all duration-300
+                          ${
+                            isSelected
+                              ? "bg-gradient-to-r from-indigo-600/40 to-purple-600/40 border-indigo-400/50 text-indigo-200"
+                              : "bg-gradient-to-r from-blue-500/10 to-purple-500/10 border-blue-400/20 text-blue-100/90"
+                          }
+                          border shadow-lg shadow-indigo-500/10`}
+        >
+          {duration}
+        </div>
+        <ul className="space-y-4">
+          {description.map((item, idx) => (
+            <motion.li
+              key={idx}
+              initial={{ opacity: 0, x: -20 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.3, delay: idx * 0.1 }}
+              className={`flex items-start space-x-3 group transition-all duration-300
+                         ${
+                           isSelected ? "translate-x-2" : "hover:translate-x-1"
+                         }`}
+            >
+              {/* Animated bullet point */}
+              <div className="relative flex-shrink-0 mt-2">
+                <span
+                  className={`block h-2 w-2 rounded-full transition-all duration-300
+                                ${
+                                  isSelected
+                                    ? "bg-indigo-400 animate-pulse"
+                                    : "bg-gray-600 group-hover:bg-gray-500"
+                                }`}
+                />
+                {isSelected && (
+                  <span className="absolute inset-0 rounded-full animate-ping bg-indigo-400/40" />
+                )}
+              </div>
+
+              {/* Description text with enhanced styling */}
+              <span
+                className={`text-base transition-all duration-300
+                              ${
+                                isSelected
+                                  ? "text-indigo-100 font-medium leading-relaxed"
+                                  : "text-gray-400 group-hover:text-gray-300"
+                              }
+                              tracking-wide`}
               >
-                <span
-                  className="text-blue-300/80 mt-1 group-hover:text-blue-200 
-                                 transition-colors duration-200"
-                >
-                  •
-                </span>
-                <span
-                  className="text-gray-200/80 group-hover:text-white/90 
-                                 transition-colors duration-200"
-                >
-                  {item}
-                </span>
-              </motion.li>
-            ))}
-          </ul>
-        </motion.div>
+                {item}
+              </span>
+            </motion.li>
+          ))}
+        </ul>
       </div>
+      <div
+        className={`absolute bottom-0 left-0 right-0 h-[2px] transition-all duration-500
+                        ${
+                          isSelected
+                            ? "bg-gradient-to-r from-transparent via-indigo-500 to-transparent opacity-100"
+                            : "bg-gradient-to-r from-transparent via-blue-500 to-transparent opacity-0 group-hover:opacity-100"
+                        }`}
+      />
     </motion.div>
   );
 };
@@ -93,9 +145,9 @@ const Experience = () => {
   ];
   const router = useRouter();
 
-const handleBack = () => {
-  router.push('/');
-};
+  const handleBack = () => {
+    router.push("/");
+  };
 
   return (
     <div className="min-h-screen relative py-16">
