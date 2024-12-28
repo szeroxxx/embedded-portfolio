@@ -1,9 +1,19 @@
 "use client";
 import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
+import { useRouter } from "next/router";
 
 export default function About() {
   const [windowWidth, setWindowWidth] = useState(0);
+  const router = useRouter();
+
+  const handleWrokButtonClick = () => {
+    router.push("/workexperience");
+  };
+
+  const handleProjectButtonClick = () => {
+    router.push("/projects");
+  };
 
   useEffect(() => {
     const handleResize = () => {
@@ -25,17 +35,13 @@ export default function About() {
         backgroundPosition: "center",
       }}
     >
-      {/* Blur overlay */}
       <div className="absolute inset-0 backdrop-blur-sm bg-black/30" />
-
-      {/* Main content */}
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8 }}
         className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col lg:flex-row items-start relative z-10 gap-8 lg:gap-12"
       >
-        {/* Profile Image and Name - Left Side */}
         <motion.div
           className="w-full lg:w-1/3 flex flex-col items-center lg:items-start"
           initial={{ x: -100, opacity: 0 }}
@@ -49,13 +55,11 @@ export default function About() {
           >
             <div className="absolute -inset-0.5 bg-gradient-to-r from-blue-500 to-purple-600 rounded-full blur opacity-75 animate-pulse" />
             <img
-              src="/profilepic.jpg"
+              src="/d1.jpg"
               alt="Profile Photo"
               className="relative rounded-full w-48 h-48 sm:w-64 sm:h-64 object-cover border-2 border-white/50"
             />
           </motion.div>
-
-          {/* Name with cool styling */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -75,8 +79,6 @@ export default function About() {
             </motion.p>
           </motion.div>
         </motion.div>
-
-        {/* Content - Right Side */}
         <motion.div
           className="w-full lg:w-2/3 text-center lg:text-left"
           initial={{ x: 100, opacity: 0 }}
@@ -110,8 +112,6 @@ export default function About() {
             design and implementation. Turning complex problems into elegant
             engineering solutions.
           </motion.p>
-
-          {/* Buttons container */}
           <motion.div
             className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start"
             initial={{ opacity: 0 }}
@@ -124,7 +124,25 @@ export default function About() {
               className="px-8 py-3 bg-gradient-to-r from-blue-500 to-purple-600 rounded-full text-white font-semibold 
                        hover:shadow-lg hover:shadow-purple-500/30 transition-all duration-300"
             >
+              About me
+            </motion.button>
+            <motion.button
+              onClick={handleWrokButtonClick}
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+              className="px-8 py-3 border-2 border-white/20 rounded-full text-white font-semibold 
+                       hover:bg-white/10 transition-all duration-300"
+            >
               Explore My Work
+            </motion.button>
+            <motion.button
+              onClick={handleProjectButtonClick}
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+              className="px-8 py-3 bg-gradient-to-r from-blue-500 to-purple-600 rounded-full text-white font-semibold 
+                       hover:shadow-lg hover:shadow-purple-500/30 transition-all duration-300"
+            >
+              Projects
             </motion.button>
             <motion.button
               whileHover={{ scale: 1.05 }}
@@ -134,19 +152,9 @@ export default function About() {
             >
               Contact Me
             </motion.button>
-            <motion.button
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              className="px-8 py-3 bg-gradient-to-r from-blue-500 to-purple-600 rounded-full text-white font-semibold 
-                       hover:shadow-lg hover:shadow-purple-500/30 transition-all duration-300"
-            >
-              About me
-            </motion.button>
           </motion.div>
         </motion.div>
       </motion.div>
-
-      {/* Floating particles effect */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
         {[...Array(windowWidth > 768 ? 20 : 10)].map((_, i) => (
           <motion.div
