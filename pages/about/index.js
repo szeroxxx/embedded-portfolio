@@ -270,11 +270,11 @@ const AboutSection = () => {
               transition={{ delay: 1 }}
             >
               <SocialLink
-                href="https://linkedin.com"
+                href="https://www.linkedin.com/in/dhara-rajpura-4b24b122b/"
                 icon={<IoLogoLinkedin className="w-8 h-8 sm:w-10 sm:h-10" />}
               />
               <SocialLink
-                href="https://dev.to"
+                href="mailto:dhararajpura2001@gmail.com "
                 icon={<MdEmail className="w-8 h-8 sm:w-10 sm:h-10" />}
               />
             </motion.div>
