@@ -120,7 +120,7 @@ const ExperienceCard = ({ title, company, duration, description, index }) => {
 const Experience = () => {
   const experiences = [
     {
-      title: "Embedded Hardware Engineer",
+      title: "Embedded System Engineer",
       company: "DosePacker, Ahmedabad",
       duration: "Jan 2024 - Present",
       description: [
