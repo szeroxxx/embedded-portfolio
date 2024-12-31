@@ -1,9 +1,10 @@
 import React from "react";
 import Image from "next/image";
 import { motion } from "framer-motion";
-import { IoLogoLinkedin } from "react-icons/io5";
+import { IoLogoLinkedin, IoMagnet } from "react-icons/io5";
 import { MdEmail } from "react-icons/md";
 import { useEffect, useState } from "react";
+import Layout from "../../components/Layout";
 const TechnicalSkills = () => {
   const skills = [
     {
@@ -218,110 +219,112 @@ const TechnicalSkills = () => {
 
 const AboutSection = () => {
   return (
-    <div className="min-h-screen bg-gradient-to-b from-gray-900 via-gray-800 to-gray-900">
-      <div className="max-w-6xl mx-auto p-8">
-        <section
-          className="flex flex-col md:flex-row items-center justify-between 
+    <Layout>
+      <div className="min-h-screen bg-gradient-to-b from-gray-900 via-gray-800 to-gray-900">
+        <div className="max-w-6xl mx-auto p-8">
+          <section
+            className="flex flex-col md:flex-row items-center justify-between 
                           backdrop-blur-lg bg-gray-900/50 rounded-2xl p-10 
                           border border-gray-700/50 shadow-2xl"
-        >
-          <div className="max-w-xl space-y-6">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8 }}
-            >
-              <h1
-                className="text-4xl md:text-5xl font-bold mb-2 text-transparent 
-                           bg-clip-text bg-gradient-to-r from-blue-400 via-purple-500 to-pink-500"
+          >
+            <div className="max-w-xl space-y-6">
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8 }}
               >
-                Hey, I'm{" "}
-                <motion.span
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                  transition={{ delay: 0.5, duration: 0.8 }}
-                  className="text-white"
+                <h1
+                  className="text-4xl md:text-5xl font-bold mb-2 text-transparent 
+                           bg-clip-text bg-gradient-to-r from-blue-400 via-purple-500 to-pink-500"
                 >
-                  Dhara Rajpura
-                </motion.span>
-              </h1>
-            </motion.div>
-            <motion.p
-              className="text-lg leading-relaxed text-gray-300 backdrop-blur-sm 
+                  Hey, I'm{" "}
+                  <motion.span
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    transition={{ delay: 0.5, duration: 0.8 }}
+                    className="text-white"
+                  >
+                    Dhara Rajpura
+                  </motion.span>
+                </h1>
+              </motion.div>
+              <motion.p
+                className="text-lg leading-relaxed text-gray-300 backdrop-blur-sm 
                        bg-gray-800/30 p-4 rounded-lg border border-gray-700/50"
-              initial={{ opacity: 0, x: -20 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ delay: 0.7, duration: 0.8 }}
-              whileHover={{
-                scale: 1.02,
-                backgroundColor: "rgba(31, 41, 55, 0.4)",
-              }}
-            >
-              <TypewriterEffect
-                text="I am an embedded hardware engineer with around 2+ years of experience 
+                initial={{ opacity: 0, x: -20 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ delay: 0.7, duration: 0.8 }}
+                whileHover={{
+                  scale: 1.02,
+                  backgroundColor: "rgba(31, 41, 55, 0.4)",
+                }}
+              >
+                <TypewriterEffect
+                  text="I am an embedded hardware engineer with around 2+ years of experience 
                      in the design, development, and testing of embedded systems."
-                delay={50}
-              />
-            </motion.p>
+                  delay={50}
+                />
+              </motion.p>
+              <motion.div
+                className="flex gap-8 mt-8"
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 1 }}
+              >
+                <SocialLink
+                  href="https://www.linkedin.com/in/dhara-rajpura-4b24b122b/"
+                  icon={<IoLogoLinkedin className="w-8 h-8 sm:w-10 sm:h-10" />}
+                />
+                <SocialLink
+                  href="mailto:dhararajpura2001@gmail.com "
+                  icon={<MdEmail className="w-8 h-8 sm:w-10 sm:h-10" />}
+                />
+              </motion.div>
+            </div>
             <motion.div
-              className="flex gap-8 mt-8"
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 1 }}
+              className="relative mt-8 md:mt-0"
+              initial={{ opacity: 0, scale: 0.5 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ delay: 0.5, duration: 0.8 }}
             >
-              <SocialLink
-                href="https://www.linkedin.com/in/dhara-rajpura-4b24b122b/"
-                icon={<IoLogoLinkedin className="w-8 h-8 sm:w-10 sm:h-10" />}
-              />
-              <SocialLink
-                href="mailto:dhararajpura2001@gmail.com "
-                icon={<MdEmail className="w-8 h-8 sm:w-10 sm:h-10" />}
-              />
-            </motion.div>
-          </div>
-          <motion.div
-            className="relative mt-8 md:mt-0"
-            initial={{ opacity: 0, scale: 0.5 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ delay: 0.5, duration: 0.8 }}
-          >
-            <div
-              className="absolute inset-0 bg-gradient-to-r from-blue-500 to-purple-600 
+              <div
+                className="absolute inset-0 bg-gradient-to-r from-blue-500 to-purple-600 
                           rounded-full blur-xl opacity-30 animate-pulse"
-            />
-            <motion.div
-              className="relative w-64 h-64 rounded-full overflow-hidden border-4 
-                       border-gray-700 shadow-2xl"
-              whileHover={{ scale: 1.05 }}
-              transition={{ type: "spring", stiffness: 300 }}
-            >
-              <Image
-                src="/d1.jpg"
-                alt="Profile Image"
-                layout="fill"
-                objectFit="cover"
-                className="rounded-full"
               />
+              <motion.div
+                className="relative w-64 h-64 rounded-full overflow-hidden border-4 
+                       border-gray-700 shadow-2xl"
+                whileHover={{ scale: 1.05 }}
+                transition={{ type: "spring", stiffness: 300 }}
+              >
+                <Image
+                  src="/d1.jpg"
+                  alt="Profile Image"
+                  layout="fill"
+                  objectFit="cover"
+                  className="rounded-full"
+                />
+              </motion.div>
             </motion.div>
-          </motion.div>
-        </section>
+          </section>
 
-        <motion.div
-          className="mt-12"
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 1.2 }}
-        >
-          <motion.h2
-            className="text-4xl font-bold mb-8 text-center"
-            whileHover={{ scale: 1.02 }}
+          <motion.div
+            className="mt-12"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 1.2 }}
           >
-            <GradientText text="Technical Skills" />
-          </motion.h2>
-          <TechnicalSkills />
-        </motion.div>
+            <motion.h2
+              className="text-4xl font-bold mb-8 text-center"
+              whileHover={{ scale: 1.02 }}
+            >
+              <GradientText text="Technical Skills" />
+            </motion.h2>
+            <TechnicalSkills />
+          </motion.div>
+        </div>
       </div>
-    </div>
+    </Layout>
   );
 };
 
