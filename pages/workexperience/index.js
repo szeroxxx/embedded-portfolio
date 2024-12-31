@@ -77,7 +77,6 @@ const ExperienceCard = ({ title, company, duration, description, index }) => {
                            isSelected ? "translate-x-2" : "hover:translate-x-1"
                          }`}
             >
-              {/* Animated bullet point */}
               <div className="relative flex-shrink-0 mt-2">
                 <span
                   className={`block h-2 w-2 rounded-full transition-all duration-300
@@ -91,8 +90,6 @@ const ExperienceCard = ({ title, company, duration, description, index }) => {
                   <span className="absolute inset-0 rounded-full animate-ping bg-indigo-400/40" />
                 )}
               </div>
-
-              {/* Description text with enhanced styling */}
               <span
                 className={`text-base transition-all duration-300
                               ${
@@ -144,11 +141,6 @@ const Experience = () => {
     },
   ];
   const router = useRouter();
-
-  const handleBack = () => {
-    router.push("/");
-  };
-
   return (
     <div className="min-h-screen relative py-16">
       <div
@@ -163,53 +155,81 @@ const Experience = () => {
       />
 
       <div className="container mx-auto px-4 relative z-10">
-        <motion.h2
+        <motion.div
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{
-            duration: 0.8,
-            ease: "easeOut",
-          }}
-          className="text-4xl font-bold mb-12 text-center
-            bg-gradient-to-r from-blue-500 to-purple-600 
-            text-transparent bg-clip-text
-            hover:scale-105 transition-transform
-            drop-shadow-lg
-            tracking-wide
-            px-4 py-2
-            cursor-default"
+          className="text-center mb-16 relative"
         >
-          Work Experience
-        </motion.h2>
-        {/* <motion.button
-          onClick={handleBack}
-          initial={{ opacity: 0, x: 20 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.5 }}
-          className="px-4 py-2 rounded-lg
-          bg-gradient-to-r from-blue-500 to-purple-600
-          text-white font-semibold
-          hover:shadow-lg hover:scale-105
-          transition-all duration-300
-          flex items-center gap-2
-          ml-4"
-        >
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            className="h-5 w-5"
-            fill="none"
-            viewBox="0 0 24 24"
-            stroke="currentColor"
-          >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth={2}
-              d="M10 19l-7-7m0 0l7-7m-7 7h18"
-            />
-          </svg>
-          Back
-        </motion.button> */}
+          <div className="flex items-center justify-center gap-4 mb-4 px-4 relative">
+            <h2
+              className="text-5xl md:text-5xl sm:text-3xl xs:text-2xl font-bold 
+                 bg-gradient-to-r from-indigo-400 via-purple-400 to-pink-400 
+                 bg-clip-text text-transparent
+                 animate-gradient-x hover:animate-pulse
+                 transition-all duration-300
+                 hover:scale-105"
+            >
+              Work Experience
+            </h2>
+            {/* <motion.button
+              onClick={() => router.push("/")}
+              className="abslute right-0 top-1/2 -translate-y-1/2
+               px-6 py-2.5 rounded-lg
+               bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 
+               text-white font-medium
+               transition-all duration-500 ease-in-out
+               hover:shadow-[0_0_20px_rgba(129,140,248,0.5)]
+               hover:scale-105
+               active:scale-95
+               flex items-center gap-2
+               sm:static sm:translate-y-0 sm:mt-4
+               text-sm md:text-base
+               border border-transparent
+               hover:border-indigo-300
+               backdrop-blur-sm
+               group"
+              whileHover={{
+                scale: 1.05,
+                transition: { duration: 0.2 },
+              }}
+              whileTap={{ scale: 0.95 }}
+            >
+              <span className="relative">
+                <span className="group-hover:animate-slide-text">Back</span>
+              </span>
+              <motion.svg
+                xmlns="http://www.w3.org/2000/svg"
+                className="h-5 w-5 transform transition-transform duration-300 group-hover:translate-x-1"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+                initial={{ x: 0 }}
+                animate={{ x: [0, 5, 0] }}
+                transition={{
+                  duration: 1.5,
+                  repeat: Infinity,
+                  repeatType: "reverse",
+                  ease: "easeInOut",
+                }}
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M10 19l-7-7m0 0l7-7m-7 7h18"
+                />
+              </motion.svg>
+            </motion.button> */}
+          </div>
+
+          <motion.div
+            className="w-24 h-1 bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 mx-auto rounded-full"
+            initial={{ width: 0 }}
+            animate={{ width: "6rem" }}
+            transition={{ duration: 0.8, ease: "easeOut" }}
+          />
+        </motion.div>
+
         <div className="grid md:grid-cols-2 gap-8 max-w-6xl mx-auto">
           {experiences.map((exp, index) => (
             <ExperienceCard key={index} {...exp} index={index} />

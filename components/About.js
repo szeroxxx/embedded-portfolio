@@ -14,6 +14,9 @@ export default function About() {
   const handleProjectButtonClick = () => {
     router.push("/projects");
   };
+  const handleAbouttButtonClick = () => {
+    router.push("/about");
+  };
 
   useEffect(() => {
     const handleResize = () => {
@@ -50,8 +53,15 @@ export default function About() {
         >
           <motion.div
             className="relative"
+            animate={{
+              y: [0, -10, 0],
+            }}
+            transition={{
+              duration: 3,
+              repeat: Infinity,
+              ease: "easeInOut",
+            }}
             whileHover={{ scale: 1.05 }}
-            transition={{ type: "spring", stiffness: 300 }}
           >
             <div className="absolute -inset-0.5 bg-gradient-to-r from-blue-500 to-purple-600 rounded-full blur opacity-75 animate-pulse" />
             <img
@@ -60,6 +70,7 @@ export default function About() {
               className="relative rounded-full w-48 h-48 sm:w-64 sm:h-64 object-cover border-2 border-white/50"
             />
           </motion.div>
+
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -70,11 +81,23 @@ export default function About() {
               Dhara Rajpura
             </h2>
             <motion.p
+              className="text-gray-300 text-sm tracking-widest uppercase relative overflow-hidden"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ delay: 0.6 }}
-              className="text-gray-300 text-sm tracking-widest uppercase"
             >
+              <motion.span
+                className="absolute inset-0 bg-gradient-to-r from-transparent via-white to-transparent"
+                animate={{
+                  x: ["-100%", "100%"],
+                }}
+                transition={{
+                  repeat: Infinity,
+                  duration: 3,
+                  ease: "easeInOut",
+                }}
+                style={{ opacity: 0.2 }}
+              />
               Embedded Systems Expert
             </motion.p>
           </motion.div>
@@ -85,23 +108,34 @@ export default function About() {
           animate={{ x: 0, opacity: 1 }}
           transition={{ delay: 0.4, duration: 0.8 }}
         >
-          <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4 leading-tight">
+          <motion.h1
+            className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4 leading-tight"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 1 }}
+          >
             <motion.span
-              className="bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-purple-500 inline-block"
-              animate={{
-                backgroundPosition: ["0%", "100%"],
-                color: ["#60A5FA", "#A855F7"],
-              }}
+              className="bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-purple-500"
+              initial={{ width: 0 }}
+              animate={{ width: "100%" }}
               transition={{
-                duration: 3,
-                repeat: Infinity,
-                repeatType: "reverse",
+                duration: 2,
+                ease: "easeOut",
               }}
             >
               Embedded Hardware
             </motion.span>
-            <span className="text-white block sm:inline"> Engineer.</span>
-          </h1>
+            <motion.span
+              className="text-white block sm:inline"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 2 }}
+            >
+              {" "}
+              Engineer.
+            </motion.span>
+          </motion.h1>
+
           <motion.p
             className="text-base sm:text-lg text-gray-300 mb-6"
             initial={{ opacity: 0 }}
@@ -119,13 +153,18 @@ export default function About() {
             transition={{ delay: 0.8 }}
           >
             <motion.button
-              whileHover={{ scale: 1.05 }}
+              onClick={handleAbouttButtonClick}
+              whileHover={{
+                scale: 1.05,
+                textShadow: "0px 0px 8px rgb(255,255,255)",
+                boxShadow: "0px 0px 8px rgb(255,255,255)",
+              }}
               whileTap={{ scale: 0.95 }}
-              className="px-8 py-3 bg-gradient-to-r from-blue-500 to-purple-600 rounded-full text-white font-semibold 
-                       hover:shadow-lg hover:shadow-purple-500/30 transition-all duration-300"
+              className="px-8 py-3 bg-gradient-to-r from-blue-500 to-purple-600 rounded-full text-white font-semibold"
             >
               About me
             </motion.button>
+
             <motion.button
               onClick={handleWrokButtonClick}
               whileHover={{ scale: 1.05 }}
@@ -137,42 +176,19 @@ export default function About() {
             </motion.button>
             <motion.button
               onClick={handleProjectButtonClick}
-              whileHover={{ scale: 1.05 }}
+              whileHover={{
+                scale: 1.05,
+                textShadow: "0px 0px 8px rgb(255,255,255)",
+                boxShadow: "0px 0px 8px rgb(255,255,255)",
+              }}
               whileTap={{ scale: 0.95 }}
-              className="px-8 py-3 bg-gradient-to-r from-blue-500 to-purple-600 rounded-full text-white font-semibold 
-                       hover:shadow-lg hover:shadow-purple-500/30 transition-all duration-300"
+              className="px-8 py-3 bg-gradient-to-r from-blue-500 to-purple-600 rounded-full text-white font-semibold"
             >
               Projects
-            </motion.button>
-            <motion.button
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              className="px-8 py-3 border-2 border-white/20 rounded-full text-white font-semibold 
-                       hover:bg-white/10 transition-all duration-300"
-            >
-              Contact Me
             </motion.button>
           </motion.div>
         </motion.div>
       </motion.div>
-      <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        {[...Array(windowWidth > 768 ? 20 : 10)].map((_, i) => (
-          <motion.div
-            key={i}
-            className="absolute w-2 h-2 bg-white/10 rounded-full"
-            animate={{
-              y: [-20, windowWidth ? windowWidth : 1000],
-              x: Math.random() * (windowWidth || 1000),
-              opacity: [0, 1, 0],
-            }}
-            transition={{
-              duration: Math.random() * 5 + 5,
-              repeat: Infinity,
-              delay: Math.random() * 5,
-            }}
-          />
-        ))}
-      </div>
     </section>
   );
 }
