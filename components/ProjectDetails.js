@@ -15,7 +15,7 @@ export const projectsData = [
       "Antenna Placement",
       "Battery Management",
     ],
-    image: "https://images.unsplash.com/photo-1635070041078-e363dbe005cb?w=800&q=80",
+    image: "/1.jpg",
     category: "Wireless Communication",
     year: "2025",
   },
@@ -32,7 +32,7 @@ export const projectsData = [
       "Ethernet Integration",
       "Sensor Integration",
     ],
-    image: "https://images.unsplash.com/photo-1581092160562-40aa08e78837?w=800&q=80",
+    image: "/2nd.jpg",
     category: "PCB Design",
     year: "2024",
   },
@@ -48,7 +48,7 @@ export const projectsData = [
       "User Interface Integration",
       "Pharmaceutical Standards",
     ],
-    image: "https://images.unsplash.com/photo-1561557944-6e7860d1a7eb?w=800&q=80",
+    image: "/3rd.jpg",
     category: "Robotics",
     year: "2024",
   },
@@ -64,7 +64,7 @@ export const projectsData = [
       "Power Supply Design",
       "Signal Conditioning",
     ],
-    image: "https://images.unsplash.com/photo-1518770660439-4636190af475?w=800&q=80",
+    image: "/4rth.jpg",
     category: "Signal Processing",
     year: "2023",
   },
@@ -86,9 +86,19 @@ export const ProjectModal = ({ project, onClose }) => {
         animate={{ scale: 1, opacity: 1, y: 0 }}
         exit={{ scale: 0.9, opacity: 0, y: 50 }}
         transition={{ type: "spring", damping: 25, stiffness: 300 }}
-        className="bg-white text-black rounded-3xl max-w-4xl w-full max-h-[90vh] overflow-y-auto"
+        className="bg-white text-black rounded-3xl max-w-4xl w-full max-h-[90vh] overflow-y-auto relative"
         onClick={(e) => e.stopPropagation()}
       >
+        {/* Fixed Close Button - Always Visible */}
+        <motion.button
+          whileHover={{ scale: 1.1, rotate: 90 }}
+          whileTap={{ scale: 0.9 }}
+          onClick={onClose}
+          className="fixed top-4 right-4 md:absolute w-12 h-12 md:w-10 md:h-10 bg-black md:bg-white text-white md:text-black rounded-full flex items-center justify-center hover:bg-gray-800 md:hover:bg-gray-100 transition-colors shadow-lg z-50 font-bold text-xl"
+        >
+          ✕
+        </motion.button>
+        
         <div className="relative aspect-video w-full overflow-hidden">
           <motion.img
             initial={{ scale: 1.2 }}
@@ -98,14 +108,6 @@ export const ProjectModal = ({ project, onClose }) => {
             alt={project.title}
             className="w-full h-full object-cover rounded-t-3xl"
           />
-          <motion.button
-            whileHover={{ scale: 1.1, rotate: 90 }}
-            whileTap={{ scale: 0.9 }}
-            onClick={onClose}
-            className="absolute top-4 right-4 w-10 h-10 bg-white rounded-full flex items-center justify-center hover:bg-gray-100 transition-colors shadow-lg"
-          >
-            ✕
-          </motion.button>
         </div>
         <div className="p-8">
           <motion.div 

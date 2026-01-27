@@ -514,7 +514,7 @@ export default function Home() {
                 <motion.div 
                   whileHover={{ scale: 1.02 }}
                   transition={{ duration: 0.3 }}
-                  className="relative aspect-[3/4] rounded-2xl overflow-hidden mb-4 bg-gray-100"
+                  className="relative aspect-video rounded-2xl overflow-hidden mb-4 bg-gray-100"
                 >
                   <motion.img
                     whileHover={{ scale: 1.1 }}
@@ -593,12 +593,39 @@ export default function Home() {
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
             {[
               {
-                category: "PCB Design",
+                category: "PCB Design - Core",
                 skills: [
                   "Schematic Design",
-                  "Component Placement & Routing",
+                  "Component Placement & Multi Layers Routing",
                   "Power & Ground Plane Design",
                   "Signal Integrity",
+                  "Document Generation",
+                  "Library Management",
+                  "Datasheet Interpretation",
+                ],
+              },
+              {
+                category: "PCB Design - Advanced",
+                skills: [
+                  "Footprint Creation",
+                  "IPC Standards Compliance",
+                  "DFM & DFA Analysis",
+                  "High-Speed PCB Design",
+                  "BGA Package Routing & Fanout",
+                  "Constraint Management",
+                  "Impedance Control",
+                ],
+              },
+              {
+                category: "Communication Protocols",
+                skills: [
+                  "Wi-Fi (ESP32)",
+                  "HDMI/LVDS/DDR3",
+                  "PCIe Express",
+                  "USB/BLE",
+                  "Ethernet",
+                  "I2C/SPI/UART",
+                  "CAN Protocol",
                 ],
               },
               {
@@ -611,8 +638,13 @@ export default function Home() {
                 ],
               },
               {
-                category: "Communication",
-                skills: ["Wi-Fi (ESP32)", "Ethernet", "I2C/SPI/UART", "CAN Protocol"],
+                category: "Power Management",
+                skills: [
+                  "Voltage Regulation",
+                  "DC-DC Converters",
+                  "Power Supply Design",
+                  "Low-Power Systems",
+                ],
               },
               {
                 category: "Sensors",
@@ -624,17 +656,8 @@ export default function Home() {
                 ],
               },
               {
-                category: "Power Management",
-                skills: [
-                  "Voltage Regulation",
-                  "DC-DC Converters",
-                  "Power Supply Design",
-                  "Low-Power Systems",
-                ],
-              },
-              {
-                category: "Tools",
-                skills: ["Pads Professional", "Orcad", "Allegro", "Pads Layout"],
+                category: "Design Tools",
+                skills: ["PADs Professional", "OrCAD-Allegro", "Altium Designer", "Pads Layout"],
               },
             ].map((skill, index) => (
               <motion.div
