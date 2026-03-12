@@ -79,6 +79,11 @@ export default function ReviewManagement() {
         
         // Show success message
         alert(`Review ${!currentVisibility ? 'shown' : 'hidden'} successfully!`);
+        
+        // Refetch reviews to sync with database
+        setTimeout(() => {
+          fetchReviews();
+        }, 500);
       } else {
         const errorText = await response.text();
         console.error('Error response:', errorText);

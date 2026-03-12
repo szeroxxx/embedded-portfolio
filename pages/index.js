@@ -33,8 +33,8 @@ export default function Home() {
 
     fetchReviews();
 
-    // Refresh reviews every 30 seconds to catch updates
-    const interval = setInterval(fetchReviews, 30000);
+    // Refresh reviews every 5 seconds to catch updates from admin panel
+    const interval = setInterval(fetchReviews, 5000);
 
     const handleScroll = () => {
       const sections = ["hero", "about", "experience", "projects", "skills", "reviews", "contact"];
