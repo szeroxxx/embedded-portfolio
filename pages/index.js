@@ -9,12 +9,28 @@ export default function Home() {
   const [selectedProject, setSelectedProject] = useState(null);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [showScrollTop, setShowScrollTop] = useState(false);
+  const [reviews, setReviews] = useState([]);
   const { scrollYProgress } = useScroll();
   const opacity = useTransform(scrollYProgress, [0, 0.2], [1, 0]);
 
   useEffect(() => {
+    // Fetch reviews
+    const fetchReviews = async () => {
+      try {
+        const response = await fetch('/api/reviews');
+        if (response.ok) {
+          const data = await response.json();
+          setReviews(data);
+        }
+      } catch (error) {
+        console.error('Error fetching reviews:', error);
+      }
+    };
+
+    fetchReviews();
+
     const handleScroll = () => {
-      const sections = ["hero", "about", "experience", "projects", "skills", "contact"];
+      const sections = ["hero", "about", "experience", "projects", "skills", "reviews", "contact"];
       const current = sections.find((section) => {
         const element = document.getElementById(section);
         if (element) {
@@ -71,7 +87,7 @@ export default function Home() {
               <span className="text-gray-500"> Rajpura</span>
             </motion.div>
             <div className="hidden md:flex gap-8">
-              {["About", "Experience", "Projects", "Skills", "Contact"].map((item) => (
+              {["About", "Experience", "Projects", "Skills", "Reviews", "Contact"].map((item) => (
                 <motion.button
                   key={item}
                   whileHover={{ scale: 1.1, y: -2 }}
@@ -148,7 +164,7 @@ export default function Home() {
                 exit={{ opacity: 0, height: 0 }}
                 className="md:hidden mt-4 pb-4"
               >
-                {["About", "Experience", "Projects", "Skills", "Contact"].map((item) => (
+                {["About", "Experience", "Projects", "Skills", "Reviews", "Contact"].map((item) => (
                   <button
                     key={item}
                     onClick={() => scrollToSection(item.toLowerCase())}
@@ -701,6 +717,86 @@ export default function Home() {
         </div>
       </section>
 
+      {/* Reviews Section */}
+      <section id="reviews" className="py-32 bg-white text-black">
+        <div className="max-w-7xl mx-auto px-6">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="text-center mb-16"
+          >
+            <p className="text-gray-500 text-sm mb-4 tracking-widest uppercase">Client Testimonials</p>
+            <h2 className="text-4xl md:text-5xl font-bold mb-6">
+              What Clients Say
+            </h2>
+            <p className="text-gray-600 max-w-2xl mx-auto">
+              Real feedback from clients who have worked with me on embedded systems projects
+            </p>
+          </motion.div>
+
+          {reviews.length > 0 ? (
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+              {reviews.map((review, index) => (
+                <motion.div
+                  key={review.id}
+                  initial={{ opacity: 0, y: 30 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.6, delay: index * 0.1 }}
+                  whileHover={{ y: -8, boxShadow: "0 20px 40px rgba(0,0,0,0.1)" }}
+                  className="bg-gray-50 p-8 rounded-2xl hover:shadow-lg transition-all duration-300"
+                >
+                  <div className="flex mb-4">
+                    {Array.from({ length: 5 }, (_, i) => (
+                      <span
+                        key={i}
+                        className={`text-xl ${
+                          i < review.rating ? 'text-yellow-400' : 'text-gray-300'
+                        }`}
+                      >
+                        ★
+                      </span>
+                    ))}
+                  </div>
+                  <p className="text-gray-700 mb-6 leading-relaxed">
+                    "{review.review_text}"
+                  </p>
+                  <div className="border-t border-gray-200 pt-4">
+                    <p className="font-bold text-black">{review.client_name}</p>
+                    <p className="text-gray-500 text-sm">{review.project_name}</p>
+                    <p className="text-gray-400 text-xs mt-1">
+                      {new Date(review.created_at).toLocaleDateString()}
+                    </p>
+                  </div>
+                </motion.div>
+              ))}
+            </div>
+          ) : (
+            <div className="text-center py-12">
+              <p className="text-gray-500">No reviews yet. Be the first to share your experience!</p>
+            </div>
+          )}
+
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.5 }}
+            className="text-center mt-12"
+          >
+            <motion.a
+              href="/review"
+              whileHover={{ scale: 1.05, boxShadow: "0 10px 30px rgba(0,0,0,0.2)" }}
+              whileTap={{ scale: 0.95 }}
+              className="inline-block px-8 py-3 bg-black text-white rounded-full font-medium hover:bg-gray-800 transition-colors"
+            >
+              Leave a Review
+            </motion.a>
+          </motion.div>
+        </div>
+      </section>
+
       {/* Contact Section */}
       <section id="contact" className="py-32 bg-white text-black">
         <div className="max-w-4xl mx-auto px-6 text-center">
@@ -784,6 +880,12 @@ export default function Home() {
                 className="text-gray-400 hover:text-white active:text-white transition-colors text-sm touch-manipulation"
               >
                 Projects
+              </button>
+              <button
+                onClick={() => scrollToSection("reviews")}
+                className="text-gray-400 hover:text-white active:text-white transition-colors text-sm touch-manipulation"
+              >
+                Reviews
               </button>
               <button
                 onClick={() => scrollToSection("contact")}
