@@ -39,6 +39,8 @@ export default function ReviewManagement() {
 
   const toggleVisibility = async (id, currentVisibility) => {
     try {
+      console.log('Toggling visibility for review:', id, 'from', currentVisibility, 'to', !currentVisibility);
+      
       const response = await fetch('/api/admin/reviews', {
         method: 'PATCH',
         headers: {
@@ -51,15 +53,28 @@ export default function ReviewManagement() {
         })
       })
 
+      console.log('Response status:', response.status);
+      
       if (response.ok) {
+        const updatedReview = await response.json();
+        console.log('Updated review:', updatedReview);
+        
         setReviews(reviews.map(review => 
           review.id === id 
             ? { ...review, visible: !currentVisibility }
             : review
         ))
+        
+        // Show success message
+        alert(`Review ${!currentVisibility ? 'shown' : 'hidden'} successfully!`);
+      } else {
+        const errorData = await response.json();
+        console.error('Error response:', errorData);
+        alert('Failed to update review visibility: ' + (errorData.error || 'Unknown error'));
       }
     } catch (error) {
-      console.error('Error updating review:', error)
+      console.error('Error updating review:', error);
+      alert('Network error. Please check your connection and try again.');
     }
   }
 

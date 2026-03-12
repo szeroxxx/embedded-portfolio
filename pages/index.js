@@ -17,10 +17,14 @@ export default function Home() {
     // Fetch reviews
     const fetchReviews = async () => {
       try {
+        console.log('Fetching reviews for homepage...');
         const response = await fetch('/api/reviews');
         if (response.ok) {
           const data = await response.json();
+          console.log('Fetched reviews:', data?.length || 0, 'visible reviews');
           setReviews(data);
+        } else {
+          console.error('Failed to fetch reviews:', response.status);
         }
       } catch (error) {
         console.error('Error fetching reviews:', error);
@@ -28,6 +32,9 @@ export default function Home() {
     };
 
     fetchReviews();
+
+    // Refresh reviews every 30 seconds to catch updates
+    const interval = setInterval(fetchReviews, 30000);
 
     const handleScroll = () => {
       const sections = ["hero", "about", "experience", "projects", "skills", "reviews", "contact"];
@@ -46,7 +53,10 @@ export default function Home() {
     };
 
     window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+      clearInterval(interval);
+    };
   }, []);
 
   const scrollToSection = (sectionId) => {
