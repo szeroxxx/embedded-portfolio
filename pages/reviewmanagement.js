@@ -56,9 +56,21 @@ export default function ReviewManagement() {
       console.log('Response status:', response.status);
       
       if (response.ok) {
-        const updatedReview = await response.json();
-        console.log('Updated review:', updatedReview);
+        // Check if response has content before parsing JSON
+        const responseText = await response.text();
+        console.log('Response text:', responseText);
         
+        let updatedReview = null;
+        if (responseText) {
+          try {
+            updatedReview = JSON.parse(responseText);
+            console.log('Updated review:', updatedReview);
+          } catch (parseError) {
+            console.log('No JSON response, but operation successful');
+          }
+        }
+        
+        // Update local state regardless of response content
         setReviews(reviews.map(review => 
           review.id === id 
             ? { ...review, visible: !currentVisibility }
@@ -68,9 +80,16 @@ export default function ReviewManagement() {
         // Show success message
         alert(`Review ${!currentVisibility ? 'shown' : 'hidden'} successfully!`);
       } else {
-        const errorData = await response.json();
-        console.error('Error response:', errorData);
-        alert('Failed to update review visibility: ' + (errorData.error || 'Unknown error'));
+        const errorText = await response.text();
+        console.error('Error response:', errorText);
+        let errorMessage = 'Unknown error';
+        try {
+          const errorData = JSON.parse(errorText);
+          errorMessage = errorData.error || errorMessage;
+        } catch {
+          errorMessage = errorText || errorMessage;
+        }
+        alert('Failed to update review visibility: ' + errorMessage);
       }
     } catch (error) {
       console.error('Error updating review:', error);

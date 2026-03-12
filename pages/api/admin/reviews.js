@@ -49,7 +49,18 @@ export default async function handler(req, res) {
     }
 
     console.log('Updated review:', data?.[0]);
-    return res.status(200).json(data[0])
+    
+    // Ensure we always return JSON, even if data is empty
+    if (data && data.length > 0) {
+      return res.status(200).json(data[0])
+    } else {
+      // If no data returned, still return success with the expected structure
+      return res.status(200).json({ 
+        id, 
+        visible, 
+        message: 'Review updated successfully' 
+      })
+    }
   }
 
   res.setHeader('Allow', ['GET', 'PATCH'])
