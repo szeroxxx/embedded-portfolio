@@ -1,7 +1,16 @@
-import { supabase } from '../../../lib/supabase'
+import { createClient } from '@supabase/supabase-js'
+
+// Create admin client with service role key (bypasses RLS) if available
+// Otherwise fall back to anon key
+const serviceRoleKey = process.env.SUPABASE_SERVICE_ROLE_KEY
+const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL || process.env.SUPABASE_URL
+const supabaseKey = serviceRoleKey || (process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY || process.env.SUPABASE_ANON_KEY)
+
+const supabase = createClient(supabaseUrl, supabaseKey)
 
 export default async function handler(req, res) {
   console.log('Admin API called:', req.method, req.headers.password ? 'Password provided' : 'No password');
+  console.log('Using service role key:', !!serviceRoleKey);
   
   // Check admin password
   const { password } = req.headers
@@ -37,6 +46,8 @@ export default async function handler(req, res) {
       return res.status(400).json({ error: 'Invalid request body' })
     }
 
+    console.log('Attempting to update review:', { id, visible, newValue: visible });
+    
     const { data, error } = await supabase
       .from('reviews')
       .update({ visible })
@@ -44,11 +55,17 @@ export default async function handler(req, res) {
       .select()
 
     if (error) {
-      console.error('Supabase update error:', error);
-      return res.status(500).json({ error: error.message })
+      console.error('❌ Supabase update error:', error);
+      console.error('Error code:', error.code);
+      console.error('Error message:', error.message);
+      return res.status(500).json({ 
+        error: error.message,
+        code: error.code,
+        details: 'Failed to update review. Check if RLS policies allow UPDATE operations.'
+      })
     }
 
-    console.log('Updated review:', data?.[0]);
+    console.log('✅ Updated review:', data?.[0]);
     
     // Ensure we always return JSON, even if data is empty
     if (data && data.length > 0) {
