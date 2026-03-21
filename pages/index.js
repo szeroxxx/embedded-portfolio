@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { motion, useScroll, useTransform, AnimatePresence } from "framer-motion";
-import { IoLogoLinkedin } from "react-icons/io5";
+import { IoLogoLinkedin, IoLogoGithub } from "react-icons/io5";
 import { MdEmail } from "react-icons/md";
 import { projectsData, ProjectModal } from "../components/ProjectDetails";
 
@@ -823,6 +823,16 @@ export default function Home() {
               <motion.a
                 whileHover={{ scale: 1.1, rotate: 5 }}
                 whileTap={{ scale: 0.9 }}
+                href="https://github.com/DharaRajpura"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-14 h-14 bg-black rounded-full flex items-center justify-center hover:bg-gray-800 transition-colors"
+              >
+                <IoLogoGithub className="w-6 h-6 text-white" />
+              </motion.a>
+              <motion.a
+                whileHover={{ scale: 1.1, rotate: 5 }}
+                whileTap={{ scale: 0.9 }}
                 href="https://www.linkedin.com/in/dhara-rajpura-4b24b122b/"
                 target="_blank"
                 rel="noopener noreferrer"
@@ -840,6 +850,16 @@ export default function Home() {
               </motion.a>
             </div>
             <div className="flex justify-center gap-4 flex-wrap">
+              <motion.a
+                whileHover={{ scale: 1.05, boxShadow: "0 10px 30px rgba(0,0,0,0.2)" }}
+                whileTap={{ scale: 0.95 }}
+                href="https://github.com/DharaRajpura"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="px-8 py-3 bg-black text-white rounded-full font-medium hover:bg-gray-800 transition-colors"
+              >
+                GitHub
+              </motion.a>
               <motion.a
                 whileHover={{ scale: 1.05, boxShadow: "0 10px 30px rgba(0,0,0,0.2)" }}
                 whileTap={{ scale: 0.95 }}
