@@ -1,8 +1,11 @@
 import { useEffect, useState } from "react";
+import Head from "next/head";
 import { motion, useScroll, useTransform, AnimatePresence } from "framer-motion";
 import { IoLogoLinkedin, IoLogoGithub } from "react-icons/io5";
 import { MdEmail } from "react-icons/md";
 import { projectsData, ProjectModal } from "../components/ProjectDetails";
+
+const SITE_URL = "https://dhararajpura.com"; // update to the real deployed domain
 
 export default function Home() {
   const [activeSection, setActiveSection] = useState("hero");
@@ -14,48 +17,50 @@ export default function Home() {
   const opacity = useTransform(scrollYProgress, [0, 0.2], [1, 0]);
 
   useEffect(() => {
-    // Fetch reviews
     const fetchReviews = async () => {
       try {
-        console.log('Fetching reviews for homepage...');
-        const response = await fetch('/api/reviews');
+        const response = await fetch("/api/reviews");
         if (response.ok) {
           const data = await response.json();
-          console.log('Fetched reviews:', data?.length || 0, 'visible reviews');
           setReviews(data);
-        } else {
-          console.error('Failed to fetch reviews:', response.status);
         }
       } catch (error) {
-        console.error('Error fetching reviews:', error);
+        // Silently ignore — reviews are non-critical for page render
       }
     };
 
     fetchReviews();
+    // Re-fetch when the visitor returns to the tab so new reviews appear
+    // without polling the API on a wasteful interval.
+    const onFocus = () => {
+      if (document.visibilityState === "visible") fetchReviews();
+    };
+    document.addEventListener("visibilitychange", onFocus);
 
-    // Refresh reviews every 5 seconds to catch updates from admin panel
-    const interval = setInterval(fetchReviews, 5000);
-
+    const sections = ["hero", "about", "experience", "projects", "skills", "reviews", "contact"];
+    let ticking = false;
     const handleScroll = () => {
-      const sections = ["hero", "about", "experience", "projects", "skills", "reviews", "contact"];
-      const current = sections.find((section) => {
-        const element = document.getElementById(section);
-        if (element) {
-          const rect = element.getBoundingClientRect();
-          return rect.top <= 100 && rect.bottom >= 100;
-        }
-        return false;
+      if (ticking) return;
+      ticking = true;
+      window.requestAnimationFrame(() => {
+        const current = sections.find((section) => {
+          const element = document.getElementById(section);
+          if (element) {
+            const rect = element.getBoundingClientRect();
+            return rect.top <= 100 && rect.bottom >= 100;
+          }
+          return false;
+        });
+        if (current) setActiveSection(current);
+        setShowScrollTop(window.scrollY > 500);
+        ticking = false;
       });
-      if (current) setActiveSection(current);
-      
-      // Show scroll to top button after scrolling down
-      setShowScrollTop(window.scrollY > 500);
     };
 
-    window.addEventListener("scroll", handleScroll);
+    window.addEventListener("scroll", handleScroll, { passive: true });
     return () => {
       window.removeEventListener("scroll", handleScroll);
-      clearInterval(interval);
+      document.removeEventListener("visibilitychange", onFocus);
     };
   }, []);
 
@@ -77,8 +82,65 @@ export default function Home() {
     }, 100);
   };
 
+  const pageTitle = "Dhara Rajpura — Freelance Embedded Systems & PCB Design Engineer";
+  const pageDescription =
+    "Freelance embedded hardware engineer with 3+ years of experience in PCB design, motor control, and communication protocols. Available for custom embedded systems projects worldwide.";
+
+  const personSchema = {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    name: "Dhara Rajpura",
+    jobTitle: "Freelance Embedded Systems Engineer",
+    description: pageDescription,
+    url: SITE_URL,
+    image: `${SITE_URL}/d1.jpg`,
+    email: "mailto:dhararajpura2001@gmail.com",
+    sameAs: [
+      "https://github.com/DharaRajpura",
+      "https://www.linkedin.com/in/dhara-rajpura-4b24b122b/",
+    ],
+    knowsAbout: [
+      "PCB Design",
+      "Embedded Systems",
+      "Motor Control",
+      "Communication Protocols",
+      "Power Management",
+    ],
+  };
+
   return (
     <div className="bg-[#0a0a0a] text-gray-100">
+      <Head>
+        <title>{pageTitle}</title>
+        <meta name="description" content={pageDescription} />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <meta name="theme-color" content="#0a0a0a" />
+        <meta
+          name="keywords"
+          content="embedded systems, PCB design, freelance hardware engineer, motor control, ESP32, STM32, Altium, embedded engineer"
+        />
+        <link rel="canonical" href={SITE_URL} />
+        <link rel="icon" href="/favicon.ico" />
+
+        {/* Open Graph */}
+        <meta property="og:type" content="website" />
+        <meta property="og:title" content={pageTitle} />
+        <meta property="og:description" content={pageDescription} />
+        <meta property="og:url" content={SITE_URL} />
+        <meta property="og:image" content={`${SITE_URL}/d1.jpg`} />
+        <meta property="og:site_name" content="Dhara Rajpura" />
+
+        {/* Twitter */}
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content={pageTitle} />
+        <meta name="twitter:description" content={pageDescription} />
+        <meta name="twitter:image" content={`${SITE_URL}/d1.jpg`} />
+
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(personSchema) }}
+        />
+      </Head>
       <AnimatePresence>
         {selectedProject && (
           <ProjectModal project={selectedProject} onClose={() => setSelectedProject(null)} />
@@ -343,7 +405,11 @@ export default function Home() {
                   whileHover={{ scale: 1.05 }}
                   transition={{ duration: 0.3 }}
                   src="/d1.jpg"
-                  alt="Dhara Rajpura"
+                  alt="Portrait of Dhara Rajpura, freelance embedded systems engineer"
+                  width={448}
+                  height={448}
+                  fetchPriority="high"
+                  decoding="async"
                   className="relative w-full h-full object-cover rounded-3xl"
                 />
               </div>
@@ -448,8 +514,10 @@ export default function Home() {
                 duration: "November 2025 - Present",
                 points: [
                   "Providing embedded hardware design and consulting services to clients worldwide.",
-                  "Specializing in custom PCB design, motor control systems, and IoT solutions.",
-                  "Delivering end-to-end solutions from concept to production-ready designs.",
+                  "Developed LOCA Navigation PCB with 10-DoF IMU sensors, GNSS L86 module, and nRF52840 for precision navigation systems.",
+                  "Designed GST Smart Calculator with ESP32-S3, 4-inch TFT display, thermal printer support, and inventory management for merchants.",
+                  "Specializing in custom PCB design, motor control systems, IoT solutions, and battery-operated portable devices.",
+                  "Delivering end-to-end solutions from concept to production-ready designs with complete manufacturing documentation.",
                 ],
               },
               {
@@ -546,7 +614,9 @@ export default function Home() {
                     whileHover={{ scale: 1.1 }}
                     transition={{ duration: 0.5 }}
                     src={project.image}
-                    alt={project.title}
+                    alt={`${project.title} — ${project.category} project`}
+                    loading="lazy"
+                    decoding="async"
                     className="w-full h-full object-cover"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/0 to-black/0 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
@@ -670,6 +740,7 @@ export default function Home() {
                   "DC-DC Converters",
                   "Power Supply Design",
                   "Low-Power Systems",
+                  "Battery Management",
                 ],
               },
               {
@@ -860,23 +931,24 @@ export default function Home() {
               >
                 GitHub
               </motion.a>
-              <motion.a
-                whileHover={{ scale: 1.05, boxShadow: "0 10px 30px rgba(0,0,0,0.2)" }}
-                whileTap={{ scale: 0.95 }}
-                href="mailto:dhararajpura2001@gmail.com"
-                className="px-8 py-3 bg-black text-white rounded-full font-medium hover:bg-gray-800 transition-colors"
-              >
-                Email Me
-              </motion.a>
+      
               <motion.a
                 whileHover={{ scale: 1.05, borderColor: "rgba(0,0,0,0.5)" }}
                 whileTap={{ scale: 0.95 }}
                 href="https://www.linkedin.com/in/dhara-rajpura-4b24b122b/"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="px-8 py-3 border border-gray-300 rounded-full font-medium hover:bg-gray-50 transition-colors"
+                className="px-8 py-3  bg-black text-white rounded-full font-medium hover:bg-gray-800 transition-colors"
               >
                 LinkedIn
+              </motion.a>
+                      <motion.a
+                whileHover={{ scale: 1.05, boxShadow: "0 10px 30px rgba(0,0,0,0.2)" }}
+                whileTap={{ scale: 0.95 }}
+                href="mailto:dhararajpura2001@gmail.com"
+                className="px-8 py-3 bg-black text-white rounded-full font-medium hover:bg-gray-800 transition-colors"
+              >
+                Email Me
               </motion.a>
             </div>
           </motion.div>
@@ -926,7 +998,7 @@ export default function Home() {
             </div>
           </div>
           <div className="mt-8 pt-8 border-t border-gray-800 text-center text-gray-500 text-sm">
-            <p>© 2024 Dhara Rajpura. All rights reserved.</p>
+            <p>© {new Date().getFullYear()} Dhara Rajpura. All rights reserved.</p>
           </div>
         </div>
       </footer>
@@ -939,6 +1011,7 @@ export default function Home() {
             animate={{ opacity: 1, scale: 1 }}
             exit={{ opacity: 0, scale: 0.8 }}
             onClick={() => scrollToSection("hero")}
+            aria-label="Scroll back to top"
             className="fixed bottom-8 right-8 w-12 h-12 bg-white text-black rounded-full shadow-lg hover:bg-gray-200 transition-colors flex items-center justify-center z-40"
           >
             <svg

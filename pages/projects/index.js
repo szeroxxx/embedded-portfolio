@@ -69,6 +69,36 @@ const ProjectCard = ({ title, description, skills, image }) => {
 const Projects = () => {
   const projects = [
     {
+      title: "LOCA - Navigation PCB with DOF Sensors and GNSS",
+      description:
+        "This project centers on the design and development of a compact, low-power navigation-oriented printed circuit board built around the Seed Studio XIAO nRF52840 module, which itself integrates Nordic Semiconductor's nRF52840 system-on-chip as its primary processing unit. The core navigational capability is achieved through the fusion of two complementary sensing subsystems: a GNSS L86 module for satellite-based absolute positioning, interfaced via UART, and a 10-DoF IMU sensor providing inertial measurements through the I2C bus, with power supplied at 3.3V throughout. Onboard inertial sensing is further reinforced by the LSM6DS3TR-C six-axis IMU, which communicates over the nRF52840's internal I2C lines and generates interrupt signals routed to dedicated GPIO pins, enabling event-driven firmware execution rather than continuous polling. The schematic, designed in Altium Tool (dated Feb, 2025), encompasses a well-structured power architecture: a USB-C interface handles both data and charging input, while the battery management IC governs single-cell LiPo charging with configurable current via an ISET resistor and onboard temperature sensing. A 3.3V LDO regulator provides a clean system rail, decoupled at multiple nodes for noise immunity. Peripheral features include an RGB LED indicator, a MEMS microphone (MSM261D3526H1CPM) on the PDM interface, QSPI flash memory for data logging, dual crystal oscillators (32 MHz and 32.768 kHz) for RF and RTC accuracy, and NFC antenna pads for proximity-based communication. Battery voltage monitoring is implemented through a dedicated ADC pin (P0.31/AIN7), with a read-enable MOSFET circuit to minimize quiescent current during idle states, which reflects a deliberate design philosophy oriented towards power efficiency in field-deployable navigation applications.",
+      skills: [
+        "Power Management",
+        "Low Power Design",
+        "Motion Sensor",
+        "Antenna Design",
+        "RF Design",
+        "Multi-layer Board",
+        "BGA Package Routing",
+        "Navigation Design",
+      ],
+      image: "/1.jpg",
+    },
+    {
+      title: "GST Smart Calculator",
+      description:
+        "This project focuses on the development of a fully functional, portable merchant-grade Smart GST Calculator designed for small and medium-sized businesses that require GST calculation, inventory management, accounting support, and receipt printing in a compact standalone device. The system is built around the ESP32-S3-WROOM-1-N8R2 module, which serves as the primary controller and provides integrated Wi-Fi connectivity for cloud backup, future software updates, and wireless communication. A key feature of the device is its thermal receipt printing capability, allowing merchants to generate transaction receipts directly from the calculator through a wireless thermal printer without requiring a computer or smartphone. The user interface is provided through a 4-inch TFT color display, while a 5 × 7 matrix keypad with approximately 35 mechanical switches enables reliable and responsive user input for numerical entry, navigation, GST operations, inventory management, accounting functions, and printing commands. The system includes Flash memory for storing inventory records, transaction history, accounting data, and user settings. Power is supplied by a 4,500–5,500 mAh LiPo battery, managed by the battery charging IC through a USB Type-C interface, while a high-efficiency buck converter generates a stable 3.3 V supply rail for all electronic components. The hardware is designed to support inventory tracking for up to 500 SKUs, payment tracking, daily accounting activities, GST add/remove calculations at the press of a button, sales record management, and wireless data backup, creating a self-contained business management solution for retail and commercial users. The project deliverables include complete schematic design, DFM-compliant multi-layer PCB layout, Gerber files, BOM, pick-and-place data, and manufacturing documentation, resulting in a portable device that combines GST compliance, inventory control, accounting assistance, Wi-Fi connectivity, and thermal receipt printing in a single integrated platform.",
+      skills: [
+        "High Speed Data Routing",
+        "Multi-layer Board",
+        "Power Management",
+        "Battery Operated Design",
+        "Key-Pad Matrix Design",
+        "ESP32 Integration",
+      ],
+      image: "/2nd.jpg",
+    },
+    {
       title: "CRM: Common Station PCB",
       description:
         "The project is designed to control various stations of one robot to control various Motors, Sensors and communication modules to create an efficient, automated system. The system integrates Stepper Motors, DC motors, limit switches for NPN sensors, STM32 controller, an ESP32 wifi module, an Ethernet circuit and RGB Leds.This project aimed to control a versatile customisable platform for controlling different types of motors and sensors in an automation environment.",

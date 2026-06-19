@@ -1,6 +1,41 @@
+import { useEffect } from "react";
 import { motion } from "framer-motion";
 
 export const projectsData = [
+  {
+    title: "LOCA - Navigation PCB with DOF Sensors and GNSS",
+    description:
+      "This project centers on the design and development of a compact, low-power navigation-oriented printed circuit board built around the Seed Studio XIAO nRF52840 module, which itself integrates Nordic Semiconductor's nRF52840 system-on-chip as its primary processing unit. The core navigational capability is achieved through the fusion of two complementary sensing subsystems: a GNSS L86 module for satellite-based absolute positioning, interfaced via UART, and a 10-DoF IMU sensor providing inertial measurements through the I2C bus, with power supplied at 3.3V throughout. Onboard inertial sensing is further reinforced by the LSM6DS3TR-C six-axis IMU, which communicates over the nRF52840's internal I2C lines and generates interrupt signals routed to dedicated GPIO pins, enabling event-driven firmware execution rather than continuous polling. The schematic, designed in Altium Tool (dated Feb, 2025), encompasses a well-structured power architecture: a USB-C interface handles both data and charging input, while the battery management IC governs single-cell LiPo charging with configurable current via an ISET resistor and onboard temperature sensing. A 3.3V LDO regulator provides a clean system rail, decoupled at multiple nodes for noise immunity. Peripheral features include an RGB LED indicator, a MEMS microphone (MSM261D3526H1CPM) on the PDM interface, QSPI flash memory for data logging, dual crystal oscillators (32 MHz and 32.768 kHz) for RF and RTC accuracy, and NFC antenna pads for proximity-based communication. Battery voltage monitoring is implemented through a dedicated ADC pin (P0.31/AIN7), with a read-enable MOSFET circuit to minimize quiescent current during idle states, which reflects a deliberate design philosophy oriented towards power efficiency in field-deployable navigation applications.",
+    skills: [
+      "Power Management",
+      "Low Power Design",
+      "Motion Sensor",
+      "Antenna Design",
+      "RF Design",
+      "Multi-layer Board",
+      "BGA Package Routing",
+      "Navigation Design",
+    ],
+    image: "/cf4422ec-5d68-44f4-b303-aa48d58eb5a5.png",
+    category: "Freelance Project",
+    year: "2025",
+  },
+  {
+    title: "GST Smart Calculator",
+    description:
+      "This project focuses on the development of a fully functional, portable merchant-grade Smart GST Calculator designed for small and medium-sized businesses that require GST calculation, inventory management, accounting support, and receipt printing in a compact standalone device. The system is built around the ESP32-S3-WROOM-1-N8R2 module, which serves as the primary controller and provides integrated Wi-Fi connectivity for cloud backup, future software updates, and wireless communication. A key feature of the device is its thermal receipt printing capability, allowing merchants to generate transaction receipts directly from the calculator through a wireless thermal printer without requiring a computer or smartphone. The user interface is provided through a 4-inch TFT color display, while a 5 × 7 matrix keypad with approximately 35 mechanical switches enables reliable and responsive user input for numerical entry, navigation, GST operations, inventory management, accounting functions, and printing commands. The system includes Flash memory for storing inventory records, transaction history, accounting data, and user settings. Power is supplied by a 4,500–5,500 mAh LiPo battery, managed by the battery charging IC through a USB Type-C interface, while a high-efficiency buck converter generates a stable 3.3 V supply rail for all electronic components. The hardware is designed to support inventory tracking for up to 500 SKUs, payment tracking, daily accounting activities, GST add/remove calculations at the press of a button, sales record management, and wireless data backup, creating a self-contained business management solution for retail and commercial users. The project deliverables include complete schematic design, DFM-compliant multi-layer PCB layout, Gerber files, BOM, pick-and-place data, and manufacturing documentation, resulting in a portable device that combines GST compliance, inventory control, accounting assistance, Wi-Fi connectivity, and thermal receipt printing in a single integrated platform.",
+    skills: [
+      "High Speed Data Routing",
+      "Multi-layer Board",
+      "Power Management",
+      "Battery Operated Design",
+      "Key-Pad Matrix Design",
+      "ESP32 Integration",
+    ],
+    image: "/4c76595a-4bc9-4ab6-8899-76814749a779.png",
+    category: "Freelance Project",
+    year: "2025",
+  },
   {
     title: "LoRa Healthcare Emergency Alert System",
     description:
@@ -15,7 +50,7 @@ export const projectsData = [
       "Antenna Placement",
       "Battery Management",
     ],
-    image: "/1.jpg",
+    image: "/09279b67-bc12-4552-bfb3-334833121621.png",
     category: "Wireless Communication",
     year: "2025",
   },
@@ -32,7 +67,7 @@ export const projectsData = [
       "Ethernet Integration",
       "Sensor Integration",
     ],
-    image: "/2nd.jpg",
+    image: "/24411e71-718f-430b-a7d8-eb860dcd369b.png",
     category: "PCB Design",
     year: "2024",
   },
@@ -48,7 +83,7 @@ export const projectsData = [
       "User Interface Integration",
       "Pharmaceutical Standards",
     ],
-    image: "/3rd.jpg",
+    image: "/f6467503-a94c-45d4-bd49-7707cb6b811a.png",
     category: "Robotics",
     year: "2024",
   },
@@ -64,13 +99,26 @@ export const projectsData = [
       "Power Supply Design",
       "Signal Conditioning",
     ],
-    image: "/4rth.jpg",
+    image: "/029463a4-28f3-4f70-9b11-d5197b217ca0.png",
     category: "Signal Processing",
     year: "2023",
   },
 ];
 
 export const ProjectModal = ({ project, onClose }) => {
+  useEffect(() => {
+    const onKeyDown = (e) => {
+      if (e.key === "Escape") onClose();
+    };
+    document.addEventListener("keydown", onKeyDown);
+    // Lock background scroll while the modal is open
+    document.body.style.overflow = "hidden";
+    return () => {
+      document.removeEventListener("keydown", onKeyDown);
+      document.body.style.overflow = "";
+    };
+  }, [onClose]);
+
   if (!project) return null;
 
   return (
@@ -78,6 +126,9 @@ export const ProjectModal = ({ project, onClose }) => {
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
+      role="dialog"
+      aria-modal="true"
+      aria-label={`${project.title} project details`}
       className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-sm"
       onClick={onClose}
     >
@@ -94,6 +145,7 @@ export const ProjectModal = ({ project, onClose }) => {
           whileHover={{ scale: 1.1, rotate: 90 }}
           whileTap={{ scale: 0.9 }}
           onClick={onClose}
+          aria-label="Close project details"
           className="fixed top-4 right-4 md:absolute w-12 h-12 md:w-10 md:h-10 bg-black md:bg-white text-white md:text-black rounded-full flex items-center justify-center hover:bg-gray-800 md:hover:bg-gray-100 transition-colors shadow-lg z-50 font-bold text-xl"
         >
           ✕
@@ -105,7 +157,8 @@ export const ProjectModal = ({ project, onClose }) => {
             animate={{ scale: 1 }}
             transition={{ duration: 0.6 }}
             src={project.image}
-            alt={project.title}
+            alt={`${project.title} — ${project.category} project`}
+            decoding="async"
             className="w-full h-full object-cover rounded-t-3xl"
           />
         </div>
