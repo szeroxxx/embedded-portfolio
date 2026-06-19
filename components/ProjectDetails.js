@@ -18,7 +18,7 @@ export const projectsData = [
     ],
     image: "/cf4422ec-5d68-44f4-b303-aa48d58eb5a5.png",
     category: "Freelance Project",
-    year: "2025",
+    year: "2026",
   },
   {
     title: "GST Smart Calculator",
@@ -34,7 +34,7 @@ export const projectsData = [
     ],
     image: "/4c76595a-4bc9-4ab6-8899-76814749a779.png",
     category: "Freelance Project",
-    year: "2025",
+    year: "2026",
   },
   {
     title: "LoRa Healthcare Emergency Alert System",
@@ -52,7 +52,7 @@ export const projectsData = [
     ],
     image: "/09279b67-bc12-4552-bfb3-334833121621.png",
     category: "Wireless Communication",
-    year: "2025",
+    year: "2026",
   },
   {
     title: "CRM: Common Station PCB",
@@ -69,7 +69,7 @@ export const projectsData = [
     ],
     image: "/24411e71-718f-430b-a7d8-eb860dcd369b.png",
     category: "PCB Design",
-    year: "2024",
+    year: "2025",
   },
   {
     title: "Bottle Sorter Robot",
