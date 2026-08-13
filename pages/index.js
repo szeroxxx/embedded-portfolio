@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import Head from "next/head";
 import { motion, useScroll, useTransform, AnimatePresence } from "framer-motion";
-import { IoLogoLinkedin, IoLogoGithub } from "react-icons/io5";
+import { IoLogoWhatsapp } from "react-icons/io5";
 import { MdEmail } from "react-icons/md";
 import { projectsData, ProjectModal } from "../components/ProjectDetails";
 
@@ -94,11 +94,7 @@ export default function Home() {
     description: pageDescription,
     url: SITE_URL,
     image: `${SITE_URL}/d1.jpg`,
-    email: "mailto:dhararajpura2001@gmail.com",
-    sameAs: [
-      "https://github.com/DharaRajpura",
-      "https://www.linkedin.com/in/dhara-rajpura-4b24b122b/",
-    ],
+    email: "mailto:dharaxrajpura@gmail.com",
     knowsAbout: [
       "PCB Design",
       "Embedded Systems",
@@ -892,63 +888,42 @@ export default function Home() {
             </p>
             <div className="flex justify-center gap-6 mb-12">
               <motion.a
-                whileHover={{ scale: 1.1, rotate: 5 }}
-                whileTap={{ scale: 0.9 }}
-                href="https://github.com/DharaRajpura"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="w-14 h-14 bg-black rounded-full flex items-center justify-center hover:bg-gray-800 transition-colors"
-              >
-                <IoLogoGithub className="w-6 h-6 text-white" />
-              </motion.a>
-              <motion.a
-                whileHover={{ scale: 1.1, rotate: 5 }}
-                whileTap={{ scale: 0.9 }}
-                href="https://www.linkedin.com/in/dhara-rajpura-4b24b122b/"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="w-14 h-14 bg-black rounded-full flex items-center justify-center hover:bg-gray-800 transition-colors"
-              >
-                <IoLogoLinkedin className="w-6 h-6 text-white" />
-              </motion.a>
-              <motion.a
                 whileHover={{ scale: 1.1, rotate: -5 }}
                 whileTap={{ scale: 0.9 }}
-                href="mailto:dhararajpura2001@gmail.com"
+                href="mailto:dharaxrajpura@gmail.com"
                 className="w-14 h-14 bg-black rounded-full flex items-center justify-center hover:bg-gray-800 transition-colors"
               >
                 <MdEmail className="w-6 h-6 text-white" />
+              </motion.a>
+              <motion.a
+                whileHover={{ scale: 1.1, rotate: 5 }}
+                whileTap={{ scale: 0.9 }}
+                href="https://wa.me/919725417323?text=Hi%20Dhara%2C%20I%27d%20like%20to%20discuss%20a%20project."
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-14 h-14 bg-black rounded-full flex items-center justify-center hover:bg-gray-800 transition-colors"
+              >
+                <IoLogoWhatsapp className="w-6 h-6 text-white" />
               </motion.a>
             </div>
             <div className="flex justify-center gap-4 flex-wrap">
               <motion.a
                 whileHover={{ scale: 1.05, boxShadow: "0 10px 30px rgba(0,0,0,0.2)" }}
                 whileTap={{ scale: 0.95 }}
-                href="https://github.com/DharaRajpura"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="px-8 py-3 bg-black text-white rounded-full font-medium hover:bg-gray-800 transition-colors"
-              >
-                GitHub
-              </motion.a>
-      
-              <motion.a
-                whileHover={{ scale: 1.05, borderColor: "rgba(0,0,0,0.5)" }}
-                whileTap={{ scale: 0.95 }}
-                href="https://www.linkedin.com/in/dhara-rajpura-4b24b122b/"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="px-8 py-3  bg-black text-white rounded-full font-medium hover:bg-gray-800 transition-colors"
-              >
-                LinkedIn
-              </motion.a>
-                      <motion.a
-                whileHover={{ scale: 1.05, boxShadow: "0 10px 30px rgba(0,0,0,0.2)" }}
-                whileTap={{ scale: 0.95 }}
-                href="mailto:dhararajpura2001@gmail.com"
+                href="mailto:dharaxrajpura@gmail.com"
                 className="px-8 py-3 bg-black text-white rounded-full font-medium hover:bg-gray-800 transition-colors"
               >
                 Email Me
+              </motion.a>
+              <motion.a
+                whileHover={{ scale: 1.05, boxShadow: "0 10px 30px rgba(0,0,0,0.2)" }}
+                whileTap={{ scale: 0.95 }}
+                href="https://wa.me/919725417323?text=Hi%20Dhara%2C%20I%27d%20like%20to%20discuss%20a%20project."
+                target="_blank"
+                rel="noopener noreferrer"
+                className="px-8 py-3 bg-black text-white rounded-full font-medium hover:bg-gray-800 transition-colors"
+              >
+                WhatsApp: +91 97254 17323
               </motion.a>
             </div>
           </motion.div>

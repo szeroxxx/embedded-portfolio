@@ -1,7 +1,7 @@
 import React from "react";
 import Image from "next/image";
 import { motion } from "framer-motion";
-import { IoLogoLinkedin, IoMagnet } from "react-icons/io5";
+import { IoLogoWhatsapp, IoMagnet } from "react-icons/io5";
 import { MdEmail } from "react-icons/md";
 import { useEffect, useState } from "react";
 import Layout from "../../components/Layout";
@@ -272,12 +272,12 @@ const AboutSection = () => {
                 transition={{ delay: 1 }}
               >
                 <SocialLink
-                  href="https://www.linkedin.com/in/dhara-rajpura-4b24b122b/"
-                  icon={<IoLogoLinkedin className="w-8 h-8 sm:w-10 sm:h-10" />}
+                  href="mailto:dharaxrajpura@gmail.com"
+                  icon={<MdEmail className="w-8 h-8 sm:w-10 sm:h-10" />}
                 />
                 <SocialLink
-                  href="mailto:dhararajpura2001@gmail.com "
-                  icon={<MdEmail className="w-8 h-8 sm:w-10 sm:h-10" />}
+                  href="https://wa.me/919725417323?text=Hi%20Dhara%2C%20I%27d%20like%20to%20discuss%20a%20project."
+                  icon={<IoLogoWhatsapp className="w-8 h-8 sm:w-10 sm:h-10" />}
                 />
               </motion.div>
             </div>
