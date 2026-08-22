@@ -260,7 +260,7 @@ const AboutSection = () => {
                 }}
               >
                 <TypewriterEffect
-                  text="I am an embedded hardware engineer with around 2+ years of experience 
+                  text="I am an embedded hardware engineer with 3+ years of experience 
                      in the design, development, and testing of embedded systems."
                   delay={50}
                 />

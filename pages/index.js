@@ -5,7 +5,8 @@ import { IoLogoWhatsapp } from "react-icons/io5";
 import { MdEmail } from "react-icons/md";
 import { projectsData, ProjectModal } from "../components/ProjectDetails";
 
-const SITE_URL = "https://dhararajpura.com"; // update to the real deployed domain
+const SITE_URL =
+  process.env.NEXT_PUBLIC_SITE_URL || "https://dhararajpura.vercel.app";
 
 export default function Home() {
   const [activeSection, setActiveSection] = useState("hero");
@@ -13,6 +14,11 @@ export default function Home() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [showScrollTop, setShowScrollTop] = useState(false);
   const [reviews, setReviews] = useState([]);
+  const reviewCount = reviews.length;
+  const averageRating =
+    reviewCount > 0
+      ? reviews.reduce((sum, r) => sum + Number(r.rating || 0), 0) / reviewCount
+      : 0;
   const { scrollYProgress } = useScroll();
   const opacity = useTransform(scrollYProgress, [0, 0.2], [1, 0]);
 
@@ -361,7 +367,17 @@ export default function Home() {
                   />
                 </div>
                 <div>
-                  <p className="text-sm text-gray-400">Trusted by 10+ clients</p>
+                  <p className="text-sm text-gray-400">
+                    {reviewCount > 0 ? (
+                      <>
+                        <span className="text-yellow-400">★</span>{" "}
+                        {averageRating.toFixed(1)} from {reviewCount} client
+                        {reviewCount === 1 ? " review" : " reviews"}
+                      </>
+                    ) : (
+                      "Freelance embedded hardware engineer"
+                    )}
+                  </p>
                   <motion.p 
                     initial={{ opacity: 0, x: -10 }}
                     animate={{ opacity: 1, x: 0 }}

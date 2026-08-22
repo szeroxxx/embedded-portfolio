@@ -120,9 +120,19 @@ const ExperienceCard = ({ title, company, duration, description, index }) => {
 const Experience = () => {
   const experiences = [
     {
+      title: "Freelance Embedded Systems Consultant",
+      company: "Self-Employed",
+      duration: "November 2025 - Present",
+      description: [
+        "Providing embedded hardware design and consulting services to clients worldwide.",
+        "Custom PCB design, motor control systems, IoT solutions, and battery-operated portable devices.",
+        "End-to-end delivery from concept to production-ready designs with complete manufacturing documentation.",
+      ],
+    },
+    {
       title: "Embedded System Engineer",
       company: "DosePacker, Ahmedabad",
-      duration: "Jan 2024 - Present",
+      duration: "Jan 2024 - November 2025",
       description: [
         "Designed PCBs for robotic systems integrating STM32, motors, and sensors for precision control.",
         "Developed motor control circuits focusing on thermal management and noise filtering.",
