@@ -1,0 +1,469 @@
+{
+  "site": {
+    "siteUrl": "https://dhararajpura.com",
+    "pageTitle": "Dhara Rajpura — Freelance Embedded Systems & PCB Design Engineer",
+    "pageDescription": "Freelance embedded hardware engineer with 3+ years of experience in PCB design, motor control, and communication protocols. Available for custom embedded systems projects worldwide.",
+    "keywords": "embedded systems, PCB design, freelance hardware engineer, motor control, ESP32, STM32, Altium, embedded engineer",
+    "themeColor": "#0a0a0a",
+    "ogImage": "/d1.jpg",
+    "personSchema": {
+      "@context": "https://schema.org",
+      "@type": "Person",
+      "name": "Dhara Rajpura",
+      "jobTitle": "Freelance Embedded Systems Engineer",
+      "url": "https://dhararajpura.com",
+      "image": "https://dhararajpura.com/d1.jpg",
+      "email": "mailto:dharaxrajpura@gmail.com",
+      "knowsAbout": [
+        "PCB Design",
+        "Embedded Systems",
+        "Motor Control",
+        "Communication Protocols",
+        "Power Management"
+      ]
+    },
+    "navigation": ["About", "Experience", "Projects", "Skills", "Reviews", "Contact"],
+    "contact": {
+      "email": "dharaxrajpura@gmail.com",
+      "whatsapp": "+91 97254 17323",
+      "whatsappLink": "https://wa.me/919725417323?text=Hi%20Dhara%2C%20I%27d%20like%20to%20discuss%20a%20project."
+    }
+  },
+
+  "homepage": {
+    "sourceFile": "pages/index.js",
+    "note": "This is the current live single-page site (route: /). Sections below appear in this order.",
+
+    "hero": {
+      "eyebrow": "Freelance Embedded Systems Expert",
+      "headline": ["Ready to boost", "your embedded", "systems?"],
+      "subheading": "Freelance embedded hardware engineer specializing in PCB design, motor control, and seamless communication integration. Available for your next project.",
+      "ctaButtons": ["Get In Touch", "View Portfolio"],
+      "socialProof": {
+        "text": "Trusted by 10+ clients",
+        "status": "Available for freelance work"
+      },
+      "image": "/d1.jpg",
+      "imageAlt": "Portrait of Dhara Rajpura, freelance embedded systems engineer"
+    },
+
+    "about": {
+      "eyebrow": "About Me",
+      "heading": "Hey, I'm Dhara Rajpura",
+      "description": "I am a freelance embedded hardware engineer with 3+ years of experience in the design, development, and testing of embedded systems. I specialize in PCB design, motor control, and communication protocols, delivering custom solutions for clients worldwide.",
+      "services": [
+        {
+          "title": "PCB Design",
+          "desc": "Expert schematic design, multi-layer routing, and signal integrity optimization for complex embedded systems.",
+          "tag": "Hardware"
+        },
+        {
+          "title": "Motor Control",
+          "desc": "Precision control systems for stepper and DC motors with advanced PWM and encoder integration.",
+          "tag": "Control Systems"
+        },
+        {
+          "title": "Communication",
+          "desc": "Seamless integration of WiFi, Ethernet, I2C, SPI, UART, and CAN protocols for robust connectivity.",
+          "tag": "Protocols"
+        }
+      ]
+    },
+
+    "experience": {
+      "eyebrow": "My Journey",
+      "heading": "Work Experience",
+      "items": [
+        {
+          "title": "Freelance Embedded Systems Consultant",
+          "company": "Self-Employed",
+          "duration": "November 2025 - Present",
+          "badge": "Available for Hire",
+          "points": [
+            "Providing embedded hardware design and consulting services to clients worldwide.",
+            "Developed LOCA Navigation PCB with 10-DoF IMU sensors, GNSS L86 module, and nRF52840 for precision navigation systems.",
+            "Designed GST Smart Calculator with ESP32-S3, 4-inch TFT display, thermal printer support, and inventory management for merchants.",
+            "Specializing in custom PCB design, motor control systems, IoT solutions, and battery-operated portable devices.",
+            "Delivering end-to-end solutions from concept to production-ready designs with complete manufacturing documentation."
+          ]
+        },
+        {
+          "title": "Embedded System Engineer",
+          "company": "DosePacker, Ahmedabad",
+          "duration": "Jan 2024 - November 2025",
+          "points": [
+            "Designed PCBs for robotic systems integrating STM32, motors, and sensors for precision control.",
+            "Developed motor control circuits focusing on thermal management and noise filtering.",
+            "Integrated WiFi and Ethernet modules with ESP32 for seamless communication."
+          ]
+        },
+        {
+          "title": "Embedded Hardware Engineer",
+          "company": "Teq Diligent, Ahmedabad",
+          "duration": "Jan 2023 - Jan 2024",
+          "points": [
+            "Designed multi-layer PCBs ensuring manufacturability and performance validation.",
+            "Performed CAM checks and generated production-ready Gerber files.",
+            "Tested PCB designs to ensure functionality and compliance with industry standards."
+          ]
+        }
+      ]
+    },
+
+    "projects": {
+      "eyebrow": "My Portfolio",
+      "heading": "Featured Projects",
+      "subheading": "Showcasing my embedded systems design work and technical expertise",
+      "sourceFile": "components/ProjectDetails.js (projectsData)",
+      "items": [
+        {
+          "title": "LOCA - Navigation PCB with DOF Sensors and GNSS",
+          "description": "This project centers on the design and development of a compact, low-power navigation-oriented printed circuit board built around the Seed Studio XIAO nRF52840 module, which itself integrates Nordic Semiconductor's nRF52840 system-on-chip as its primary processing unit. The core navigational capability is achieved through the fusion of two complementary sensing subsystems: a GNSS L86 module for satellite-based absolute positioning, interfaced via UART, and a 10-DoF IMU sensor providing inertial measurements through the I2C bus, with power supplied at 3.3V throughout. Onboard inertial sensing is further reinforced by the LSM6DS3TR-C six-axis IMU, which communicates over the nRF52840's internal I2C lines and generates interrupt signals routed to dedicated GPIO pins, enabling event-driven firmware execution rather than continuous polling. The schematic, designed in Altium Tool (dated Feb, 2025), encompasses a well-structured power architecture: a USB-C interface handles both data and charging input, while the battery management IC governs single-cell LiPo charging with configurable current via an ISET resistor and onboard temperature sensing. A 3.3V LDO regulator provides a clean system rail, decoupled at multiple nodes for noise immunity. Peripheral features include an RGB LED indicator, a MEMS microphone (MSM261D3526H1CPM) on the PDM interface, QSPI flash memory for data logging, dual crystal oscillators (32 MHz and 32.768 kHz) for RF and RTC accuracy, and NFC antenna pads for proximity-based communication. Battery voltage monitoring is implemented through a dedicated ADC pin (P0.31/AIN7), with a read-enable MOSFET circuit to minimize quiescent current during idle states, which reflects a deliberate design philosophy oriented towards power efficiency in field-deployable navigation applications.",
+          "skills": ["Power Management", "Low Power Design", "Motion Sensor", "Antenna Design", "RF Design", "Multi-layer Board", "BGA Package Routing", "Navigation Design"],
+          "image": "/cf4422ec-5d68-44f4-b303-aa48d58eb5a5.png",
+          "category": "Freelance Project",
+          "year": "2026"
+        },
+        {
+          "title": "GST Smart Calculator",
+          "description": "This project focuses on the development of a fully functional, portable merchant-grade Smart GST Calculator designed for small and medium-sized businesses that require GST calculation, inventory management, accounting support, and receipt printing in a compact standalone device. The system is built around the ESP32-S3-WROOM-1-N8R2 module, which serves as the primary controller and provides integrated Wi-Fi connectivity for cloud backup, future software updates, and wireless communication. A key feature of the device is its thermal receipt printing capability, allowing merchants to generate transaction receipts directly from the calculator through a wireless thermal printer without requiring a computer or smartphone. The user interface is provided through a 4-inch TFT color display, while a 5 × 7 matrix keypad with approximately 35 mechanical switches enables reliable and responsive user input for numerical entry, navigation, GST operations, inventory management, accounting functions, and printing commands. The system includes Flash memory for storing inventory records, transaction history, accounting data, and user settings. Power is supplied by a 4,500–5,500 mAh LiPo battery, managed by the battery charging IC through a USB Type-C interface, while a high-efficiency buck converter generates a stable 3.3 V supply rail for all electronic components. The hardware is designed to support inventory tracking for up to 500 SKUs, payment tracking, daily accounting activities, GST add/remove calculations at the press of a button, sales record management, and wireless data backup, creating a self-contained business management solution for retail and commercial users. The project deliverables include complete schematic design, DFM-compliant multi-layer PCB layout, Gerber files, BOM, pick-and-place data, and manufacturing documentation, resulting in a portable device that combines GST compliance, inventory control, accounting assistance, Wi-Fi connectivity, and thermal receipt printing in a single integrated platform.",
+          "skills": ["High Speed Data Routing", "Multi-layer Board", "Power Management", "Battery Operated Design", "Key-Pad Matrix Design", "ESP32 Integration"],
+          "image": "/4c76595a-4bc9-4ab6-8899-76814749a779.png",
+          "category": "Freelance Project",
+          "year": "2026"
+        },
+        {
+          "title": "LoRa Healthcare Emergency Alert System",
+          "description": "Developed a dual-device wireless paging system (Patient-to-Nurse) capable of 500m range, optimized for low-power battery operation. The system consists of a Remote Trigger (Patient Node) and Master Receiver (Nurse Station), leveraging LoRa technology for reliable communication in challenging indoor environments. Designed complete hardware lifecycle including ESP32-based Master Receiver with RFID module integration and Arduino-based Remote Trigger with optimized RF layout. Successfully achieved stable 500m communication link with clear visual feedback through RGB LED status indicators.",
+          "skills": ["LoRa RF Design", "ESP32 Integration", "RFID Module", "Low-Power Design", "PCB Layout Optimization", "Signal Integrity", "Antenna Placement", "Battery Management"],
+          "image": "/09279b67-bc12-4552-bfb3-334833121621.png",
+          "category": "Wireless Communication",
+          "year": "2026"
+        },
+        {
+          "title": "CRM: Common Station PCB",
+          "description": "Designed and developed a comprehensive control system PCB for robotic automation, managing multiple stations with various motors, sensors, and communication modules. The system integrates Stepper Motors, DC motors, limit switches, NPN sensors, STM32 controller, ESP32 WiFi module, Ethernet circuit, and RGB LEDs. Created a versatile, customizable platform for controlling different types of motors and sensors in automated environments, focusing on energy efficiency and reliable performance.",
+          "skills": ["Embedded System Design", "Motor Control Integration", "Energy-Efficient Design", "STM32 Controller", "ESP32 WiFi", "Ethernet Integration", "Sensor Integration"],
+          "image": "/24411e71-718f-430b-a7d8-eb860dcd369b.png",
+          "category": "PCB Design",
+          "year": "2025"
+        },
+        {
+          "title": "Bottle Sorter Robot",
+          "description": "Engineered an automated system for pharmaceutical applications, designed to sort, measure, and monitor pill bottles with precision. The system autonomously fetches and delivers bottles for analysis, sorts them by size, and performs accurate weight measurement and pill tracking. Developed the complete hardware solution including servo motor control circuits, real-time sensing systems, and user interface integration for seamless operation in pharmaceutical and automated dispensing environments.",
+          "skills": ["Servo Motor Control", "Real-Time Systems", "Weight Sensing", "Automated Sorting Logic", "User Interface Integration", "Pharmaceutical Standards"],
+          "image": "/f6467503-a94c-45d4-bd49-7707cb6b811a.png",
+          "category": "Robotics",
+          "year": "2024"
+        },
+        {
+          "title": "Triggering Unit PCB",
+          "description": "Designed a specialized circuit board that generates dual voltage levels (-7V and +6.3V) from a single 12V input for precision signal triggering applications. Implemented high-speed operational amplifier and analog comparator circuits to achieve accurate signal switching between voltage levels. The design focuses on signal integrity and precise voltage level conversion, ideal for communication systems, measurement equipment, and signal conditioning applications requiring reliable triggering mechanisms.",
+          "skills": ["Voltage Level Conversion", "Op-Amp Circuit Design", "Analog Comparators", "Signal Switching Precision", "Power Supply Design", "Signal Conditioning"],
+          "image": "/029463a4-28f3-4f70-9b11-d5197b217ca0.png",
+          "category": "Signal Processing",
+          "year": "2023"
+        }
+      ]
+    },
+
+    "skills": {
+      "eyebrow": "Expertise",
+      "heading": "Technical Skills",
+      "categories": [
+        {
+          "category": "PCB Design - Core",
+          "skills": [
+            "Schematic Design",
+            "Component Placement & Multi Layers Routing",
+            "Power & Ground Plane Design",
+            "Signal Integrity",
+            "Document Generation",
+            "Library Management",
+            "Datasheet Interpretation"
+          ]
+        },
+        {
+          "category": "PCB Design - Advanced",
+          "skills": [
+            "Footprint Creation",
+            "IPC Standards Compliance",
+            "DFM & DFA Analysis",
+            "High-Speed PCB Design",
+            "BGA Package Routing & Fanout",
+            "Constraint Management",
+            "Impedance Control"
+          ]
+        },
+        {
+          "category": "Communication Protocols",
+          "skills": [
+            "Wi-Fi (ESP32)",
+            "HDMI/LVDS/DDR3",
+            "PCIe Express",
+            "USB/BLE",
+            "Ethernet",
+            "I2C/SPI/UART",
+            "CAN Protocol"
+          ]
+        },
+        {
+          "category": "Motor Control",
+          "skills": [
+            "Stepper Motor Control",
+            "DC Motor Speed Control",
+            "PWM Implementation",
+            "Encoder Integration"
+          ]
+        },
+        {
+          "category": "Power Management",
+          "skills": [
+            "Voltage Regulation",
+            "DC-DC Converters",
+            "Power Supply Design",
+            "Low-Power Systems",
+            "Battery Management"
+          ]
+        },
+        {
+          "category": "Sensors",
+          "skills": [
+            "Temperature Sensors",
+            "Proximity Sensors",
+            "Encoders",
+            "Limit Switches"
+          ]
+        },
+        {
+          "category": "Design Tools",
+          "skills": ["PADs Professional", "OrCAD-Allegro", "Altium Designer", "Pads Layout"]
+        }
+      ]
+    },
+
+    "reviews": {
+      "eyebrow": "Client Testimonials",
+      "heading": "What Clients Say",
+      "subheading": "Real feedback from clients who have worked with me on embedded systems projects",
+      "note": "Reviews are fetched dynamically from the /api/reviews endpoint (backed by a database, see lib/db.ts) — there is no static review content hardcoded in the site. Empty state text: 'No reviews yet. Be the first to share your experience!'",
+      "leaveReviewLink": "/review"
+    },
+
+    "contact": {
+      "heading": "Let's work together",
+      "subheading": "Available for freelance projects and consulting. Ready to elevate your embedded systems project? Get in touch and let's create something amazing.",
+      "email": "dharaxrajpura@gmail.com",
+      "whatsapp": "+91 97254 17323",
+      "whatsappLink": "https://wa.me/919725417323?text=Hi%20Dhara%2C%20I%27d%20like%20to%20discuss%20a%20project."
+    },
+
+    "footer": {
+      "name": "Dhara Rajpura",
+      "tagline": "Freelance Embedded Systems Expert",
+      "status": "Open to new opportunities",
+      "links": ["Home", "About", "Projects", "Reviews", "Contact"],
+      "copyright": "© {current year} Dhara Rajpura. All rights reserved."
+    }
+  },
+
+  "legacyRoutes": {
+    "note": "These are separate, older standalone pages still present in the codebase (routes /about, /projects, /workexperience) that are not linked from the current homepage navigation. They contain some overlapping but not identical content/data compared to the homepage.",
+
+    "aboutPage": {
+      "sourceFile": "pages/about/index.js",
+      "hero": {
+        "heading": "Hey, I'm Dhara Rajpura",
+        "typewriterText": "I am an embedded hardware engineer with around 2+ years of experience in the design, development, and testing of embedded systems.",
+        "socialLinks": {
+          "email": "dharaxrajpura@gmail.com",
+          "whatsapp": "https://wa.me/919725417323?text=Hi%20Dhara%2C%20I%27d%20like%20to%20discuss%20a%20project."
+        },
+        "profileImage": "/d1.jpg"
+      },
+      "technicalSkills": {
+        "heading": "Technical Skills",
+        "categories": [
+          {
+            "category": "PCB Design",
+            "expertise": [
+              {
+                "title": "Schematic Design",
+                "items": ["Component Selection", "Power Supply Circuit Design", "Netlist Creation", "BOM File Generation"]
+              },
+              {
+                "title": "Layout Design",
+                "items": [
+                  "Component Placement & Routing",
+                  "Differential Pair Routing",
+                  "Power & Ground Plane Design",
+                  "Thermal Management",
+                  "Signal Integrity",
+                  "High-Speed Signal Impedance Matching",
+                  "Layer Stackup Definition"
+                ]
+              }
+            ],
+            "tools": ["Pads Professional", "Pads Layout", "Orcad", "Allegro"]
+          },
+          {
+            "category": "Motor Control",
+            "items": [
+              "Stepper Motor Control with Encoders",
+              "Break Mechanism Implementation",
+              "DC Motor Speed & Direction Control",
+              "PWM Signal Implementation"
+            ]
+          },
+          {
+            "category": "Sensor Integration",
+            "items": ["Temperature Sensors", "Proximity Sensors", "Encoders", "Limit Switches"]
+          },
+          {
+            "category": "Voltage Regulation & Power Management",
+            "items": [
+              "Op-Amp Based Voltage Level Conversion",
+              "Power Supply Design",
+              "Low-Power System Distribution",
+              "DC-DC Converter Integration"
+            ]
+          },
+          {
+            "category": "Communication & Interfaces",
+            "items": [
+              "Wi-Fi Module Integration (ESP32)",
+              "Ethernet Communication Circuits",
+              "I2C Protocol",
+              "SPI Protocol",
+              "UART Protocol",
+              "CAN Protocol"
+            ]
+          },
+          {
+            "category": "Real-Time Control Systems",
+            "items": [
+              "Real-Time Clock (RTC) Integration",
+              "Watchdog Timer Implementation",
+              "Real-Time Embedded Systems Design",
+              "Automation System Development"
+            ]
+          },
+          {
+            "category": "Safety and Protection",
+            "items": [
+              "Emergency Stop Circuit Design",
+              "EM Lock Mechanism Implementation",
+              "Safety Feature Integration"
+            ]
+          }
+        ]
+      }
+    },
+
+    "projectsPage": {
+      "sourceFile": "pages/projects/index.js",
+      "heading": "Featured Projects",
+      "note": "Older/shorter project list and descriptions than the current homepage (components/ProjectDetails.js). Does not include LOCA, GST Smart Calculator (long form), or LoRa Healthcare project versions used on the homepage — instead uses shorter earlier descriptions.",
+      "items": [
+        {
+          "title": "LOCA - Navigation PCB with DOF Sensors and GNSS",
+          "description": "This project centers on the design and development of a compact, low-power navigation-oriented printed circuit board built around the Seed Studio XIAO nRF52840 module, which itself integrates Nordic Semiconductor's nRF52840 system-on-chip as its primary processing unit. The core navigational capability is achieved through the fusion of two complementary sensing subsystems: a GNSS L86 module for satellite-based absolute positioning, interfaced via UART, and a 10-DoF IMU sensor providing inertial measurements through the I2C bus, with power supplied at 3.3V throughout. Onboard inertial sensing is further reinforced by the LSM6DS3TR-C six-axis IMU, which communicates over the nRF52840's internal I2C lines and generates interrupt signals routed to dedicated GPIO pins, enabling event-driven firmware execution rather than continuous polling. The schematic, designed in Altium Tool (dated Feb, 2025), encompasses a well-structured power architecture: a USB-C interface handles both data and charging input, while the battery management IC governs single-cell LiPo charging with configurable current via an ISET resistor and onboard temperature sensing. A 3.3V LDO regulator provides a clean system rail, decoupled at multiple nodes for noise immunity. Peripheral features include an RGB LED indicator, a MEMS microphone (MSM261D3526H1CPM) on the PDM interface, QSPI flash memory for data logging, dual crystal oscillators (32 MHz and 32.768 kHz) for RF and RTC accuracy, and NFC antenna pads for proximity-based communication. Battery voltage monitoring is implemented through a dedicated ADC pin (P0.31/AIN7), with a read-enable MOSFET circuit to minimize quiescent current during idle states, which reflects a deliberate design philosophy oriented towards power efficiency in field-deployable navigation applications.",
+          "skills": ["Power Management", "Low Power Design", "Motion Sensor", "Antenna Design", "RF Design", "Multi-layer Board", "BGA Package Routing", "Navigation Design"],
+          "image": "/1.jpg"
+        },
+        {
+          "title": "GST Smart Calculator",
+          "description": "This project focuses on the development of a fully functional, portable merchant-grade Smart GST Calculator designed for small and medium-sized businesses that require GST calculation, inventory management, accounting support, and receipt printing in a compact standalone device. The system is built around the ESP32-S3-WROOM-1-N8R2 module, which serves as the primary controller and provides integrated Wi-Fi connectivity for cloud backup, future software updates, and wireless communication. A key feature of the device is its thermal receipt printing capability, allowing merchants to generate transaction receipts directly from the calculator through a wireless thermal printer without requiring a computer or smartphone. The user interface is provided through a 4-inch TFT color display, while a 5 × 7 matrix keypad with approximately 35 mechanical switches enables reliable and responsive user input for numerical entry, navigation, GST operations, inventory management, accounting functions, and printing commands. The system includes Flash memory for storing inventory records, transaction history, accounting data, and user settings. Power is supplied by a 4,500–5,500 mAh LiPo battery, managed by the battery charging IC through a USB Type-C interface, while a high-efficiency buck converter generates a stable 3.3 V supply rail for all electronic components. The hardware is designed to support inventory tracking for up to 500 SKUs, payment tracking, daily accounting activities, GST add/remove calculations at the press of a button, sales record management, and wireless data backup, creating a self-contained business management solution for retail and commercial users. The project deliverables include complete schematic design, DFM-compliant multi-layer PCB layout, Gerber files, BOM, pick-and-place data, and manufacturing documentation, resulting in a portable device that combines GST compliance, inventory control, accounting assistance, Wi-Fi connectivity, and thermal receipt printing in a single integrated platform.",
+          "skills": ["High Speed Data Routing", "Multi-layer Board", "Power Management", "Battery Operated Design", "Key-Pad Matrix Design", "ESP32 Integration"],
+          "image": "/2nd.jpg"
+        },
+        {
+          "title": "CRM: Common Station PCB",
+          "description": "The project is designed to control various stations of one robot to control various Motors, Sensors and communication modules to create an efficient, automated system. The system integrates Stepper Motors, DC motors, limit switches for NPN sensors, STM32 controller, an ESP32 wifi module, an Ethernet circuit and RGB Leds.This project aimed to control a versatile customisable platform for controlling different types of motors and sensors in an automation environment.",
+          "skills": ["Embedded system design", "Motor and sensors integration", "Energy-Efficient Design"],
+          "image": "/crm.jpg"
+        },
+        {
+          "title": "Bottle Sorter Robot",
+          "description": "The Bottle Sorter Robot is an automated system for sorting, measuring, and monitoring pill bottles. It fetches and delivers bottles for analysis, sorts them by size, and performs weight measurement and pill tracking. Ideal for pharmaceutical and automated dispensing applications, it ensures precise bottle management.",
+          "skills": ["Servo motor control", "Real-time system response", "User interface development"],
+          "image": "/bottlesorter.jpg"
+        },
+        {
+          "title": "Triggering Unit PCB",
+          "description": "The triggering unit PCB is a specialised circuit board designed to generate dual voltage levels( -7V and +6.3V) from a single 12V input. The primary function of this project is to trigger signals between these two voltage levels, using high speed Operational amplifier and analog Comparators circuits. The unit is aimed at applications where precise voltage levels and accurate signal triggering are crucial, such as I. Communication systems, measurement equipment, or signal conditioning applications.",
+          "skills": ["Signal switching precision", "Reliable system monitoring", "Human-machine interface"],
+          "image": "/trigger.jpg"
+        }
+      ]
+    },
+
+    "workExperiencePage": {
+      "sourceFile": "pages/workexperience/index.js",
+      "heading": "Work Experience",
+      "note": "Older data — durations differ from the homepage (e.g. 'Present' instead of 'November 2025', and the Freelance Consultant role is missing entirely).",
+      "backgroundImage": "/work.jpg",
+      "items": [
+        {
+          "title": "Embedded System Engineer",
+          "company": "DosePacker, Ahmedabad",
+          "duration": "Jan 2024 - Present",
+          "description": [
+            "Designed PCBs for robotic systems integrating STM32, motors, and sensors for precision control.",
+            "Developed motor control circuits focusing on thermal management and noise filtering.",
+            "Integrated WiFi and Ethernet modules with ESP32 for seamless communication."
+          ]
+        },
+        {
+          "title": "Embedded Hardware Engineer",
+          "company": "Teq Diligent, Ahmedabad",
+          "duration": "Jan 2023 - Jan 2024",
+          "description": [
+            "Designed multi-layer PCBs ensuring manufacturability and performance validation.",
+            "Performed CAM checks and generated production-ready Gerber files.",
+            "Tested PCB designs to ensure functionality and compliance with industry standards."
+          ]
+        }
+      ]
+    },
+
+    "unusedAboutHeroComponent": {
+      "sourceFile": "components/About.js",
+      "note": "This component is not imported/used anywhere in the current codebase (dead/orphan file), but is included here since it contains distinct portfolio copy.",
+      "name": "Dhara Rajpura",
+      "eyebrow": "Embedded Systems Expert",
+      "headline": ["Embedded Hardware", "Engineer."],
+      "description": "Passionate about creating innovative solutions through hardware design and implementation. Turning complex problems into elegant engineering solutions.",
+      "buttons": ["About me", "Explore My Work", "Projects"],
+      "profileImage": "/d1.jpg",
+      "backgroundImage": "/bg3.jpg"
+    }
+  },
+
+  "assets": {
+    "publicImageFiles": [
+      "029463a4-28f3-4f70-9b11-d5197b217ca0.png",
+      "09279b67-bc12-4552-bfb3-334833121621.png",
+      "1.jpg",
+      "24411e71-718f-430b-a7d8-eb860dcd369b.png",
+      "2nd.jpg",
+      "3rd.jpg",
+      "4c76595a-4bc9-4ab6-8899-76814749a779.png",
+      "4rth.jpg",
+      "bg1.jpg",
+      "bg3.jpg",
+      "bottlesorter.jpg",
+      "cf4422ec-5d68-44f4-b303-aa48d58eb5a5.png",
+      "crm.jpg",
+      "d1.jpg",
+      "d11.jpg",
+      "exper.jpg",
+      "f6467503-a94c-45d4-bd49-7707cb6b811a.png",
+      "favicon.ico",
+      "pr1.jpg",
+      "project.jpg",
+      "trigger.jpg",
+      "work.jpg"
+    ]
+  }
+}
