@@ -1,224 +1,24 @@
-import { useEffect } from "react";
-import { motion } from "framer-motion";
+import { useEffect, useRef, useState } from "react";
+import { AnimatePresence, motion } from "framer-motion";
 
+const asset = (name) => `/portfolio/${name}`;
 export const projectsData = [
-  {
-    title: "LOCA - Navigation PCB with DOF Sensors and GNSS",
-    description:
-      "This project centers on the design and development of a compact, low-power navigation-oriented printed circuit board built around the Seed Studio XIAO nRF52840 module, which itself integrates Nordic Semiconductor's nRF52840 system-on-chip as its primary processing unit. The core navigational capability is achieved through the fusion of two complementary sensing subsystems: a GNSS L86 module for satellite-based absolute positioning, interfaced via UART, and a 10-DoF IMU sensor providing inertial measurements through the I2C bus, with power supplied at 3.3V throughout. Onboard inertial sensing is further reinforced by the LSM6DS3TR-C six-axis IMU, which communicates over the nRF52840's internal I2C lines and generates interrupt signals routed to dedicated GPIO pins, enabling event-driven firmware execution rather than continuous polling. The schematic, designed in Altium Designer, encompasses a well-structured power architecture: a USB-C interface handles both data and charging input, while the battery management IC governs single-cell LiPo charging with configurable current via an ISET resistor and onboard temperature sensing. A 3.3V LDO regulator provides a clean system rail, decoupled at multiple nodes for noise immunity. Peripheral features include an RGB LED indicator, a MEMS microphone (MSM261D3526H1CPM) on the PDM interface, QSPI flash memory for data logging, dual crystal oscillators (32 MHz and 32.768 kHz) for RF and RTC accuracy, and NFC antenna pads for proximity-based communication. Battery voltage monitoring is implemented through a dedicated ADC pin (P0.31/AIN7), with a read-enable MOSFET circuit to minimize quiescent current during idle states, which reflects a deliberate design philosophy oriented towards power efficiency in field-deployable navigation applications.",
-    skills: [
-      "Power Management",
-      "Low Power Design",
-      "Motion Sensor",
-      "Antenna Design",
-      "RF Design",
-      "Multi-layer Board",
-      "BGA Package Routing",
-      "Navigation Design",
-    ],
-    image: "/cf4422ec-5d68-44f4-b303-aa48d58eb5a5.png",
-    category: "Freelance Project",
-    year: "2026",
-  },
-  {
-    title: "GST Smart Calculator",
-    description:
-      "This project focuses on the development of a fully functional, portable merchant-grade Smart GST Calculator designed for small and medium-sized businesses that require GST calculation, inventory management, accounting support, and receipt printing in a compact standalone device. The system is built around the ESP32-S3-WROOM-1-N8R2 module, which serves as the primary controller and provides integrated Wi-Fi connectivity for cloud backup, future software updates, and wireless communication. A key feature of the device is its thermal receipt printing capability, allowing merchants to generate transaction receipts directly from the calculator through a wireless thermal printer without requiring a computer or smartphone. The user interface is provided through a 4-inch TFT color display, while a 5 × 7 matrix keypad with approximately 35 mechanical switches enables reliable and responsive user input for numerical entry, navigation, GST operations, inventory management, accounting functions, and printing commands. The system includes Flash memory for storing inventory records, transaction history, accounting data, and user settings. Power is supplied by a 4,500–5,500 mAh LiPo battery, managed by the battery charging IC through a USB Type-C interface, while a high-efficiency buck converter generates a stable 3.3 V supply rail for all electronic components. The hardware is designed to support inventory tracking for up to 500 SKUs, payment tracking, daily accounting activities, GST add/remove calculations at the press of a button, sales record management, and wireless data backup, creating a self-contained business management solution for retail and commercial users. The project deliverables include complete schematic design, DFM-compliant multi-layer PCB layout, Gerber files, BOM, pick-and-place data, and manufacturing documentation, resulting in a portable device that combines GST compliance, inventory control, accounting assistance, Wi-Fi connectivity, and thermal receipt printing in a single integrated platform.",
-    skills: [
-      "High Speed Data Routing",
-      "Multi-layer Board",
-      "Power Management",
-      "Battery Operated Design",
-      "Key-Pad Matrix Design",
-      "ESP32 Integration",
-    ],
-    image: "/4c76595a-4bc9-4ab6-8899-76814749a779.png",
-    category: "Freelance Project",
-    year: "2026",
-  },
-  {
-    title: "LoRa Healthcare Emergency Alert System",
-    description:
-      "Developed a dual-device wireless paging system (Patient-to-Nurse) capable of 500m range, optimized for low-power battery operation. The system consists of a Remote Trigger (Patient Node) and Master Receiver (Nurse Station), leveraging LoRa technology for reliable communication in challenging indoor environments. Designed complete hardware lifecycle including ESP32-based Master Receiver with RFID module integration and Arduino-based Remote Trigger with optimized RF layout. Successfully achieved stable 500m communication link with clear visual feedback through RGB LED status indicators.",
-    skills: [
-      "LoRa RF Design",
-      "ESP32 Integration",
-      "RFID Module",
-      "Low-Power Design",
-      "PCB Layout Optimization",
-      "Signal Integrity",
-      "Antenna Placement",
-      "Battery Management",
-    ],
-    image: "/09279b67-bc12-4552-bfb3-334833121621.png",
-    category: "Wireless Communication",
-    year: "2026",
-  },
-  {
-    title: "CRM: Common Station PCB",
-    description:
-      "Designed and developed a comprehensive control system PCB for robotic automation, managing multiple stations with various motors, sensors, and communication modules. The system integrates Stepper Motors, DC motors, limit switches, NPN sensors, STM32 controller, ESP32 WiFi module, Ethernet circuit, and RGB LEDs. Created a versatile, customizable platform for controlling different types of motors and sensors in automated environments, focusing on energy efficiency and reliable performance.",
-    skills: [
-      "Embedded System Design",
-      "Motor Control Integration",
-      "Energy-Efficient Design",
-      "STM32 Controller",
-      "ESP32 WiFi",
-      "Ethernet Integration",
-      "Sensor Integration",
-    ],
-    image: "/24411e71-718f-430b-a7d8-eb860dcd369b.png",
-    category: "PCB Design",
-    year: "2025",
-  },
-  {
-    title: "Bottle Sorter Robot",
-    description:
-      "Engineered an automated system for pharmaceutical applications, designed to sort, measure, and monitor pill bottles with precision. The system autonomously fetches and delivers bottles for analysis, sorts them by size, and performs accurate weight measurement and pill tracking. Developed the complete hardware solution including servo motor control circuits, real-time sensing systems, and user interface integration for seamless operation in pharmaceutical and automated dispensing environments.",
-    skills: [
-      "Servo Motor Control",
-      "Real-Time Systems",
-      "Weight Sensing",
-      "Automated Sorting Logic",
-      "User Interface Integration",
-      "Pharmaceutical Standards",
-    ],
-    image: "/f6467503-a94c-45d4-bd49-7707cb6b811a.png",
-    category: "Robotics",
-    year: "2024",
-  },
-  {
-    title: "Triggering Unit PCB",
-    description:
-      "Designed a specialized circuit board that generates dual voltage levels (-7V and +6.3V) from a single 12V input for precision signal triggering applications. Implemented high-speed operational amplifier and analog comparator circuits to achieve accurate signal switching between voltage levels. The design focuses on signal integrity and precise voltage level conversion, ideal for communication systems, measurement equipment, and signal conditioning applications requiring reliable triggering mechanisms.",
-    skills: [
-      "Voltage Level Conversion",
-      "Op-Amp Circuit Design",
-      "Analog Comparators",
-      "Signal Switching Precision",
-      "Power Supply Design",
-      "Signal Conditioning",
-    ],
-    image: "/029463a4-28f3-4f70-9b11-d5197b217ca0.png",
-    category: "Signal Processing",
-    year: "2023",
-  },
+  { slug:"nrf52840-navigation", title:"nRF52840 navigation board", kicker:"Wireless navigation hardware", year:"2026", role:"Embedded Hardware & PCB Design Engineer", overview:"A compact navigation platform combining GNSS and inertial sensing with battery power, USB-C charging and low-power monitoring around an nRF52840 module.", scope:"Schematic architecture, component selection, multilayer PCB implementation and manufacturing documentation.", highlights:["GNSS + 10-DoF sensor fusion hardware","USB-C and single-cell LiPo power path","QSPI flash, microphone and NFC provisions","Low-quiescent battery-voltage monitoring"], tools:["Altium Designer","nRF52840","I²C","UART","USB-C"], skills:["Low-power design","RF-aware layout","Power architecture","Multilayer routing"], images:[asset("01-nrf52840-navigation-thumbnail-concept.png"),asset("02-system-architecture-concept.png"),asset("03-low-power-monitoring-concept.png")] },
+  { slug:"esp32-s3-terminal", title:"ESP32-S3 smart retail terminal", kicker:"Connected embedded product", year:"2026", role:"Embedded Hardware & PCB Design Engineer", overview:"Portable merchant terminal hardware built around ESP32-S3, a four-inch display, matrix keypad, local storage and wireless thermal-printer connectivity.", scope:"System architecture, schematic capture, PCB design and production-file handoff for a battery-operated product.", highlights:["ESP32-S3 with Wi-Fi connectivity","35-key matrix and 4-inch TFT interface","USB-C charging and efficient 3.3 V rail","Manufacturing-ready BOM and assembly data"], tools:["Altium Designer","ESP32-S3","USB-C","SPI","Wi-Fi"], skills:["Battery systems","Interface design","Dense placement","DFM"], images:[asset("04-esp32-s3-terminal-thumbnail-concept.png"),asset("05-terminal-system-architecture-concept.png"),asset("06-terminal-power-architecture-concept.png")] },
+  { slug:"lora-nurse-call", title:"LoRa nurse-call system", kicker:"Two-node wireless system", year:"2026", role:"Embedded Hardware Engineer", overview:"A patient-to-nurse alert system pairing a compact remote trigger with an ESP32-based receiver station for dependable indoor communication.", scope:"Hardware architecture, radio-aware PCB layout, power design and interface integration across both nodes.", highlights:["Remote trigger and master receiver","LoRa link for challenging indoor spaces","RFID and visual status integration","Battery-conscious remote-node design"], tools:["Altium Designer","LoRa","ESP32","RFID","UART"], skills:["RF layout","Antenna placement","Low-power design","System partitioning"], images:[asset("07-lora-nurse-call-thumbnail-concept.png"),asset("08-lora-two-node-system-concept.png"),asset("09-lora-500m-indoor-link-concept.png")] },
+  { slug:"stm32-station-control", title:"STM32 station-control PCB", kicker:"Robotics control platform", year:"2025", role:"Embedded Hardware Engineer", overview:"A configurable station-control board for robotic equipment, bringing motors, sensors, Ethernet and wireless communication onto one serviceable platform.", scope:"Circuit design, motor and sensor interfaces, domain separation, placement, routing and fabrication release.", highlights:["STM32 controller and ESP32 connectivity","Stepper and DC motor interfaces","Ethernet, sensors and limit switches","Noise-conscious power-domain separation"], tools:["Altium Designer","STM32","ESP32","Ethernet","CAN"], skills:["Motor control","Mixed-signal layout","EMI mitigation","Power distribution"], images:[asset("10-stm32-station-control-thumbnail-concept.png"),asset("11-stm32-station-architecture-concept.png"),asset("12-stm32-noise-domain-separation-concept.png")] },
+  { slug:"pharmacy-bottle-sorter", title:"Pharmacy bottle sorter", kicker:"Mixed-signal automation hardware", year:"2024", role:"Mixed-Signal PCB & Hardware Engineer", overview:"Control hardware for an automated pharmaceutical handling system that fetched, sorted, weighed and tracked pill bottles.", scope:"Servo-drive circuits, position and presence sensing, load-cell measurement, operator-interface integration and mixed-signal PCB implementation.", highlights:["Servo-driven handling mechanism","Load-cell signal chain for mass measurement","Real-time position and presence sensing","Analog isolation from switching noise"], tools:["Altium Designer","Load cell","Servo control","Mixed signal"], skills:["PCB design","Analog front ends","Return-path control","Hardware integration"], images:[asset("13-pharmacy-bottle-sorter-thumbnail-concept.png"),asset("14-pharmacy-sorting-system-concept.png"),asset("15-pharmacy-precision-weighing-concept.png")] },
+  { slug:"dual-rail-trigger", title:"Dual-rail trigger unit", kicker:"Precision analog hardware", year:"2023", role:"Analog Hardware Designer", overview:"A precision trigger board generating −7 V and +6.3 V rails from a single 12 V input for dependable level switching and signal conditioning.", scope:"Power conversion, op-amp and comparator stages, signal-integrity decisions, PCB design and release documentation.", highlights:["Dual rails from a 12 V source","High-speed op-amp signal path","Comparator-based level switching","Noise-aware analog layout"], tools:["Altium Designer","Op amps","Comparators","DC-DC"], skills:["Analog design","Signal conditioning","Power conversion","PCB layout"], images:[asset("16-dual-rail-trigger-thumbnail-concept.png"),asset("17-dual-rail-architecture-concept.png")] },
+  { slug:"tmr-actuator-driver", title:"TMR actuator driver PCB: 3-ECU voting and 24 output channels", kicker:"Safety-critical layout implementation", year:"2026", role:"PCB Layout Engineer — 4-Layer Safety-Critical Hardware", overview:"Four-layer PCB layout for a Triple Modular Redundant actuator driver board. The client supplied the schematic and architecture; the layout implements three isolated ECU domains and hardware 2-of-3 voting for 16 solenoid and 8 ignitor channels.", scope:"Component placement, signal and power routing, isolation-barrier implementation, ground and power planes, DRC/ERC verification, and Gerber release. No claim is made for architecture design, certification, fabrication or operational validation.", highlights:["400+ component placement","Three galvanically isolated ECU domains","16 solenoid + 8 ignitor channels","Four-layer power and signal routing"], tools:["Altium Designer","Gerber","DRC/ERC","4-layer PCB"], skills:["Constraint management","Isolation layout","Power planes","DFM/DFA"], images:[asset("51-tmr-actuator-thumbnail-concept.png"),asset("52-tmr-architecture-concept.png"),asset("53-tmr-four-layer-layout-concept.png")] },
 ];
 
-export const ProjectModal = ({ project, onClose }) => {
-  useEffect(() => {
-    const onKeyDown = (e) => {
-      if (e.key === "Escape") onClose();
-    };
-    document.addEventListener("keydown", onKeyDown);
-    // Lock background scroll while the modal is open
-    document.body.style.overflow = "hidden";
-    return () => {
-      document.removeEventListener("keydown", onKeyDown);
-      document.body.style.overflow = "";
-    };
-  }, [onClose]);
+export function ProjectCard({ project, onOpen, index=0 }) {
+  return <motion.article initial={{opacity:0,y:24}} whileInView={{opacity:1,y:0}} viewport={{once:true,margin:"-80px"}} transition={{delay:Math.min(index*.05,.25)}} className="project-card group"><button onClick={()=>onOpen(project)} className="w-full text-left focus-ring" aria-label={`View ${project.title} case study`}><div className="project-frame"><img src={project.images[0]} alt={`${project.title} concept presentation`} className="project-image" loading="lazy" /></div><div className="project-copy"><div className="tech-label text-cyan">{project.kicker}</div><h3>{project.title}</h3><div className="project-meta"><span>{project.role}</span><span>0{index+1}</span></div></div></button></motion.article>;
+}
 
-  if (!project) return null;
-
-  return (
-    <motion.div
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      exit={{ opacity: 0 }}
-      role="dialog"
-      aria-modal="true"
-      aria-label={`${project.title} project details`}
-      className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-sm"
-      onClick={onClose}
-    >
-      <motion.div
-        initial={{ scale: 0.9, opacity: 0, y: 50 }}
-        animate={{ scale: 1, opacity: 1, y: 0 }}
-        exit={{ scale: 0.9, opacity: 0, y: 50 }}
-        transition={{ type: "spring", damping: 25, stiffness: 300 }}
-        className="bg-white text-black rounded-3xl max-w-4xl w-full max-h-[90vh] overflow-y-auto relative"
-        onClick={(e) => e.stopPropagation()}
-      >
-        {/* Fixed Close Button - Always Visible */}
-        <motion.button
-          whileHover={{ scale: 1.1, rotate: 90 }}
-          whileTap={{ scale: 0.9 }}
-          onClick={onClose}
-          aria-label="Close project details"
-          className="fixed top-4 right-4 md:absolute w-12 h-12 md:w-10 md:h-10 bg-black md:bg-white text-white md:text-black rounded-full flex items-center justify-center hover:bg-gray-800 md:hover:bg-gray-100 transition-colors shadow-lg z-50 font-bold text-xl"
-        >
-          ✕
-        </motion.button>
-        
-        <div className="relative aspect-video w-full overflow-hidden">
-          <motion.img
-            initial={{ scale: 1.2 }}
-            animate={{ scale: 1 }}
-            transition={{ duration: 0.6 }}
-            src={project.image}
-            alt={`${project.title} — ${project.category} project`}
-            decoding="async"
-            className="w-full h-full object-cover rounded-t-3xl"
-          />
-        </div>
-        <div className="p-8">
-          <motion.div 
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.2 }}
-            className="flex items-center gap-4 mb-4"
-          >
-            <motion.span 
-              whileHover={{ scale: 1.05 }}
-              className="px-4 py-1 bg-gray-100 rounded-full text-sm"
-            >
-              {project.category}
-            </motion.span>
-            <span className="text-gray-400 text-sm">{project.year}</span>
-          </motion.div>
-          <motion.h2 
-            initial={{ opacity: 0, x: -20 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ delay: 0.3 }}
-            className="text-3xl font-bold mb-4"
-          >
-            {project.title}
-          </motion.h2>
-          <motion.p 
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 0.4 }}
-            className="text-gray-600 leading-relaxed mb-6"
-          >
-            {project.description}
-          </motion.p>
-          <div>
-            <motion.h3 
-              initial={{ opacity: 0, x: -20 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ delay: 0.5 }}
-              className="text-lg font-bold mb-3"
-            >
-              Skills & Technologies
-            </motion.h3>
-            <div className="flex flex-wrap gap-2">
-              {project.skills.map((skill, index) => (
-                <motion.span
-                  key={index}
-                  initial={{ opacity: 0, scale: 0.8 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  transition={{ delay: 0.6 + index * 0.05 }}
-                  whileHover={{ scale: 1.1, y: -2 }}
-                  className="px-4 py-2 bg-gray-100 rounded-full text-sm hover:bg-gray-200 transition-colors cursor-default"
-                >
-                  {skill}
-                </motion.span>
-              ))}
-            </div>
-          </div>
-        </div>
-      </motion.div>
-    </motion.div>
-  );
-};
+export function ProjectModal({project,onClose}) {
+  const [active,setActive]=useState(0); const closeRef=useRef(null);
+  const dialogRef=useRef(null); const returnFocusRef=useRef(null);
+  useEffect(()=>{returnFocusRef.current=document.activeElement;const background=[...document.querySelectorAll('.site > header, .site > main, .site > footer')];background.forEach(el=>{el.inert=true;el.setAttribute('aria-hidden','true')});const key=e=>{if(e.key==='Escape'){e.preventDefault();onClose();return}if(e.key!=='Tab'||!dialogRef.current)return;const focusable=[...dialogRef.current.querySelectorAll('button:not([disabled]),a[href],input:not([disabled]),select:not([disabled]),textarea:not([disabled]),[tabindex]:not([tabindex="-1"])')].filter(el=>!el.hasAttribute('hidden'));if(!focusable.length)return;const first=focusable[0],last=focusable[focusable.length-1];if(e.shiftKey&&document.activeElement===first){e.preventDefault();last.focus()}else if(!e.shiftKey&&document.activeElement===last){e.preventDefault();first.focus()}};document.addEventListener('keydown',key);document.body.style.overflow='hidden';closeRef.current?.focus();return()=>{document.removeEventListener('keydown',key);document.body.style.overflow='';background.forEach(el=>{el.inert=false;el.removeAttribute('aria-hidden')});returnFocusRef.current?.focus?.()}},[onClose]);
+  return <motion.div className="modal-backdrop" initial={{opacity:0}} animate={{opacity:1}} exit={{opacity:0}} onMouseDown={onClose}><motion.div ref={dialogRef} className="case-modal" role="dialog" aria-modal="true" aria-labelledby="case-title" initial={{y:30,opacity:0}} animate={{y:0,opacity:1}} exit={{y:30,opacity:0}} onMouseDown={e=>e.stopPropagation()}><div className="modal-bar"><span className="tech-label">Project case study</span><button ref={closeRef} className="modal-close focus-ring" onClick={onClose} aria-label="Close project details">Close <span aria-hidden>×</span></button></div><div className="case-gallery"><div className="case-stage"><AnimatePresence mode="wait"><motion.img key={project.images[active]} src={project.images[active]} alt={`${project.title}, gallery image ${active+1}`} initial={{opacity:0}} animate={{opacity:1}} exit={{opacity:0}} /></AnimatePresence></div><div className="case-thumbs">{project.images.map((image,i)=><button key={image} onClick={()=>setActive(i)} className={`focus-ring ${active===i?"active":""}`} aria-label={`Show gallery image ${i+1}`} aria-pressed={active===i}><img src={image} alt="" /></button>)}</div><p className="concept-note">Concept visuals created to explain the engineering scope; not photographs of fabricated client hardware.</p></div><div className="case-content"><div className="tech-label text-lime">{project.kicker} · {project.year}</div><h2 id="case-title">{project.title}</h2><p className="case-lead">{project.overview}</p><div className="case-grid"><section><h3>Role & scope</h3><p><strong>{project.role}</strong></p><p>{project.scope}</p></section><section><h3>Technical highlights</h3><ul>{project.highlights.map(x=><li key={x}>{x}</li>)}</ul></section></div><section><h3>Tools & skills</h3><div className="chip-row">{[...project.tools,...project.skills].map(x=><span key={x}>{x}</span>)}</div></section></div></motion.div></motion.div>;
+}
