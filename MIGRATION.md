@@ -77,7 +77,7 @@ Browser → Vercel (Next.js API routes) → Apps Script Web App → Google Sheet
 ```dotenv
 SHEET_WEBAPP_URL=https://script.google.com/macros/s/XXXX/exec
 SHEET_WEBAPP_TOKEN=your_long_random_shared_token
-ADMIN_PASSWORD=Loq@2202
+ADMIN_PASSWORD=choose_a_strong_private_password
 ```
 
 ---
@@ -137,5 +137,5 @@ curl -L -X POST "$SHEET_WEBAPP_URL" -H "Content-Type: application/json" \
 ## Security note
 - `.env.local` is git-ignored. Keep `SHEET_WEBAPP_TOKEN` long/random; to rotate,
   change `TOKEN` in `Code.gs` (redeploy) and the Vercel var together.
-- The admin password `Loq@2202` remains hard-coded in `pages/reviewmanagement.js`
-  and as a fallback in `pages/api/admin/reviews.js` (pre-existing, preserved).
+- The admin password is stored only in the server-side `ADMIN_PASSWORD`
+  environment variable. It is never bundled into the public website source.

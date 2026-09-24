@@ -1,245 +1,116 @@
-import { useState, useEffect } from 'react'
+import Head from 'next/head'
+import { useState } from 'react'
 import { motion } from 'framer-motion'
-import Layout from '../components/Layout'
+import { Footer, Header } from '../components/SiteChrome'
 
 export default function ReviewManagement() {
   const [password, setPassword] = useState('')
-  const [isAuthenticated, setIsAuthenticated] = useState(false)
+  const [authenticated, setAuthenticated] = useState(false)
   const [reviews, setReviews] = useState([])
   const [loading, setLoading] = useState(false)
+  const [workingId, setWorkingId] = useState(null)
+  const [message, setMessage] = useState('')
 
-  const handleLogin = (e) => {
-    e.preventDefault()
-    if (password === 'Loq@2202') {
-      setIsAuthenticated(true)
-      fetchReviews()
-    } else {
-      alert('Incorrect password')
-    }
+  const adminRequest = async (options = {}, credential = password) => {
+    const response = await fetch('/api/admin/reviews', {
+      ...options,
+      headers: {
+        ...(options.body ? { 'Content-Type': 'application/json' } : {}),
+        'x-admin-password': credential,
+        ...options.headers,
+      },
+      cache: 'no-store',
+    })
+    const data = await response.json().catch(() => ({}))
+    if (!response.ok) throw new Error(data.error || 'The request could not be completed.')
+    return data
   }
 
-  const fetchReviews = async () => {
+  const fetchReviews = async (credential = password) => {
     setLoading(true)
+    setMessage('')
     try {
-      const response = await fetch('/api/admin/reviews', {
-        headers: {
-          'password': 'Loq@2202'
-        }
-      })
-      if (response.ok) {
-        const data = await response.json()
-        setReviews(data)
-      }
+      const data = await adminRequest({}, credential)
+      setReviews(Array.isArray(data) ? data : [])
+      setAuthenticated(true)
     } catch (error) {
-      console.error('Error fetching reviews:', error)
+      setAuthenticated(false)
+      setMessage(error.message)
     } finally {
       setLoading(false)
     }
   }
 
-  const toggleVisibility = async (id, currentVisibility) => {
-    try {
-      console.log('Toggling visibility for review:', id, 'from', currentVisibility, 'to', !currentVisibility);
-      
-      const response = await fetch('/api/admin/reviews', {
-        method: 'PATCH',
-        headers: {
-          'Content-Type': 'application/json',
-          'password': 'Loq@2202'
-        },
-        body: JSON.stringify({
-          id,
-          visible: !currentVisibility
-        })
-      })
+  const handleLogin = async (event) => {
+    event.preventDefault()
+    await fetchReviews(password)
+  }
 
-      console.log('Response status:', response.status);
-      
-      if (response.ok) {
-        // Check if response has content before parsing JSON
-        const responseText = await response.text();
-        console.log('Response text:', responseText);
-        
-        let updatedReview = null;
-        if (responseText) {
-          try {
-            updatedReview = JSON.parse(responseText);
-            console.log('Updated review:', updatedReview);
-          } catch (parseError) {
-            console.log('No JSON response, but operation successful');
-          }
-        }
-        
-        // Update local state regardless of response content
-        setReviews(reviews.map(review => 
-          review.id === id 
-            ? { ...review, visible: !currentVisibility }
-            : review
-        ))
-        
-        // Show success message
-        alert(`Review ${!currentVisibility ? 'shown' : 'hidden'} successfully!`);
-        
-        // Refetch reviews to sync with database
-        setTimeout(() => {
-          fetchReviews();
-        }, 500);
-      } else {
-        const errorText = await response.text();
-        console.error('Error response:', errorText);
-        let errorMessage = 'Unknown error';
-        try {
-          const errorData = JSON.parse(errorText);
-          errorMessage = errorData.error || errorMessage;
-        } catch {
-          errorMessage = errorText || errorMessage;
-        }
-        alert('Failed to update review visibility: ' + errorMessage);
-      }
+  const toggleVisibility = async (review) => {
+    setWorkingId(review.id)
+    setMessage('')
+    try {
+      const updated = await adminRequest({
+        method: 'PATCH',
+        body: JSON.stringify({ id: review.id, visible: !review.visible }),
+      })
+      setReviews((items) => items.map((item) => item.id === review.id ? updated : item))
+      setMessage(`Review is now ${updated.visible ? 'visible' : 'hidden'} on the portfolio.`)
     } catch (error) {
-      console.error('Error updating review:', error);
-      alert('Network error. Please check your connection and try again.');
+      setMessage(error.message)
+    } finally {
+      setWorkingId(null)
     }
   }
 
-  const renderStars = (rating) => {
-    return Array.from({ length: 5 }, (_, i) => (
-      <span key={i} className={`text-lg ${i < rating ? 'text-yellow-400' : 'text-gray-600'}`}>
-        ★
-      </span>
-    ))
+  const removeReview = async (review) => {
+    if (!window.confirm(`Permanently delete the review from ${review.client_name}?`)) return
+    setWorkingId(review.id)
+    setMessage('')
+    try {
+      await adminRequest({ method: 'DELETE', body: JSON.stringify({ id: review.id }) })
+      setReviews((items) => items.filter((item) => item.id !== review.id))
+      setMessage('Review deleted permanently.')
+    } catch (error) {
+      setMessage(error.message)
+    } finally {
+      setWorkingId(null)
+    }
   }
 
-  if (!isAuthenticated) {
-    return (
-      <Layout>
-        <div className="min-h-screen bg-[#0a0a0a] flex items-center justify-center px-6">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            className="max-w-md w-full"
-          >
-            <div className="bg-white/5 backdrop-blur-sm p-8 rounded-2xl border border-gray-800">
-              <h1 className="text-2xl font-bold text-white mb-6 text-center">
-                Review Management
-              </h1>
-              <form onSubmit={handleLogin}>
-                <div className="mb-6">
-                  <label className="block text-white text-sm font-medium mb-2">
-                    Admin Password
-                  </label>
-                  <input
-                    type="password"
-                    value={password}
-                    onChange={(e) => setPassword(e.target.value)}
-                    className="w-full px-4 py-3 bg-white/10 border border-gray-700 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:border-white transition-colors"
-                    placeholder="Enter password"
-                    required
-                  />
-                </div>
-                <motion.button
-                  type="submit"
-                  whileHover={{ scale: 1.02 }}
-                  whileTap={{ scale: 0.98 }}
-                  className="w-full py-3 bg-white text-black rounded-lg font-medium hover:bg-gray-200 transition-colors"
-                >
-                  Login
-                </motion.button>
-              </form>
-            </div>
-          </motion.div>
-        </div>
-      </Layout>
-    )
+  const logout = () => {
+    setPassword('')
+    setReviews([])
+    setMessage('')
+    setAuthenticated(false)
   }
 
-  return (
-    <Layout>
-      <div className="min-h-screen bg-[#0a0a0a] py-20 px-6">
-        <div className="max-w-6xl mx-auto">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            className="mb-8"
-          >
-            <div className="flex justify-between items-center">
-              <h1 className="text-4xl font-bold text-white">Review Management</h1>
-              <motion.button
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-                onClick={fetchReviews}
-                className="px-4 py-2 bg-white/10 text-white rounded-lg border border-gray-700 hover:bg-white/20 transition-colors"
-              >
-                Refresh
-              </motion.button>
-            </div>
-            <p className="text-gray-400 mt-2">
-              Manage review visibility on your portfolio
-            </p>
-          </motion.div>
-
-          {loading ? (
-            <div className="text-center py-12">
-              <div className="inline-block animate-spin rounded-full h-8 w-8 border-b-2 border-white"></div>
-              <p className="text-gray-400 mt-4">Loading reviews...</p>
-            </div>
-          ) : (
-            <div className="grid gap-6">
-              {reviews.length === 0 ? (
-                <div className="text-center py-12">
-                  <p className="text-gray-400">No reviews yet</p>
-                </div>
-              ) : (
-                reviews.map((review, index) => (
-                  <motion.div
-                    key={review.id}
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ delay: index * 0.1 }}
-                    className={`bg-white/5 backdrop-blur-sm p-6 rounded-xl border ${
-                      review.visible ? 'border-green-500/30' : 'border-red-500/30'
-                    }`}
-                  >
-                    <div className="flex justify-between items-start mb-4">
-                      <div className="flex-1">
-                        <div className="flex items-center gap-4 mb-2">
-                          <h3 className="text-xl font-bold text-white">
-                            {review.client_name}
-                          </h3>
-                          <div className="flex">
-                            {renderStars(review.rating)}
-                          </div>
-                        </div>
-                        <p className="text-gray-400 text-sm mb-2">
-                          Project: {review.project_name}
-                        </p>
-                        <p className="text-gray-400 text-sm">
-                          {new Date(review.created_at).toLocaleDateString()}
-                        </p>
-                      </div>
-                      <motion.button
-                        whileHover={{ scale: 1.05 }}
-                        whileTap={{ scale: 0.95 }}
-                        onClick={() => toggleVisibility(review.id, review.visible)}
-                        className={`px-4 py-2 rounded-lg font-medium transition-colors ${
-                          review.visible
-                            ? 'bg-green-500 text-white hover:bg-green-600'
-                            : 'bg-red-500 text-white hover:bg-red-600'
-                        }`}
-                      >
-                        {review.visible ? 'Visible' : 'Hidden'}
-                      </motion.button>
-                    </div>
-                    <p className="text-gray-300 leading-relaxed">
-                      {review.review_text}
-                    </p>
-                  </motion.div>
-                ))
-              )}
-            </div>
-          )}
-        </div>
-      </div>
-    </Layout>
-  )
+  return <div className="site">
+    <Head><title>Review management — Dhara Rajpura</title><meta name="robots" content="noindex,nofollow" /></Head>
+    <Header />
+    <main className="admin-page grid-bg"><div className="shell admin-shell">
+      {!authenticated ? <motion.section className="admin-login" initial={{ opacity: 0, y: 18 }} animate={{ opacity: 1, y: 0 }}>
+        <span className="tech-label text-cyan">Private workspace</span>
+        <h1>Review management</h1>
+        <p>Enter the admin password configured in Vercel to manage Google Sheet reviews.</p>
+        <form onSubmit={handleLogin} className="review-form compact-form">
+          <label htmlFor="admin-password">Admin password</label>
+          <input id="admin-password" type="password" value={password} onChange={(event) => setPassword(event.target.value)} autoComplete="current-password" required />
+          {message && <p className="form-message form-error" role="alert">{message}</p>}
+          <button className="button button-lime" type="submit" disabled={loading}>{loading ? 'Checking…' : 'Open dashboard'}</button>
+        </form>
+      </motion.section> : <section>
+        <div className="admin-heading"><div><span className="tech-label text-cyan">Private workspace</span><h1>Review management</h1><p>{reviews.length} review{reviews.length === 1 ? '' : 's'} in the connected Sheet.</p></div><div className="admin-actions"><button className="button button-ghost" onClick={() => fetchReviews()} disabled={loading}>Refresh</button><button className="button button-ghost" onClick={logout}>Log out</button></div></div>
+        {message && <p className="form-message" role="status">{message}</p>}
+        {loading ? <p className="admin-empty">Loading reviews…</p> : reviews.length === 0 ? <p className="admin-empty">No reviews are stored yet.</p> : <div className="admin-review-list">
+          {reviews.map((review) => <article key={review.id} className="admin-review-card">
+            <div className="admin-review-top"><div><div className="review-rating" aria-label={`${review.rating} out of 5 stars`}><span aria-hidden="true">{'★'.repeat(review.rating)}{'☆'.repeat(5 - review.rating)}</span><b>{review.rating}/5</b></div><h2>{review.client_name}</h2><p>{review.project_name}</p></div><span className={`visibility-pill ${review.visible ? 'is-visible' : 'is-hidden'}`}>{review.visible ? 'Visible' : 'Hidden'}</span></div>
+            <blockquote>“{review.review_text}”</blockquote>
+            <div className="admin-review-meta"><span>{review.created_at ? new Date(review.created_at).toLocaleDateString() : 'Date unavailable'}</span><div><button onClick={() => toggleVisibility(review)} disabled={workingId === review.id}>{workingId === review.id ? 'Saving…' : review.visible ? 'Hide review' : 'Show review'}</button><button className="danger-action" onClick={() => removeReview(review)} disabled={workingId === review.id}>Delete</button></div></div>
+          </article>)}
+        </div>}
+      </section>}
+    </div></main>
+    <Footer />
+  </div>
 }
