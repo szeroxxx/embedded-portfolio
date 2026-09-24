@@ -29,7 +29,59 @@ export default function Home(){const [selected,setSelected]=useState(null);const
 <section className="hero grid-bg"><div className="hero-art"><img src="/media/pcb-workbench-hero.png" alt="Professional electronics workbench with a dense PCB, schematic display and precision measurement tools" fetchPriority="high"/><div className="hero-art-wash"/></div><div className="shell hero-grid"><motion.div className="hero-copy" initial={{opacity:0,y:24}} animate={{opacity:1,y:0}} transition={{duration:.7}}><div className="availability"><i/>Available for selected hardware projects</div><p className="hero-kicker">PCB DESIGN · EMBEDDED HARDWARE · DFM</p><h1>Production-ready PCBs, <em>from schematic to fab files.</em></h1><p className="hero-lead">PCB design, schematic capture, multilayer routing, low-power wireless hardware and the documentation your manufacturer needs to build with confidence.</p><div className="hero-actions"><Link href="/projects" className="button button-lime focus-ring">View projects <span>↗</span></Link><Link href="/services" className="button button-ghost focus-ring">Explore services</Link></div></motion.div><aside className="proof-card"><div><span>LAYERS</span><strong>2–8</strong></div><div><span>TOOLS</span><strong>Altium · KiCad</strong></div><div><span>HANDOFF</span><strong>Manufacturing-ready</strong></div></aside></div></section>
 <section className="proof-rail"><div className="shell"><span>Schematic capture</span><span>Multilayer PCB</span><span>RF-aware layout</span><span>DFM / DFA</span><span>Production files</span></div></section>
 <section className="section section-dark" id="services"><div className="shell"><SectionTitle number="01" label="Services" title="Engineering support where products become real." copy="Focused engagements for teams that need rigorous hardware implementation and a clean manufacturing handoff."/><div className="service-list">{services.map(([n,title,copy,img])=><Link href="/services" className="service-row focus-ring" key={n}><span className="service-number">{n}</span><div><h3>{title}</h3><p>{copy}</p></div><div className="service-thumb"><img src={img} alt="" loading="lazy"/></div><span className="service-arrow">↗</span></Link>)}</div></div></section>
-<section className="section section-paper" id="about"><div className="shell about-grid"><div><div className="tech-label">02 / About</div><h2>Hardware decisions made for the bench—and the build floor.</h2></div><div><p className="large-copy">I translate product concepts and existing schematics into clear, manufacturable electronics: deliberate power architecture, readable schematics, disciplined placement and routing, and complete release documentation.</p><p>The work is grounded in constraints first—mechanical envelope, interfaces, power tree, stack-up, fabrication limits and component availability—so problems are resolved before they become expensive.</p><Link href="/services" className="text-link">See how I work <span>↗</span></Link></div></div></section>
+<section className="section section-paper about-section" id="about">
+  <div className="shell">
+    <div className="about-grid">
+      <div className="about-heading">
+        <div className="tech-label">02 / About</div>
+        <h2>Hardware decisions made for the bench—and the build floor.</h2>
+      </div>
+      <div className="about-narrative">
+        <p className="large-copy">I translate product concepts and existing schematics into clear, manufacturable electronics: deliberate power architecture, readable schematics, disciplined placement and routing, and complete release documentation.</p>
+        <p>The work is grounded in constraints first—mechanical envelope, interfaces, power tree, stack-up, fabrication limits and component availability—so problems are resolved before they become expensive.</p>
+        <Link href="/services" className="text-link focus-ring">See how I work <span aria-hidden="true">↗</span></Link>
+      </div>
+    </div>
+
+    <div className="about-media" aria-label="Meet Dhara Rajpura">
+      <figure className="about-portrait">
+        <div className="about-portrait-frame">
+          <img src="/media/dhara-rajpura-profile.jpg" alt="Dhara Rajpura, PCB and embedded hardware engineer" loading="lazy" />
+          <span className="portrait-index" aria-hidden="true">DR / 01</span>
+        </div>
+        <figcaption>
+          <span className="tech-label">PCB + Embedded Hardware</span>
+          <strong>Dhara Rajpura</strong>
+          <span>Engineer · Designer · Manufacturing partner</span>
+        </figcaption>
+      </figure>
+
+      <article className="about-video">
+        <header className="about-video-heading">
+          <div>
+            <span className="tech-label">Meet Dhara</span>
+            <h3>Introduction</h3>
+          </div>
+          <span className="video-duration">VIDEO / PROFILE</span>
+        </header>
+        <div className="video-frame">
+          <iframe
+            src="https://www.youtube-nocookie.com/embed/p653SDWZQ6g"
+            title="Meet Dhara Rajpura — approach, experience and how I work"
+            loading="lazy"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            referrerPolicy="strict-origin-when-cross-origin"
+            allowFullScreen
+          />
+        </div>
+        <footer className="about-video-footer">
+          <p>Introduction · approach, experience and how I work.</p>
+          <a href="https://youtu.be/p653SDWZQ6g" target="_blank" rel="noreferrer" className="video-link focus-ring">Watch on YouTube <span aria-hidden="true">↗</span></a>
+        </footer>
+      </article>
+    </div>
+  </div>
+</section>
 <section className="section section-dark" id="projects"><div className="shell"><SectionTitle number="03" label="Selected work" title="Seven systems. One production mindset." copy="Case studies across wireless, control, mixed-signal and high-density PCB implementation."/><div className="projects-grid">{projectsData.map((p,i)=><ProjectCard key={p.slug} project={p} index={i} onOpen={setSelected}/>)}</div><div className="section-action"><Link href="/projects" className="button button-ghost">View the complete project index</Link></div></div></section>
 <section className="section section-paper" id="experience"><div className="shell"><SectionTitle number="04" label="Experience" title="Product-focused hardware practice."/><div className="timeline">{experience.map(([date,title,copy])=><article key={title}><span>{date}</span><h3>{title}</h3><p>{copy}</p></article>)}</div></div></section>
 <section className="section section-ink" id="skills"><div className="shell"><SectionTitle number="05" label="Capabilities" title="Across the schematic, board and handoff."/><div className="capability-grid">{capability.map(([title,items],i)=><article key={title}><span className="cap-number">0{i+1}</span><h3>{title}</h3><ul>{items.map(x=><li key={x}>{x}</li>)}</ul></article>)}</div></div></section>
