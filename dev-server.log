@@ -1,0 +1,18 @@
+
+> d0222@0.1.0 dev
+> next dev --webpack
+
+▲ Next.js 16.1.5 (webpack)
+- Local:         http://localhost:3000
+- Network:       http://192.168.137.1:3000
+- Environments: .env.local
+
+✓ Starting...
+⨯ Unable to acquire lock at D:\Dhara\embedded-portfolio\.next\dev\lock, is another instance of next dev running?
+  Suggestion: If you intended to restart next dev, terminate the other process, and then try again.
+[?25h
+npm notice
+npm notice New major version of npm available! 10.9.4 -> 12.1.0
+npm notice Changelog: https://github.com/npm/cli/releases/tag/v12.1.0
+npm notice To update run: npm install -g npm@12.1.0
+npm notice

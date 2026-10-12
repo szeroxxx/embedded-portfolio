@@ -6,7 +6,9 @@
     "dev": "next dev --webpack",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "eslint .",
+    "seo:check": "node scripts/check-seo.mjs",
+    "seo:indexnow": "node scripts/submit-indexnow.mjs"
   },
   "dependencies": {
     "framer-motion": "^11.15.0",

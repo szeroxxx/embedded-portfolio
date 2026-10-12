@@ -2,6 +2,7 @@
 
 # dependencies
 /node_modules
+/showreel
 /.pnp
 .pnp.*
 .yarn/*

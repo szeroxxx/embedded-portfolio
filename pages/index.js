@@ -1,18 +1,14 @@
 import { useEffect, useState } from "react";
-import Head from "next/head";
+import Seo from "../components/Seo";
+import Image from "next/image";
+import { servicesData } from "../lib/services.mjs";
+import { getReviews } from "../lib/db";
 import Link from "next/link";
-import { AnimatePresence, motion } from "framer-motion";
+import { AnimatePresence } from "framer-motion";
 import { Header, Footer } from "../components/SiteChrome";
 import { projectsData, ProjectCard, ProjectModal } from "../components/ProjectDetails";
 import { normalizeReview } from "../lib/reviews.mjs";
 
-const SITE_URL=process.env.NEXT_PUBLIC_SITE_URL||"https://dhararajpura.vercel.app";
-const services=[
-  ["01","PCB design review & DFM audit","Find electrical, layout and manufacturing risks before release.","/services/18-catalog-dfm-audit-thumbnail.png"],
-  ["02","Production-ready custom PCB design","From requirements and schematic through routing and complete fab files.","/services/21-catalog-custom-pcb-thumbnail.png"],
-  ["03","Schematic capture & EDA libraries","Readable hierarchy, verified symbols and footprints, BOM and netlist.","/services/31-catalog-schematic-libraries-thumbnail.png"],
-  ["04","Battery-powered wireless / IoT PCB","Low-power architecture and RF-aware layout for connected products.","/services/41-catalog-wireless-low-power-thumbnail.png"],
-];
 const experience=[
   ["2025 — now","Freelance Embedded Systems Consultant","PCB, embedded hardware and manufacturing documentation for product teams worldwide."],
   ["2024 — 2025","Embedded System Engineer · DosePacker","Robotic control hardware, motors, sensors and mixed-signal measurement for automation."],
@@ -25,10 +21,10 @@ const capability=[
 ];
 function SectionTitle({number,label,title,copy}){return <div className="section-title"><div className="tech-label text-cyan">{number} / {label}</div><h2>{title}</h2>{copy&&<p>{copy}</p>}</div>}
 function ReviewCard({review}){const item=normalizeReview(review);return <blockquote><div className="review-rating" aria-label={`${item.rating} out of 5 stars`}><span aria-hidden="true">{item.stars}</span><b>{item.rating}/5</b></div><p>“{item.reviewText}”</p><footer>{item.clientName}</footer></blockquote>}
-export default function Home(){const [selected,setSelected]=useState(null);const [reviews,setReviews]=useState([]);const [reviewState,setReviewState]=useState('loading');useEffect(()=>{fetch('/api/reviews',{cache:'no-store'}).then(r=>r.ok?r.json():Promise.reject()).then(d=>{setReviews(Array.isArray(d)?d:[]);setReviewState('ready')}).catch(()=>setReviewState('error'))},[]);const pageDescription="PCB and embedded hardware engineering for production-ready schematics, multilayer layouts, DFM and manufacturing documentation.";return <div className="site"><Head><title>Dhara Rajpura — PCB & Embedded Hardware Engineer</title><meta name="description" content={pageDescription}/><meta name="theme-color" content="#090b0b"/><link rel="canonical" href={SITE_URL}/><meta property="og:title" content="Dhara Rajpura — PCB & Embedded Hardware Engineer"/><meta property="og:description" content={pageDescription}/><meta property="og:image" content={`${SITE_URL}/media/pcb-workbench-hero.png`}/><script type="application/ld+json" dangerouslySetInnerHTML={{__html:JSON.stringify({'@context':'https://schema.org','@type':'Person',name:'Dhara Rajpura',jobTitle:'PCB and Embedded Hardware Engineer',url:SITE_URL,knowsAbout:['PCB Design','Embedded Hardware','Altium Designer','KiCad','Design for Manufacturing']})}}/></Head><Header/><main>
-<section className="hero grid-bg"><div className="hero-art"><img src="/media/pcb-workbench-hero.png" alt="Professional electronics workbench with a dense PCB, schematic display and precision measurement tools" fetchPriority="high"/><div className="hero-art-wash"/></div><div className="shell hero-grid"><motion.div className="hero-copy" initial={{opacity:0,y:24}} animate={{opacity:1,y:0}} transition={{duration:.7}}><div className="availability"><i/>Available for selected hardware projects</div><p className="hero-kicker">PCB DESIGN · EMBEDDED HARDWARE · DFM</p><h1>Production-ready PCBs, <em>from schematic to fab files.</em></h1><p className="hero-lead">PCB design, schematic capture, multilayer routing, low-power wireless hardware and the documentation your manufacturer needs to build with confidence.</p><div className="hero-actions"><Link href="/projects" className="button button-lime focus-ring">View projects <span>↗</span></Link><Link href="/services" className="button button-ghost focus-ring">Explore services</Link></div></motion.div><aside className="proof-card"><div><span>LAYERS</span><strong>2–8</strong></div><div><span>TOOLS</span><strong>Altium · KiCad</strong></div><div><span>HANDOFF</span><strong>Manufacturing-ready</strong></div></aside></div></section>
+export default function Home({initialReviews=[],initialReviewState="loading"}){const [selected,setSelected]=useState(null);const [reviews,setReviews]=useState(initialReviews);const [reviewState,setReviewState]=useState(initialReviewState);useEffect(()=>{fetch('/api/reviews',{cache:'no-store'}).then(r=>r.ok?r.json():Promise.reject()).then(d=>{setReviews(Array.isArray(d)?d:[]);setReviewState('ready')}).catch(()=>{if(!initialReviews.length)setReviewState('error')})},[initialReviews.length]);const pageDescription="Hire Dhara Rajpura for freelance PCB design, embedded hardware, Altium and KiCad layout, DFM reviews and manufacturing documentation. Remote worldwide.";return <div className="site"><Seo title="Freelance PCB Design & Embedded Hardware | Dhara Rajpura" description={pageDescription} path="/" /><Header/><main>
+<section className="hero grid-bg"><div className="hero-art"><Image src="/media/pcb-workbench-hero.png" alt="Concept illustration of an electronics workbench, PCB and schematic" fill sizes="(max-width: 700px) 100vw, 65vw" priority /><div className="hero-art-wash"/></div><div className="shell hero-grid"><div className="hero-copy"><div className="availability"><i/>Available for selected hardware projects</div><p className="hero-kicker">PCB DESIGN · EMBEDDED HARDWARE · DFM</p><h1>Production-ready PCBs, <em>from schematic to fab files.</em></h1><p className="hero-lead">I’m Dhara Rajpura, a freelance PCB design and embedded hardware engineer. I help product teams with schematics, multilayer layout, low-power wireless hardware and manufacturing documentation—working remotely with clients worldwide.</p><div className="hero-actions"><Link href="/projects" className="button button-lime focus-ring">View projects <span>↗</span></Link><Link href="/services" className="button button-ghost focus-ring">Explore services</Link></div></div><aside className="proof-card"><div><span>LAYERS</span><strong>2–8</strong></div><div><span>TOOLS</span><strong>Altium · KiCad</strong></div><div><span>HANDOFF</span><strong>Manufacturing-ready</strong></div></aside></div></section>
 <section className="proof-rail"><div className="shell"><span>Schematic capture</span><span>Multilayer PCB</span><span>RF-aware layout</span><span>DFM / DFA</span><span>Production files</span></div></section>
-<section className="section section-dark" id="services"><div className="shell"><SectionTitle number="01" label="Services" title="Engineering support where products become real." copy="Focused engagements for teams that need rigorous hardware implementation and a clean manufacturing handoff."/><div className="service-list">{services.map(([n,title,copy,img])=><Link href="/services" className="service-row focus-ring" key={n}><span className="service-number">{n}</span><div><h3>{title}</h3><p>{copy}</p></div><div className="service-thumb"><img src={img} alt="" loading="lazy"/></div><span className="service-arrow">↗</span></Link>)}</div></div></section>
+<section className="section section-dark" id="services"><div className="shell"><SectionTitle number="01" label="Services" title="Engineering support where products become real." copy="Focused engagements for teams that need rigorous hardware implementation and a clean manufacturing handoff."/><div className="service-list">{servicesData.map(({n,title,summary:copy,image:img,slug})=><Link href={`/services/${slug}`} className="service-row focus-ring" key={n}><span className="service-number">{n}</span><div><h3>{title}</h3><p>{copy}</p></div><div className="service-thumb"><Image src={img} alt="" width={640} height={480} sizes="180px" /></div><span className="service-arrow">↗</span></Link>)}</div></div></section>
 <section className="section section-paper about-section" id="about">
   <div className="shell">
     <div className="about-grid">
@@ -39,14 +35,14 @@ export default function Home(){const [selected,setSelected]=useState(null);const
       <div className="about-narrative">
         <p className="large-copy">I translate product concepts and existing schematics into clear, manufacturable electronics: deliberate power architecture, readable schematics, disciplined placement and routing, and complete release documentation.</p>
         <p>The work is grounded in constraints first—mechanical envelope, interfaces, power tree, stack-up, fabrication limits and component availability—so problems are resolved before they become expensive.</p>
-        <Link href="/services" className="text-link focus-ring">See how I work <span aria-hidden="true">↗</span></Link>
+        <Link href="/about" className="text-link focus-ring">Meet Dhara and see my experience <span aria-hidden="true">↗</span></Link>
       </div>
     </div>
 
     <div className="about-media" aria-label="Meet Dhara Rajpura">
       <figure className="about-portrait">
         <div className="about-portrait-frame">
-          <img src="/media/dhara-rajpura-profile.jpg" alt="Dhara Rajpura, PCB and embedded hardware engineer" loading="lazy" />
+          <Image src="/media/dhara-rajpura-profile.jpg" alt="Dhara Rajpura, freelance PCB and embedded hardware engineer" width={720} height={900} sizes="(max-width: 700px) 100vw, 40vw" />
           <span className="portrait-index" aria-hidden="true">DR / 01</span>
         </div>
         <figcaption>
@@ -88,3 +84,14 @@ export default function Home(){const [selected,setSelected]=useState(null);const
 <section className="section section-paper" id="reviews"><div className="shell"><SectionTitle number="06" label="Client feedback" title="What collaborators say."/><div className="reviews-wrap">{reviewState==='loading'&&<p className="status-copy">Loading feedback…</p>}{reviewState==='error'&&<p className="status-copy">Feedback is temporarily unavailable. The rest of the portfolio is ready to explore.</p>}{reviewState==='ready'&&reviews.length===0&&<p className="status-copy">No public reviews yet. Have we worked together? <Link href="/review">Share your experience.</Link></p>}{reviews.map(r=><ReviewCard key={r.id||`${r.client_name}-${r.created_at}`} review={r}/>)}</div></div></section>
 <section className="contact-section" id="contact"><div className="shell contact-grid"><div><div className="tech-label text-lime">07 / Start a conversation</div><h2>Bring the constraints.<br/><em>I’ll bring the board into focus.</em></h2></div><div><p>Need a PCB review, a new design, a clean schematic rebuild or a production-ready handoff? Send the product context and current design state.</p><div className="hero-actions"><a href="mailto:dharaxrajpura@gmail.com" className="button button-lime focus-ring">Email Dhara ↗</a><a href="https://wa.me/919725417323" className="button button-ghost focus-ring" target="_blank" rel="noreferrer">WhatsApp</a></div></div></div></section>
 </main><Footer/><AnimatePresence>{selected&&<ProjectModal project={selected} onClose={()=>setSelected(null)}/>}</AnimatePresence></div>}
+
+
+export async function getServerSideProps({res}) {
+  res.setHeader('Cache-Control','public, s-maxage=60, stale-while-revalidate=120');
+  try {
+    const reviews = await getReviews();
+    return {props:{initialReviews:reviews.filter(review=>review.visible===true),initialReviewState:'ready'}};
+  } catch {
+    return {props:{initialReviews:[],initialReviewState:'loading'}};
+  }
+}

@@ -1,0 +1,90 @@
+{
+  "checkedAt": "2026-10-09T13:32:56.084Z",
+  "base": "http://localhost:4300",
+  "publicPages": 16,
+  "internalLinksChecked": 16,
+  "status": "PASS",
+  "results": [
+    {
+      "path": "/",
+      "status": 200,
+      "title": "Freelance PCB Design &amp; Embedded Hardware | Dhara Rajpura",
+      "reviewsInHtml": true
+    },
+    {
+      "path": "/about",
+      "status": 200,
+      "title": "Dhara Rajpura — PCB &amp; Embedded Hardware Engineer"
+    },
+    {
+      "path": "/services",
+      "status": 200,
+      "title": "PCB Design &amp; Embedded Hardware Services | Dhara Rajpura"
+    },
+    {
+      "path": "/projects",
+      "status": 200,
+      "title": "PCB &amp; Embedded Hardware Case Studies | Dhara Rajpura"
+    },
+    {
+      "path": "/contact",
+      "status": 200,
+      "title": "Hire Dhara Rajpura — Freelance PCB &amp; Embedded Hardware Engineer"
+    },
+    {
+      "path": "/services/pcb-design-review",
+      "status": 200,
+      "title": "PCB Design Review &amp; DFM Audit | Dhara Rajpura"
+    },
+    {
+      "path": "/services/custom-pcb-design",
+      "status": 200,
+      "title": "Custom PCB Design Services | Altium &amp; KiCad | Dhara Rajpura"
+    },
+    {
+      "path": "/services/schematic-capture",
+      "status": 200,
+      "title": "Schematic Capture &amp; EDA Libraries | Dhara Rajpura"
+    },
+    {
+      "path": "/services/wireless-iot-pcb-design",
+      "status": 200,
+      "title": "Wireless &amp; IoT PCB Design | ESP32, nRF52 &amp; LoRa | Dhara"
+    },
+    {
+      "path": "/projects/nrf52840-navigation",
+      "status": 200,
+      "title": "nRF52840 Navigation PCB Design | Dhara Rajpura"
+    },
+    {
+      "path": "/projects/esp32-s3-smart-gst-calculator",
+      "status": 200,
+      "title": "ESP32-S3 Smart GST Calculator | Dhara Rajpura"
+    },
+    {
+      "path": "/projects/lora-nurse-call",
+      "status": 200,
+      "title": "LoRa Nurse-Call Hardware &amp; PCB Design | Dhara Rajpura"
+    },
+    {
+      "path": "/projects/stm32-station-control",
+      "status": 200,
+      "title": "STM32 Robotics Control PCB Design | Dhara Rajpura"
+    },
+    {
+      "path": "/projects/pharmacy-bottle-sorter",
+      "status": 200,
+      "title": "Bottle Sorter Robotics PCB Design | Dhara Rajpura"
+    },
+    {
+      "path": "/projects/dual-rail-trigger",
+      "status": 200,
+      "title": "Dual-Rail Analog Trigger PCB Design | Dhara Rajpura"
+    },
+    {
+      "path": "/projects/tmr-actuator-driver",
+      "status": 200,
+      "title": "TMR Actuator Driver PCB Layout | Dhara Rajpura"
+    }
+  ]
+}

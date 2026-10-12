@@ -1,0 +1,5 @@
+Mode: built-in image generation; edit with local reference.
+Reference: public/portfolio/04-esp32-s3-terminal-thumbnail-concept.png
+Output: public/portfolio/04-esp32-s3-smart-gst-calculator-concept.png
+Change: relabel concept thumbnail as Smart GST Calculator while preserving visual identity.
+Edit the supplied project concept thumbnail. Preserve its exact dark charcoal background, cyan linework, 3D calculator hardware, composition, material realism, typography style and premium engineering portfolio visual identity. Only update the large left-hand heading from 'ESP32-S3 TERMINAL' to two neatly typeset lines 'SMART GST' and 'CALCULATOR' in white, fitting inside the existing left region without touching the hardware. Below the headline, change the cyan widely tracked label to 'ESP32-S3 / CONCEPT VISUAL'. The small top cyan horizontal rule stays. This is an explicitly illustrative project concept, so preserve CONCEPT VISUAL. Keep all other elements unchanged; do not add tax calculations, prices, credentials or product performance claims. Crisp legible correctly spelled typography.

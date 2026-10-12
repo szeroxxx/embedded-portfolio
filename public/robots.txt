@@ -1,0 +1,12 @@
+# Public pages may be indexed by search engines and AI search crawlers.
+User-agent: *
+Allow: /
+Disallow: /api/
+Disallow: /reviewmanagement
+
+User-agent: OAI-SearchBot
+Allow: /
+Disallow: /api/
+Disallow: /reviewmanagement
+
+Sitemap: https://www.dhara.website/sitemap.xml

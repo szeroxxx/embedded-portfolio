@@ -82,6 +82,7 @@ async function callWebApp<T>(
     headers: { 'Content-Type': 'application/json' },
     // Apps Script follows a redirect on /exec; let fetch follow it.
     redirect: 'follow',
+    signal: action === 'list' ? AbortSignal.timeout(5000) : undefined,
     body: JSON.stringify({ action, token, ...payload }),
   });
 

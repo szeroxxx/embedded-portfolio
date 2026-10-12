@@ -1,4 +1,5 @@
 import Head from 'next/head'
+import Link from 'next/link'
 import { useEffect, useState } from 'react'
 import { motion } from 'framer-motion'
 import { useRouter } from 'next/router'
@@ -43,7 +44,7 @@ export default function ReviewPage() {
     <Head><title>Share a review — Dhara Rajpura</title><meta name="description" content="Share feedback about your PCB or embedded hardware project with Dhara Rajpura." /><meta name="robots" content="noindex" /></Head>
     <Header />
     <main className="review-page grid-bg"><div className="shell review-page-grid">
-      <section className="review-intro"><span className="tech-label text-cyan">Client feedback</span><h1>{submitted ? 'Thank you for the feedback.' : 'Share your project experience.'}</h1><p>{submitted ? 'Your review has been saved and is now connected to the portfolio.' : 'A short, honest review helps future clients understand the quality of the engineering process and handoff.'}</p>{submitted && <a className="button button-lime" href="/">Return to portfolio</a>}</section>
+      <section className="review-intro"><span className="tech-label text-cyan">Client feedback</span><h1>{submitted ? 'Thank you for the feedback.' : 'Share your project experience.'}</h1><p>{submitted ? 'Your review has been saved and is now connected to the portfolio.' : 'A short, honest review helps future clients understand the quality of the engineering process and handoff.'}</p>{submitted && <Link className="button button-lime" href="/">Return to portfolio</Link>}</section>
       {!submitted && <motion.form className="review-form" onSubmit={handleSubmit} initial={{ opacity: 0, y: 18 }} animate={{ opacity: 1, y: 0 }}>
         <label htmlFor="client-name">Your name</label><input id="client-name" name="client_name" value={formData.client_name} onChange={handleChange} maxLength={80} autoComplete="name" required />
         <label htmlFor="project-name">Project name</label><input id="project-name" name="project_name" value={formData.project_name} onChange={handleChange} maxLength={120} required />

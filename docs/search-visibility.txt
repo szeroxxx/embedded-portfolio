@@ -1,0 +1,139 @@
+DHARA RAJPURA — SEARCH VISIBILITY IMPLEMENTATION
+Research and local implementation: 9 October 2026
+Primary website: https://www.dhara.website/
+Recommended project name: ESP32-S3 Smart GST Calculator
+
+WHAT THIS CAN ACHIEVE
+The changes improve discovery, indexing, clarity and buyer confidence. They cannot guarantee first place worldwide or force an assistant to recommend Dhara in an unrelated conversation. Search-enabled assistants may retrieve current public pages; a model answering without search cannot be reliably updated through website SEO. Rankings depend on the query, competing pages, location, relevance and reputation. Evaluate qualified inquiries, not only positions.
+
+LIVE ISSUES FOUND BEFORE EDITING
+1. The homepage canonical pointed to https://dhararajpura.vercel.app instead of the current public domain.
+2. /sitemap.xml returned HTTP 404.
+3. All seven detailed projects were available only through interactive modals. Cards were buttons, without crawlable links to individual case studies.
+4. Four services shared one index page, without distinct service URLs and buyer-specific answers.
+5. Client reviews loaded only after a browser-side API request.
+6. About and experience routes retained an older presentation and incomplete metadata.
+7. The exported portfolio JSON referred to an older domain.
+8. The existing lint command and configuration did not work with the installed Next.js/ESLint versions.
+
+IMPLEMENTED LOCALLY
+- Renamed the project to ESP32-S3 Smart GST Calculator and updated its description, links, metadata and shared project data.
+- Added seven individual static case-study pages with visible scope, role, technical highlights, tools and concept-image disclosure.
+- Added four individual service pages, with audience, deliverables, explicit boundaries, FAQs and relevant case studies.
+- Added a current About page with consistent identity, experience, education, portrait and LinkedIn link.
+- Added a Contact page with email, WhatsApp and a practical project-brief checklist.
+- Added consistent page titles, descriptions, canonical URLs, Open Graph and Twitter metadata.
+- Added connected Person, WebSite, WebPage, ProfilePage, ContactPage, Service, CreativeWork, ItemList and BreadcrumbList entities where applicable.
+- Added a 16-URL XML sitemap, referencing only public canonical pages. No invented daily last-modified timestamps or priority values.
+- Added robots.txt with OAI-SearchBot access to public content and exclusions for private/API paths.
+- Kept review/admin utilities out of search using noindex metadata/response headers.
+- Added permanent redirects from the old calculator slug and the legacy experience page.
+- Made public reviews available in homepage HTML using the existing review store, preserving original ratings including Sarvesh's 2/5.
+- Kept credentials server-only and added a bounded timeout for the existing review-store requests.
+- Optimized key images using Next.js Image; critical page text no longer depends on entrance animations.
+- Added optional Google/Bing ownership-verification metadata configuration.
+- Added IndexNow ownership verification and an explicit submission command. It checks the live ownership file and sitemap before notifying supported search engines.
+- Added a repeatable integration check covering all public pages, internal links, canonical URLs, metadata, schemas, sitemap, robots, redirects, noindex headers and an optimized image.
+
+QUERY RESEARCH: EVIDENCE AND LIMITS
+The attached search-query-map.csv distinguishes observed public autocomplete suggestions from proposed buyer phrases. Public Google autocomplete was captured for four English-language prefixes on 9 October 2026. These suggestions can vary by region and time; they do not establish monthly search volume, competition scores, or buying intent. No exact volumes or guaranteed ranking forecasts are claimed.
+
+Observed suggestions relevant to Dhara included:
+- freelance pcb designer
+- freelance pcb layout
+- pcb design review service
+- pcb layout review
+- pcb design review checklist
+- esp32 pcb design
+- esp32 pcb layout
+- pcb designer in ahmedabad
+
+Many suggestions were jobs, courses, software or DIY topics. Those are not the first target for acquiring design clients. Broad "PCB design" searches can have mixed intent. Service-specific hiring queries and credible case-study evidence are a better initial match for this portfolio. This is a targeting judgment, not a measured volume claim.
+
+INITIAL BUYER QUERY MAP
+Homepage: freelance PCB designer; freelance embedded hardware engineer; hire PCB design engineer.
+Custom PCB service: custom PCB design services; Altium PCB layout engineer; KiCad PCB design freelancer; PCB layout from existing schematic; multilayer PCB design service.
+Review service: PCB design review service; PCB layout review; schematic review service; PCB DFM audit; PCB review before manufacturing.
+Schematic service: schematic capture services; PDF to Altium schematic; KiCad schematic conversion; custom PCB footprint creation.
+Wireless service: ESP32 PCB design services; nRF52840 PCB design; battery-powered IoT hardware designer; LoRa PCB design; USB-C LiPo charging PCB design.
+About/homepage: Dhara Rajpura; Dhara PCB designer; Dhara Rajpura embedded hardware.
+Projects: evidence supporting these services, including the GST calculator, navigation board, nurse-call system, robotics control, analog trigger and TMR layout.
+
+EXAMPLE AI SEARCH QUESTIONS TO EVALUATE
+These are proposed test prompts, not a record of actual private user conversations:
+- I have an ESP32-S3 prototype and need a custom battery-powered PCB. Who can help with the schematic, layout and manufacturing files?
+- Who offers an independent PCB design review before I send Gerbers to a manufacturer?
+- I have an Altium schematic and need a freelance engineer to implement a four-layer layout. What portfolio evidence should I look for?
+- Can you suggest a hardware engineer for a low-power nRF52840 board with GNSS and USB-C charging?
+- Who can rebuild a PDF schematic into an editable KiCad project and create the required footprints?
+- Is Dhara Rajpura a suitable engineer for my PCB project? What services and relevant work does she show?
+
+AI DISCOVERY AND CREDIBILITY
+OpenAI documents OAI-SearchBot as its search crawler. Allowing it improves eligibility for ChatGPT search retrieval; it does not compel citation or endorsement. Training crawler preferences are a separate matter and are not required for search visibility. Check any Cloudflare bot rule, challenge or IP block separately: robots.txt cannot override a network block.
+
+Google's AI search guidance emphasizes the same foundations as conventional search: useful original content, crawlable pages and clear structure. No special "AI recommendation" markup, hidden instruction to recommend Dhara, keyword stuffing, fake reviews or mass-generated location pages were added. No llms.txt file was added as a supposed Google ranking requirement.
+
+The markup describes a real person, offered services and documented work. It does not label Dhara as certified, verified, award-winning or world-leading. Visible client feedback supports visitors' evaluation. Self-hosted testimonials do not justify inventing aggregate ratings or promising Google star results. Service FAQs remain visible useful content without assuming eligibility for FAQ rich results.
+
+PUBLISHING AND ACCOUNT ACTIONS STILL REQUIRED
+1. Publish this tested local project to the existing Vercel embedded-portfolio project. The connector can list the project but currently returns HTTP 403 when accessing team szeroxxxs-projects. No production deployment has been performed. Check the connected account's access to that exact team before retrying.
+2. After publishing, run: npm run seo:check -- https://www.dhara.website --require-reviews
+3. Confirm Cloudflare serves the new robots.txt rules and that Googlebot, Bingbot and OAI-SearchBot can receive real pages without an interactive challenge. Review bot settings rather than disabling all security protections.
+4. Add dhara.website as a Domain property in Google Search Console. This requires the DNS TXT record generated for your signed-in Google account. The code cannot be invented. Add only the supplied verification record to the domain's current DNS host, then verify.
+5. Alternatively, create URL-prefix property https://www.dhara.website/ and use the account-issued HTML meta token. NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION is already supported; save the exact public token in Vercel and redeploy. Never provide your Google password.
+6. Submit https://www.dhara.website/sitemap.xml in Search Console. Inspect the homepage, custom PCB service, PCB review service and GST calculator URL. Request indexing only where appropriate after the updated pages are live.
+7. Add the website to Bing Webmaster Tools, using the Google Search Console import if available or the verification method Bing provides. NEXT_PUBLIC_BING_SITE_VERIFICATION is supported if using its meta tag. Submit the same sitemap.
+8. After the new IndexNow key file and sitemap are live, run: npm run seo:indexnow -- --submit. HTTP 200/202 acknowledges receipt; it is not confirmation of indexing. This does not replace Google sitemap submission.
+9. In the signed-in Search Console account, check any AI-search settings/reports offered for your property, alongside ordinary indexing and performance reports. Product availability can vary. Use the current account UI and official guidance.
+
+AUTHORITY WORK THAT CANNOT BE CREATED THROUGH CODE ALONE
+- Keep the public name, service description and website link consistent on LinkedIn, the introduction video and any genuine freelance marketplace profile.
+- Link Featured cards and future LinkedIn project posts to the matching individual case-study/service URL.
+- Add actual engineering decision notes, source screenshots or prototype measurements when they can be shared. Concept illustrations are not evidence of a fabricated board.
+- Publish only firsthand case-study material Dhara can substantiate; clarify client-supplied architecture and her contribution.
+- Seek genuine client recommendations and relevant mentions. Do not buy links, create fake profiles or publish invented client names.
+- An entirely online remote business should not create a false address or assume eligibility for a local Google Business Profile.
+- Expand content from real buyer questions once inquiry/Search Console data exists, rather than adding dozens of nearly duplicate keyword pages.
+
+MEASUREMENT PLAN
+After verification and indexing, record a starting baseline. Review branded and service-query impressions, clicks, CTR and average position by country, device and landing page. Watch the number and quality of real inquiries. Compare rolling 28-day periods only once sufficient data exists; indexing and ranking changes are not instantaneous.
+
+Record incoming leads with: date, referral/source if known, landing page if known, service requested, qualified/not-qualified, quoted/won/lost. Do not add invasive tracking merely to report a vanity metric. Optional existing Vercel analytics can help assess referrals if enabled by the site owner; no paid analytics plan was activated.
+
+Only authenticated property data can establish the actual searches that produced impressions for Dhara's site. Google Keyword Planner or other properly connected research data is needed for numeric demand estimates. Public autocomplete and search results are evidence of wording, not a complete worldwide demand dataset.
+
+SOURCES
+Google Search Essentials:
+https://developers.google.com/search/docs/essentials
+Google AI features and your website:
+https://developers.google.com/search/docs/appearance/ai-features
+Google generative AI search optimization guidance:
+https://developers.google.com/search/docs/fundamentals/ai-optimization-guide
+Google sitemap documentation:
+https://developers.google.com/search/docs/crawling-indexing/sitemaps/build-sitemap
+Google ProfilePage guidance:
+https://developers.google.com/search/docs/appearance/structured-data/profile-page
+Google structured-data policies:
+https://developers.google.com/search/docs/appearance/structured-data/sd-policies
+Google review-snippet guidance:
+https://developers.google.com/search/docs/appearance/structured-data/review-snippet
+Google FAQ-result eligibility:
+https://developers.google.com/search/blog/2023/08/howto-faq-changes
+Google Search Console property setup:
+https://support.google.com/webmasters/answer/34592?hl=en
+OpenAI crawler documentation:
+https://developers.openai.com/api/docs/bots
+Bing Webmaster Guidelines:
+https://www.bing.com/webmasters/help/bing-webmaster-guidelines-30fba23a
+Bing site verification:
+https://www2.bing.com/webmasters/help/add-and-verify-site-12184f8b
+IndexNow protocol:
+https://www.indexnow.org/documentation
+Next.js static page documentation:
+https://nextjs.org/docs/pages/building-your-application/data-fetching/get-static-props
+Next.js image documentation:
+https://nextjs.org/docs/pages/api-reference/components/image
+Observed query-topic corroboration (not search-volume estimates):
+https://resources.altium.com/p/how-to-hire-the-right-pcb-designer-for-your-project
+https://info.semtech.com/pcb-design-review-service
+Public autocomplete data: docs/search-suggestions.json (raw capture, including exact source URLs).
