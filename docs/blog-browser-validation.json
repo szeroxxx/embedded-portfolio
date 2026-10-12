@@ -1,0 +1,14 @@
+{
+  "status": "PASS",
+  "widths": [
+    1440,
+    1024,
+    920,
+    768,
+    390
+  ],
+  "articles": 2,
+  "download": "PASS",
+  "analytics": "ID/config/contact events verified with collection blocked; GA4 account-side history measurement still requires live verification",
+  "errors": []
+}

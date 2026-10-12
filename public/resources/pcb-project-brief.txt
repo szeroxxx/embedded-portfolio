@@ -1,0 +1,21 @@
+PCB project brief
+Prepared for discussion with Dhara Rajpura — dhara.website
+
+Product and purpose:
+Users and operating environment:
+Current stage and latest revision:
+Requested work: schematic / layout / review / other
+Design tool and version:
+Files available:
+PCB outline, mounting and height limits:
+Selected controller, modules and key parts:
+Interfaces, connector pinouts and voltage levels:
+Power input, rails, loads and battery requirements:
+Fabricator / assembler and known design rules:
+Required release deliverables:
+Prototype testing and other responsibilities:
+Target deadline and review availability:
+Confirmed requirements:
+Open decisions and their owners:
+
+Write "to be confirmed" for unknowns and identify who will decide.

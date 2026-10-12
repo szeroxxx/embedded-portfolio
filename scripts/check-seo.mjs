@@ -1,11 +1,12 @@
 import assert from 'node:assert/strict';
 import fs from 'node:fs/promises';
+import { articles } from '../lib/blog.mjs';
 import { SITE_URL, PERSON_ID } from '../lib/site.mjs';
 import { projectsData } from '../lib/projects.mjs';
 import { servicesData } from '../lib/services.mjs';
 
 const base = (process.argv[2] || 'http://localhost:4300').replace(/\/$/, '');
-const paths = ['/', '/about', '/services', '/projects', '/contact', ...servicesData.map(s => `/services/${s.slug}`), ...projectsData.map(p => `/projects/${p.slug}`)];
+const paths = ['/', '/about', '/services', '/projects', '/contact', '/blog', ...articles.map(article => `/blog/${article.slug}`), ...servicesData.map(s => `/services/${s.slug}`), ...projectsData.map(p => `/projects/${p.slug}`)];
 const results = [], titles = new Set(), localLinks = new Set();
 for (const path of paths) {
   const response = await fetch(base + path, { signal: AbortSignal.timeout(20000) });
@@ -29,6 +30,15 @@ for (const path of paths) {
     const p = projectsData.find(p => path.endsWith(p.slug));
     assert(body.includes(p.title.replaceAll('&', '&amp;')), `Server-rendered case study: ${path}`);
     assert(body.includes('Role &amp; scope') && body.includes('not photographs'), `Scope and visual disclosure: ${path}`);
+  }
+  if (path.startsWith('/blog/')) {
+    const article = articles.find(item => path.endsWith(item.slug));
+    assert(body.includes(article.sections[0].paragraphs[0].replaceAll('&', '&amp;')), `Article text is server-rendered: ${path}`);
+    const posting = graph.find(item => item['@type'] === 'BlogPosting');
+    assert(posting?.author?.['@id'] === PERSON_ID && posting.headline === article.title, `Article identity: ${path}`);
+    assert(posting.image[0].url === SITE_URL + article.image && posting.datePublished.startsWith(article.date), `Article image and date: ${path}`);
+    const cover = await fetch(base + article.image);
+    assert(cover.ok && cover.headers.get('content-type').startsWith('image/'), `Blog image loads: ${path}`);
   }
   if (path.startsWith('/services/')) {
     const s = servicesData.find(s => path.endsWith(s.slug));
@@ -60,6 +70,8 @@ for (const path of ['/review', '/reviewmanagement', '/api/reviews']) {
   const r = await fetch(base + path); assert(r.headers.get('x-robots-tag')?.includes('noindex'), `Exclude utility page: ${path}`);
 }
 assert.equal((await fetch(base + '/projects/not-a-real-project')).status, 404);
+assert.equal((await fetch(base + '/blog/not-a-real-article')).status, 404);
+assert((await (await fetch(base + '/resources/pcb-project-brief.txt')).text()).includes('Confirmed requirements:'), 'Reusable project brief is available');
 for (const path of localLinks) { const r = await fetch(base + path, {signal:AbortSignal.timeout(15000)}); assert(r.ok, `Internal link: ${path}`); }
 const image = await fetch(base + '/_next/image?url=%2Fmedia%2Fdhara-rajpura-profile.jpg&w=640&q=75', {signal:AbortSignal.timeout(20000)});
 assert(image.ok && image.headers.get('content-type').startsWith('image/'), 'Optimized profile image loads');

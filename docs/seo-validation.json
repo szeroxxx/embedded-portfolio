@@ -1,8 +1,8 @@
 {
-  "checkedAt": "2026-10-09T13:32:56.084Z",
+  "checkedAt": "2026-10-12T11:19:44.425Z",
   "base": "http://localhost:4300",
-  "publicPages": 16,
-  "internalLinksChecked": 16,
+  "publicPages": 19,
+  "internalLinksChecked": 20,
   "status": "PASS",
   "results": [
     {
@@ -30,6 +30,21 @@
       "path": "/contact",
       "status": 200,
       "title": "Hire Dhara Rajpura — Freelance PCB &amp; Embedded Hardware Engineer"
+    },
+    {
+      "path": "/blog",
+      "status": 200,
+      "title": "PCB Design &amp; Embedded Hardware Blog | Dhara Rajpura"
+    },
+    {
+      "path": "/blog/what-to-send-pcb-designer-for-quote",
+      "status": 200,
+      "title": "PCB Design Quote: What to Send Your Designer | Dhara Rajpura"
+    },
+    {
+      "path": "/blog/pcb-design-review-before-manufacturing-checklist",
+      "status": 200,
+      "title": "PCB Design Review Checklist Before Manufacturing | Dhara Rajpura"
     },
     {
       "path": "/services/pcb-design-review",

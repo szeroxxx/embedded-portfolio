@@ -1,10 +1,11 @@
 import fs from 'node:fs/promises';
+import { articles } from '../lib/blog.mjs';
 import { SITE_URL } from '../lib/site.mjs';
 import { projectsData } from '../lib/projects.mjs';
 import { servicesData } from '../lib/services.mjs';
 
 const { key } = JSON.parse(await fs.readFile(new URL('../lib/indexnow.json', import.meta.url), 'utf8'));
-const urlList = ['/', '/about', '/services', '/projects', '/contact', ...servicesData.map(s => `/services/${s.slug}`), ...projectsData.map(p => `/projects/${p.slug}`)].map(path => SITE_URL + path);
+const urlList = ['/', '/about', '/services', '/projects', '/contact', '/blog', ...articles.map(article => `/blog/${article.slug}`), ...servicesData.map(s => `/services/${s.slug}`), ...projectsData.map(p => `/projects/${p.slug}`)].map(path => SITE_URL + path);
 const keyLocation = `${SITE_URL}/${key}.txt`;
 const payload = { host: new URL(SITE_URL).hostname, key, keyLocation, urlList };
 if (!process.argv.includes('--submit')) {
@@ -14,7 +15,8 @@ if (!process.argv.includes('--submit')) {
   const liveKey = await fetch(keyLocation, { signal: AbortSignal.timeout(15000) });
   if (!liveKey.ok || (await liveKey.text()).trim() !== key) throw new Error('Publish the matching ownership file before submitting. No URLs were sent.');
   const sitemap = await fetch(`${SITE_URL}/sitemap.xml`, { signal: AbortSignal.timeout(15000) });
-  if (!sitemap.ok || !(await sitemap.text()).includes('/projects/esp32-s3-smart-gst-calculator')) throw new Error('The new sitemap is not live. No URLs were sent.');
+  const sitemapText = await sitemap.text();
+  if (!sitemap.ok || !urlList.every(url => sitemapText.includes(`<loc>${url}</loc>`))) throw new Error('Deploy the complete updated sitemap, including the blog, before submitting. No URLs were sent.');
   const response = await fetch('https://api.indexnow.org/indexnow', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(payload), signal: AbortSignal.timeout(15000) });
   console.log(`IndexNow response: ${response.status}`);
   if (![200, 202].includes(response.status)) throw new Error(`Submission failed: ${await response.text()}`);

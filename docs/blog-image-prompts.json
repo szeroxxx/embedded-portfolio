@@ -1,0 +1,19 @@
+{
+  "mode": "Built-in image_gen tool; new image generation",
+  "palette": {
+    "blue": "#0753B5",
+    "yellow": "#FFF4A3",
+    "orange": "#F5A052"
+  },
+  "assets": [
+    {
+      "path": "public/media/blog/pcb-design-quote-brief.webp",
+      "prompt": "Generate a premium editorial illustration for Dhara Rajpura’s technical article 'What to Send a PCB Designer Before Requesting a Quote'. Wide landscape composition, approximately 2:1. Match the established engineering brand: saturated royal blue #0753B5 background with subtle fine grain, pale yellow #FFF4A3 paperwork, restrained warm orange #F5A052 circuit traces and nodes. Central sculptural still life of a green printed circuit board, three neatly overlapping pale-yellow technical brief sheets with abstract block-diagram shapes and a small precise mechanical caliper. Polished tactile 3D editorial rendering, elegant directional studio lighting, soft realistic shadows, careful negative space, purposeful composition, sophisticated engineering magazine art. Thin orange circuit lines connect paperwork toward the board, metaphor for requirements becoming hardware. All essential objects well inside central crop-safe area. No typography, letters, numbers, logos, watermarks, people, or fabricated certifications. Concept illustration, not a photograph of a real client product. Distinctive, classy, visually cohesive with blue/yellow LinkedIn engineering branding."
+    },
+    {
+      "path": "public/media/blog/pcb-review-before-manufacturing.webp",
+      "prompt": "Generate a premium editorial cover illustration for Dhara Rajpura’s technical article 'PCB Design Review Before Manufacturing: A Practical Checklist'. Wide landscape composition approximately 2:1. Saturated royal blue #0753B5 background with subtle fine grain, pale yellow #FFF4A3 highlights and warm orange #F5A052 circuit traces. A green PCB laid diagonally at center, an elegant large inspection magnifying lens hovering over a few chip pads on its right side, a pale-yellow review sheet on the left with abstract orange square check marks and subtle horizontal lines but no words. A thin orange inspection frame with round circuit nodes surrounds part of the board. Tactile, highly polished 3D editorial still life, studio shadows, sophisticated engineering magazine aesthetic. Different arrangement from a project briefing cover: closer board detail, inspection lens foreground, layered review sheet behind. Keep every essential object in central crop-safe region. No typography, letters, numbers, logos, watermarks, people, badges or fabricated certifications. Conceptual illustration, not a real product photograph or technically authoritative wiring diagram. Classy and purposeful, matching Dhara’s blue and pale-yellow LinkedIn banner identity."
+    }
+  ],
+  "note": "Generated images were inspected and encoded as WebP without changing their composition. These are editorial concept illustrations, not client product photographs."
+}
