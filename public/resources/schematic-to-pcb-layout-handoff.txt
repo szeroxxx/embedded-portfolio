@@ -1,0 +1,26 @@
+SCHEMATIC TO PCB LAYOUT HANDOFF
+Dhara Rajpura | https://www.dhara.website/
+
+Product and purpose:
+Requested work: layout only / review and layout / reconstruction and layout
+Design tool and version:
+Native source revision and matching schematic PDF:
+BOM and exact selected manufacturer part numbers:
+Symbols, footprints and project-specific libraries included:
+Board outline, units and mounting details:
+Fixed connector positions, height limits and keep-outs:
+Provisional mechanical details:
+Power sources, rails and expected loads:
+Interfaces, pinouts and voltage requirements:
+Signals or areas requiring special layout treatment:
+Fabricator / assembler and known manufacturing constraints:
+Layer stack: fixed / proposed / to be confirmed
+Requested source, fabrication and assembly deliverables:
+Schematic changes included / approval process:
+Firmware, manufacturing and testing responsibilities:
+Review contact and change-approval owner:
+Target dates and input dependencies:
+Open decisions, their owners and required resolution stage:
+
+Mark unknowns as 'to be confirmed'. Do not substitute assumed technical values.
+Agree how confidential files can be shared before sending them.

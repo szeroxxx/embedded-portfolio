@@ -36,7 +36,7 @@ export default function ArticlePage({ article, project }) {
           </div>
         </div></div>
       </article>
-      <section className="article-project-strip"><div className="shell"><span className="tech-label">Related documented work</span><h2><Link href={`/projects/${project.slug}`}>{project.title} <span aria-hidden="true">↗</span></Link></h2><p>{project.scope}</p></div></section>
+      {project && <section className="article-project-strip"><div className="shell"><span className="tech-label">Related documented work</span><h2><Link href={`/projects/${project.slug}`}>{project.title} <span aria-hidden="true">↗</span></Link></h2><p>{project.scope}</p></div></section>}
       <section className="contact-section"><div className="shell contact-grid"><div><div className="tech-label text-lime">Your next engineering step</div><h2>{article.ctaTitle}</h2></div><div><p>{article.ctaCopy}</p><Link href="/contact" className="button button-lime focus-ring">Discuss your project ↗</Link></div></div></section>
       <section className="section blog-library" aria-labelledby="article-next-guide"><div className="shell"><div className="blog-library-heading"><div><span className="tech-label">Keep reading</span><h2 id="article-next-guide">The next useful guide.</h2></div><Link href="/blog" className="blog-all-link">All engineering notes ↗</Link></div><BlogCards items={articles.filter(item => item.slug !== article.slug)} /></div></section>
     </main><Footer />
@@ -47,5 +47,5 @@ export function getStaticPaths() { return { paths: articles.map(article => ({par
 export function getStaticProps({ params }) {
   const article = articles.find(item => item.slug === params.slug);
   if (!article) return { notFound:true };
-  return { props:{article, project:projectsData.find(item => item.slug === article.relatedProjectSlug)} };
+  return { props:{article, project:projectsData.find(item => item.slug === article.relatedProjectSlug) || null} };
 }

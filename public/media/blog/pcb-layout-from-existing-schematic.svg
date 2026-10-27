@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1774" height="887" viewBox="0 0 1774 887" role="img" aria-labelledby="title desc">
+<title id="title">From schematic to PCB layout</title><desc id="desc">Generic engineering illustration of schematic sheets, a board outline and three handoff checks. No client circuit is depicted.</desc>
+<rect width="1774" height="887" fill="#0753B5"/>
+<g fill="none" stroke="#FFF4A3" stroke-width="2" opacity=".12"><path d="M0 125H1774M0 250H1774M0 375H1774M0 500H1774M0 625H1774M0 750H1774M125 0V887M250 0V887M375 0V887M500 0V887M625 0V887M750 0V887M875 0V887M1000 0V887M1125 0V887M1250 0V887M1375 0V887M1500 0V887M1625 0V887"/></g>
+<g font-family="Arial, sans-serif"><text x="110" y="105" fill="#FFF4A3" font-size="26" letter-spacing="5">DHARA RAJPURA / ENGINEERING NOTES</text>
+<text x="110" y="205" fill="#FFFEFA" font-size="64" font-weight="700">Have a schematic ready?</text><text x="112" y="260" fill="#FFF4A3" font-size="29">Define the handoff before routing starts.</text></g>
+<rect x="125" y="365" width="340" height="300" rx="12" fill="#053D87" stroke="#69A3EE" stroke-width="3"/>
+<rect x="165" y="335" width="340" height="300" rx="12" fill="#FFFEFA"/>
+<g stroke="#0753B5" stroke-width="7" fill="none" stroke-linecap="round"><path d="M210 398H272M210 420H330M210 464H255V510H301M377 464H460M405 465V548H460M302 548H340"/><rect x="302" y="445" width="74" height="80" rx="4"/><path d="M320 430V445M340 430V445M358 430V445M320 525V543M358 525V543"/></g>
+<g fill="none" stroke="#F5A052" stroke-width="9" stroke-linecap="round" stroke-linejoin="round"><path d="M554 490H650L697 443H790"/><path d="M767 421L790 443L767 465"/></g>
+<rect x="840" y="350" width="455" height="308" rx="28" fill="#0A3A6C" stroke="#FFF4A3" stroke-width="5"/>
+<g fill="none" stroke="#FFF4A3" stroke-width="5"><circle cx="870" cy="380" r="9"/><circle cx="1265" cy="380" r="9"/><circle cx="870" cy="627" r="9"/><circle cx="1265" cy="627" r="9"/><rect x="980" y="445" width="120" height="90" rx="4" stroke-dasharray="10 8"/><path d="M890 470H936M890 490H936M890 510H936M1150 470H1220M1150 490H1220M1150 510H1220"/></g>
+<g fill="none" stroke="#F5A052" stroke-width="5" stroke-dasharray="9 9"><path d="M1025 550V601H1160M967 470H945V418H890"/></g>
+<g font-family="Arial, sans-serif" fill="#FFF4A3" font-size="25"><text x="1370" y="407">01  SOURCE FILES</text><text x="1370" y="487">02  CONSTRAINTS</text><text x="1370" y="567">03  RELEASE SCOPE</text></g>
+<path d="M1325 350V658" stroke="#F5A052" stroke-width="4"/>
+<g font-family="Arial, sans-serif" fill="#FFFEFA"><text x="165" y="709" font-size="25">SCHEMATIC + LIBRARIES</text><text x="840" y="709" font-size="25">PLACEMENT + ROUTING</text><text x="110" y="820" font-size="25">dhara.website</text><text x="1140" y="820" font-size="19" opacity=".8">GENERIC ILLUSTRATION / NO CLIENT CIRCUIT</text></g>
+</svg>
