@@ -132,7 +132,7 @@ const Experience = () => {
     {
       title: "Embedded System Engineer",
       company: "DosePacker, Ahmedabad",
-      duration: "Jan 2024 - November 2025",
+      duration: "January 2024 - January 2026",
       description: [
         "Designed PCBs for robotic systems integrating STM32, motors, and sensors for precision control.",
         "Developed motor control circuits focusing on thermal management and noise filtering.",
