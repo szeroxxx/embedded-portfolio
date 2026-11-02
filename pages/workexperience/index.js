@@ -3,6 +3,7 @@
 import React, { useState } from "react";
 import { motion } from "framer-motion";
 import Layout from "../../components/Layout";
+import { experienceTimeline } from "../../lib/experience.mjs";
 
 const ExperienceCard = ({ title, company, duration, description, index }) => {
   const [isSelected, setIsSelected] = useState(false);
@@ -122,7 +123,7 @@ const Experience = () => {
     {
       title: "Freelance Embedded Systems Consultant",
       company: "Self-Employed",
-      duration: "November 2025 - Present",
+      duration: experienceTimeline.find(item => item.id === "freelance").period,
       description: [
         "Providing embedded hardware design and consulting services to clients worldwide.",
         "Custom PCB design, motor control systems, IoT solutions, and battery-operated portable devices.",
@@ -132,7 +133,7 @@ const Experience = () => {
     {
       title: "Embedded System Engineer",
       company: "DosePacker, Ahmedabad",
-      duration: "January 2024 - January 2026",
+      duration: experienceTimeline.find(item => item.id === "dosepacker").period,
       description: [
         "Designed PCBs for robotic systems integrating STM32, motors, and sensors for precision control.",
         "Developed motor control circuits focusing on thermal management and noise filtering.",
@@ -142,7 +143,7 @@ const Experience = () => {
     {
       title: "Embedded Hardware Engineer",
       company: "Teq Diligent, Ahmedabad",
-      duration: "Jan 2023 - Jan 2024",
+      duration: experienceTimeline.find(item => item.id === "teq-diligent").period,
       description: [
         "Designed multi-layer PCBs ensuring manufacturability and performance validation.",
         "Performed CAM checks and generated production-ready Gerber files.",

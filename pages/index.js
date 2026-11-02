@@ -9,12 +9,8 @@ import { AnimatePresence } from "framer-motion";
 import { Header, Footer } from "../components/SiteChrome";
 import { projectsData, ProjectCard, ProjectModal } from "../components/ProjectDetails";
 import TestimonialsColumns from "../components/ui/TestimonialsColumns";
+import { experienceTimeline } from "../lib/experience.mjs";
 
-const experience=[
-  ["2025 — now","Freelance Embedded Systems Consultant","PCB, embedded hardware and manufacturing documentation for product teams worldwide."],
-  ["Jan 2024 — Jan 2026","Embedded System Engineer · DosePacker","Robotic control hardware, motors, sensors and mixed-signal measurement for automation."],
-  ["2023 — 2024","Embedded Hardware Engineer · Teq Diligent","Multilayer PCB implementation, CAM checks and production-ready fabrication releases."],
-];
 const capability=[
   ["PCB engineering",["Schematic capture","2–8 layer routing","Power & ground planes","Impedance control","DFM / DFA"]],
   ["Connected hardware",["ESP32 / nRF52","LoRa / BLE / Wi-Fi","USB / Ethernet / CAN","Low-power systems","Battery management"]],
@@ -79,7 +75,7 @@ export default function Home({initialReviews=[],initialReviewState="loading"}){c
   </div>
 </section>
 <section className="section section-dark" id="projects"><div className="shell"><SectionTitle number="03" label="Selected work" title="Seven systems. One production mindset." copy="Case studies across wireless, control, mixed-signal and high-density PCB implementation."/><div className="projects-grid">{projectsData.map((p,i)=><ProjectCard key={p.slug} project={p} index={i} onOpen={setSelected}/>)}</div><div className="section-action"><Link href="/projects" className="button button-ghost">View the complete project index</Link></div></div></section>
-<section className="section section-paper" id="experience"><div className="shell"><SectionTitle number="04" label="Experience" title="Product-focused hardware practice."/><div className="timeline">{experience.map(([date,title,copy])=><article key={title}><span>{date}</span><h3>{title}</h3><p>{copy}</p></article>)}</div></div></section>
+<section className="section section-paper" id="experience"><div className="shell"><SectionTitle number="04" label="Experience" title="Product-focused hardware practice."/><div className="timeline">{experienceTimeline.map(({id,period,title,description})=><article key={id}><span>{period}</span><h3>{title}</h3><p>{description}</p></article>)}</div></div></section>
 <section className="section section-ink" id="skills"><div className="shell"><SectionTitle number="05" label="Capabilities" title="Across the schematic, board and handoff."/><div className="capability-grid">{capability.map(([title,items],i)=><article key={title}><span className="cap-number">0{i+1}</span><h3>{title}</h3><ul>{items.map(x=><li key={x}>{x}</li>)}</ul></article>)}</div></div></section>
 <section className="section section-paper" id="reviews"><div className="shell"><SectionTitle number="06" label="Client feedback" title="What collaborators say."/><div className="reviews-content">{reviewState==='loading'&&<p className="status-copy">Loading feedback…</p>}{reviewState==='error'&&<p className="status-copy">Feedback is temporarily unavailable. The rest of the portfolio is ready to explore.</p>}{reviewState==='ready'&&reviews.length===0&&<p className="status-copy">No public reviews yet. Have we worked together? <Link href="/review">Share your experience.</Link></p>}{reviews.length>0&&<TestimonialsColumns reviews={reviews}/>}</div></div></section>
 <section className="section blog-library home-guides" aria-labelledby="home-guides"><div className="shell"><div className="blog-library-heading"><div><span className="tech-label">Engineering notes</span><h2 id="home-guides">A clearer brief.<br/>A more careful release.</h2></div><Link href="/blog" className="blog-all-link">All practical guides ↗</Link></div><BlogCards /></div></section>
