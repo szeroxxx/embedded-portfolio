@@ -1,11 +1,12 @@
 import fs from 'node:fs/promises';
+import { studies } from '../lib/device-lab.mjs';
 import { articles } from '../lib/blog.mjs';
 import { SITE_URL } from '../lib/site.mjs';
 import { projectsData } from '../lib/projects.mjs';
 import { servicesData } from '../lib/services.mjs';
 
 const { key } = JSON.parse(await fs.readFile(new URL('../lib/indexnow.json', import.meta.url), 'utf8'));
-const urlList = ['/', '/about', '/services', '/projects', '/contact', '/blog', ...articles.map(article => `/blog/${article.slug}`), ...servicesData.map(s => `/services/${s.slug}`), ...projectsData.map(p => `/projects/${p.slug}`)].map(path => SITE_URL + path);
+const urlList = ['/', '/about', '/services', '/projects', '/contact', '/resources', '/blog', '/device-lab', ...studies.map(study => '/device-lab/' + study.slug), ...articles.map(article => `/blog/${article.slug}`), ...servicesData.map(s => `/services/${s.slug}`), ...projectsData.map(p => `/projects/${p.slug}`)].map(path => SITE_URL + path);
 const keyLocation = `${SITE_URL}/${key}.txt`;
 const payload = { host: new URL(SITE_URL).hostname, key, keyLocation, urlList };
 if (!process.argv.includes('--submit')) {

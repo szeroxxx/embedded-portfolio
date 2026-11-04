@@ -1,12 +1,13 @@
 import assert from 'node:assert/strict';
 import fs from 'node:fs/promises';
+import { studies } from '../lib/device-lab.mjs';
 import { articles } from '../lib/blog.mjs';
 import { SITE_URL, PERSON_ID } from '../lib/site.mjs';
 import { projectsData } from '../lib/projects.mjs';
 import { servicesData } from '../lib/services.mjs';
 
 const base = (process.argv[2] || 'http://localhost:4300').replace(/\/$/, '');
-const paths = ['/', '/about', '/services', '/projects', '/contact', '/blog', ...articles.map(article => `/blog/${article.slug}`), ...servicesData.map(s => `/services/${s.slug}`), ...projectsData.map(p => `/projects/${p.slug}`)];
+const paths = ['/', '/about', '/services', '/projects', '/contact', '/resources', '/blog', '/device-lab', ...studies.map(study => '/device-lab/' + study.slug), ...articles.map(article => `/blog/${article.slug}`), ...servicesData.map(s => `/services/${s.slug}`), ...projectsData.map(p => `/projects/${p.slug}`)];
 const results = [], titles = new Set(), localLinks = new Set();
 for (const path of paths) {
   const response = await fetch(base + path, { signal: AbortSignal.timeout(20000) });
@@ -40,6 +41,12 @@ for (const path of paths) {
     const cover = await fetch(base + article.image);
     assert(cover.ok && cover.headers.get('content-type').startsWith('image/'), `Blog image loads: ${path}`);
   }
+  if (path.startsWith('/device-lab/')) {
+    const study = studies.find(item => path === '/device-lab/' + item.slug);
+    assert(graph.some(item => item['@type'] === 'TechArticle' && item.headline === study.title), `Device study identity: ${path}`);
+    for (const resource of [study.firmware, study.schematic, study.kit]) assert(body.includes(resource), `Download link: ${resource}`);
+    assert.equal(/<iframe\b/.test(body), Boolean(study.youtubeId), `Video availability: ${path}`);
+  }
   if (path.startsWith('/services/')) {
     const s = servicesData.find(s => path.endsWith(s.slug));
     assert(body.includes(s.faqs[0].question), `Visible FAQ without JS: ${path}`);
@@ -71,6 +78,7 @@ for (const path of ['/review', '/reviewmanagement', '/api/reviews']) {
 }
 assert.equal((await fetch(base + '/projects/not-a-real-project')).status, 404);
 assert.equal((await fetch(base + '/blog/not-a-real-article')).status, 404);
+assert.equal((await fetch(base + '/device-lab/not-a-real-study')).status, 404);
 assert((await (await fetch(base + '/resources/pcb-project-brief.txt')).text()).includes('Confirmed requirements:'), 'Reusable project brief is available');
 for (const path of localLinks) { const r = await fetch(base + path, {signal:AbortSignal.timeout(15000)}); assert(r.ok, `Internal link: ${path}`); }
 const image = await fetch(base + '/_next/image?url=%2Fmedia%2Fdhara-rajpura-profile.jpg&w=640&q=75', {signal:AbortSignal.timeout(20000)});

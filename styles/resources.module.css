@@ -1,0 +1,13 @@
+.page { background: #f7f3e9; color: #142e3e; padding: 126px 0 80px; min-height: 75vh; }
+.intro { padding-bottom: 24px; border-bottom: 1px solid #142e3e; }
+.intro h1,.copy h2 { font-family: Georgia, serif; line-height: 1; font-weight: 400; letter-spacing: -.045em; }
+.intro h1 { margin: 18px 0 0; font-size: clamp(3.5rem,7vw,6rem); }
+.shelves { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(24px,4vw,60px); margin-top: 32px; }
+.card { display: block; color: inherit; }
+.card img { width: 100%; height: auto; aspect-ratio: 16/9; object-fit: cover; border: 1px solid #c9c3b6; }
+.copy { padding: 22px 0; }
+.copy h2 { margin: 8px 0; font-size: clamp(2.1rem,4vw,3.3rem); }
+.copy p { max-width: 48ch; line-height: 1.55; margin: 0 0 15px; }
+.card:hover strong,.card:focus-visible strong { text-decoration: underline; text-underline-offset: .25em; }
+.card:focus-visible { outline: 2px solid #8d482d; outline-offset: 5px; }
+@media(max-width:680px){.shelves{grid-template-columns:1fr}.page{padding:102px 0 52px}}
