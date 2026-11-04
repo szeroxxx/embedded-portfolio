@@ -5,14 +5,31 @@ import Image from "next/image";
 import { projectsData } from "../lib/projects.mjs";
 export { projectsData };
 
-export function ProjectCard({ project, onOpen, index=0 }) {
-  return <article className="project-card group">
-    <Link href={`/projects/${project.slug}`} className="block focus-ring" aria-label={`Read ${project.title} case study`}>
-      <div className="project-frame"><Image src={project.images[0]} alt={`${project.title} concept presentation`} className="project-image" width={1600} height={900} sizes="(max-width: 700px) 100vw, (max-width: 1024px) 50vw, 33vw" /></div>
-      <div className="project-copy"><div className="tech-label text-cyan">{project.kicker}</div><h3>{project.title}</h3><div className="project-meta"><span>{project.role}</span><span>0{index+1}</span></div><span className="text-link">Read case study ↗</span></div>
-    </Link>
-    {onOpen && <button className="project-preview focus-ring" onClick={()=>onOpen(project)} aria-label={`Quick preview of ${project.title}`}>Quick preview</button>}
-  </article>;
+export function ProjectCard({ project, onOpen, presentation = "index" }) {
+  const selected = presentation !== "index";
+  const lead = presentation === "lead";
+  const href = `/projects/${project.slug}`;
+  return (
+    <article className={`project-card project-card--${presentation}`}>
+      <Link href={href} className="project-card-link focus-ring" aria-label={`Read ${project.title} case study`}>
+        <div className="project-frame">
+          <Image src={project.images[0]} alt={`${project.title} concept illustration`} className="project-image" width={1448} height={1086}
+            sizes={lead ? "(max-width: 860px) 100vw, 58vw" : "(max-width: 760px) 100vw, 45vw"} />
+          {lead && <span className="featured-project-label"><i aria-hidden="true" /> Featured case study</span>}
+        </div>
+        <div className="project-copy">
+          <div className="tech-label text-cyan">{project.kicker}</div>
+          <h3>{selected && project.slug === "tmr-actuator-driver" ? "TMR actuator driver PCB" : project.title}</h3>
+          {lead && <p className="project-design-focus">{project.designFocus}</p>}
+          <div className="project-meta"><span>{project.contribution}</span></div>
+          <span className="text-link">Read case study <span aria-hidden="true">→</span></span>
+        </div>
+      </Link>
+      {onOpen && <form action={href} method="get" onSubmit={event => { event.preventDefault(); onOpen(project); }}>
+        <button type="submit" className="project-preview focus-ring" aria-haspopup="dialog" aria-label={`Quick preview of ${project.title}`}>Quick preview</button>
+      </form>}
+    </article>
+  );
 }
 
 export function ProjectModal({project,onClose}) {

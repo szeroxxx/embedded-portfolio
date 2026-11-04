@@ -1,0 +1,53 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="450" viewBox="0 0 800 450">
+  <defs>
+    <pattern id="paper" width="24" height="24" patternUnits="userSpaceOnUse">
+      <rect width="24" height="24" fill="#eeeee3"/>
+      <path d="M24 0H0V24" fill="none" stroke="#c2cabe" stroke-width=".8"/>
+    </pattern>
+    <pattern id="hatch" width="8" height="8" patternUnits="userSpaceOnUse">
+      <path d="M-1 1L1-1M0 8L8 0M7 9L9 7" stroke="#82958b" stroke-width="1"/>
+    </pattern>
+    <g id="register" fill="none" stroke="#798a7c" stroke-width="1.7">
+      <path d="M-9 0H9M0-9V9"/><circle r="3"/>
+    </g>
+    <g id="hole" stroke="#243d3d" stroke-width="2.5"><circle r="10" fill="#eeeee3"/><circle r="4.5" fill="#587b71"/></g>
+    <g id="pad" stroke="#2c796f" stroke-width="3"><circle r="7" fill="#dfe8d4"/><circle r="2" fill="#214643" stroke="none"/></g>
+  </defs>
+  <rect width="800" height="450" fill="url(#paper)"/>
+  <use href="#register" x="32" y="32"/><use href="#register" x="768" y="32"/>
+  <use href="#register" x="768" y="418"/>
+  <!-- Board plan, routed copper, and mounting holes. -->
+  <g transform="rotate(-10 400 220)" stroke-linejoin="round" stroke-linecap="round">
+    <path d="M184 122l30-30h351l20 20v63h36v100l-28 28H208l-24-24z" fill="#d1dbca" stroke="#243d3d" stroke-width="4"/>
+    <path d="M193 126l25-25h343l15 15v68h36v88l-23 22H213l-20-20z" fill="none" stroke="#819689" stroke-width="1.5"/>
+    <use href="#hole" x="217" y="127"/><use href="#hole" x="551" y="127"/>
+    <use href="#hole" x="217" y="269"/><use href="#hole" x="581" y="269"/>
+    <g fill="none" stroke="#789b8d" stroke-width="3">
+      <path d="M245 150h46l29 29h43m-119-14h43l29 29h47m-119-13h37l31 31h51"/>
+      <path d="M421 164v-19l22-22h50m-57 41v-16l15-15h42m-70 106v14l22 22h75m-21-71h39l15 15h26"/>
+      <path d="M335 252h-28l-17-17h-49m94 27h-36l-17-17h-40"/>
+    </g>
+    <g fill="none" stroke="#299488" stroke-width="7">
+      <path d="M450 185h42l32-32h75m-149 46h49l31-31h69"/>
+    </g>
+    <g fill="#e9eddf" stroke="#344d48" stroke-width="2">
+      <path d="M232 141h26v49h-26z"/><path d="M244 145v39" stroke-dasharray="2 6"/>
+      <path d="M490 113h24v31h-24zM316 245h28v24h-28z"/>
+      <path d="M495 118h14v21h-14zM321 250h18v14h-18z" fill="#91a599"/>
+    </g>
+    <g stroke="#2f4844" stroke-width="6" stroke-dasharray="3.5 7">
+      <path d="M363 164h86m-86 74h86M362 163v75m88-75v75"/>
+    </g>
+    <rect x="367" y="168" width="78" height="66" rx="4" fill="#2c4644" stroke="#142e2f" stroke-width="2"/>
+    <circle cx="377" cy="178" r="3" fill="#dbe4ce"/>
+    <path d="M382 196h48m-48 7h33" stroke="#89aaa0" stroke-width="1.5"/>
+    <g fill="#dfe7d6" stroke="#526c62" stroke-width="2">
+      <rect x="537" y="218" width="34" height="10" rx="2"/><rect x="537" y="236" width="34" height="10" rx="2"/>
+    </g>
+    <use href="#pad" x="596" y="153"/><use href="#pad" x="596" y="168"/>
+  </g>
+  <g fill="none" stroke="#387e73" stroke-width="1.8" stroke-linecap="round">
+    <path d="M520 150l49-78h104"/><circle cx="520" cy="150" r="4" fill="#387e73"/>
+  </g>
+  <text x="578" y="64" font-family="monospace" font-size="14" fill="#24574f" letter-spacing="1">TRACE PAIR</text>
+</svg>

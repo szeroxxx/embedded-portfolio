@@ -1,0 +1,49 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="450" viewBox="0 0 800 450">
+  <defs>
+    <pattern id="paper" width="24" height="24" patternUnits="userSpaceOnUse">
+      <rect width="24" height="24" fill="#eeeee3"/>
+      <path d="M24 0H0V24" fill="none" stroke="#c2cabe" stroke-width=".8"/>
+    </pattern>
+    <pattern id="hatch" width="8" height="8" patternUnits="userSpaceOnUse">
+      <path d="M-1 1L1-1M0 8L8 0M7 9L9 7" stroke="#82958b" stroke-width="1"/>
+    </pattern>
+    <g id="register" fill="none" stroke="#798a7c" stroke-width="1.7">
+      <path d="M-9 0H9M0-9V9"/><circle r="3"/>
+    </g>
+    <g id="hole" stroke="#243d3d" stroke-width="2.5"><circle r="10" fill="#eeeee3"/><circle r="4.5" fill="#587b71"/></g>
+    <g id="pad" stroke="#2c796f" stroke-width="3"><circle r="7" fill="#dfe8d4"/><circle r="2" fill="#214643" stroke="none"/></g>
+  </defs>
+  <rect width="800" height="450" fill="url(#paper)"/>
+  <use href="#register" x="32" y="32"/><use href="#register" x="768" y="32"/>
+  <use href="#register" x="768" y="418"/>
+  <!-- Plan of a motor, leadscrew carriage, and end-of-travel switch. -->
+  <g transform="rotate(-10 400 220)" stroke-linejoin="round" stroke-linecap="round">
+    <path d="M157 160h450l15 15v112l-15 15H157l-14-15V175z" fill="#d1dbca" stroke="#243d3d" stroke-width="3.5"/>
+    <path d="M153 217h461v66l-10 10H160l-7-7z" fill="url(#hatch)" stroke="#94a499" stroke-width="1"/>
+    <use href="#hole" x="166" y="181"/><use href="#hole" x="598" y="180"/>
+    <use href="#hole" x="166" y="280"/><use href="#hole" x="598" y="279"/>
+    <g fill="#c4d2c1" stroke="#274540" stroke-width="3">
+      <path d="M214 143h94l14 13v78l-14 12h-94l-16-15v-73z"/>
+      <path d="M216 143v103m82-103v103" fill="none"/>
+      <rect x="318" y="164" width="31" height="61" rx="4" fill="#e3e8d7"/>
+      <path d="M202 172h-15v12h15m0 22h-15v12h15" fill="#7b998b"/>
+    </g>
+    <g stroke="#66887a" stroke-width="2.2"><path d="M228 156v76m12-76v76m12-76v76m12-76v76m12-76v76"/></g>
+    <path d="M187 178h-25l-17-17h-35m77 51h-30l-17-17h-30" fill="none" stroke="#377d72" stroke-width="3.5"/>
+    <rect x="349" y="187" width="217" height="14" fill="#f2f1e6" stroke="#29453f" stroke-width="2.5"/>
+    <path d="M353 199l7-10m2 10l7-10m2 10l7-10m2 10l7-10m2 10l7-10m2 10l7-10m2 10l7-10m2 10l7-10m2 10l7-10m2 10l7-10m2 10l7-10m2 10l7-10m2 10l7-10m2 10l7-10m2 10l7-10m2 10l7-10m2 10l7-10m2 10l7-10m2 10l7-10m2 10l7-10m2 10l7-10m2 10l7-10" stroke="#6e867a" stroke-width="1.7"/>
+    <path d="M368 251h169" stroke="#3b564d" stroke-width="6"/>
+    <rect x="407" y="174" width="55" height="63" rx="4" fill="#44867c" stroke="#243d3d" stroke-width="3"/>
+    <path d="M417 183h35m-35 8h35m-35 8h35" stroke="#b9d6c5" stroke-width="2"/>
+    <path d="M421 235v21h29v-21" fill="#bed2c0" stroke="#2f5147" stroke-width="3"/>
+    <path d="M537 250l-46-31" stroke="#234e49" stroke-width="5"/>
+    <circle cx="490" cy="217" r="7" fill="#eceddf" stroke="#284e48" stroke-width="3"/>
+    <rect x="522" y="245" width="53" height="28" rx="4" fill="#344f49" stroke="#243d3d" stroke-width="2.5"/>
+    <g fill="#e4e8d8"><circle cx="532" cy="258" r="3.5"/><circle cx="564" cy="258" r="3.5"/></g>
+    <path d="M419 155h68m-9-5 9 5-9 5" fill="none" stroke="#318c7d" stroke-width="2.5"/>
+  </g>
+  <g fill="none" stroke="#387e73" stroke-width="1.8" stroke-linecap="round">
+    <path d="M548 230l91-70h81"/><circle cx="548" cy="230" r="4" fill="#387e73"/>
+  </g>
+  <text x="638" y="151" font-family="monospace" font-size="14" fill="#24574f" letter-spacing="1">LIMIT SW.</text>
+</svg>

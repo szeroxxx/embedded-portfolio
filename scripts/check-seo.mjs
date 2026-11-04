@@ -54,7 +54,9 @@ for (const path of paths) {
   for (const match of body.matchAll(/href="(\/[^"?#]*)(?:[?#][^"]*)?"/g)) if (!match[1].startsWith('/_next/')) localLinks.add(match[1]);
   if (path === '/') {
     assert(!body.includes('opacity:0'), 'Homepage critical text must remain visible without JavaScript');
-    assert(body.includes('/projects/esp32-s3-smart-gst-calculator'), 'Homepage exposes crawlable project links');
+    for (const slug of ['nrf52840-navigation', 'pharmacy-bottle-sorter', 'tmr-actuator-driver']) {
+      assert(body.includes(`href="/projects/${slug}"`), `Featured case study has a crawlable link: ${slug}`);
+    }
     const hasReviews = body.includes('Sarvesh');
     if (process.argv.includes('--require-reviews')) assert(hasReviews, 'Client feedback is present in initial HTML');
     results.push({ path, status: response.status, title, reviewsInHtml: hasReviews });

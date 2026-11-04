@@ -16,7 +16,12 @@ export default function ProjectPage({ project, relatedServices }) {
         schema={[projectSchema(project), breadcrumbSchema([{ name: "Home", path: "/" }, { name: "Projects", path: "/projects" }, { name: project.title, path }])]} />
       <Header />
       <main>
-        <PageIntro eyebrow={`Case study / ${project.year}`} title={project.title} copy={project.overview} />
+        <PageIntro eyebrow={`Case study / ${project.year}`} title={project.title} copy={project.overview}>
+          <dl className="case-opening-facts">
+            <div><dt>My role</dt><dd>{project.contribution}</dd></div>
+            <div><dt>Design focus</dt><dd>{project.designFocus}</dd></div>
+          </dl>
+        </PageIntro>
         <div className="shell detail-breadcrumb">
           <nav aria-label="Breadcrumb"><ol><li><Link href="/">Home</Link></li><li><Link href="/projects">Projects</Link></li><li aria-current="page">{project.title}</li></ol></nav>
         </div>

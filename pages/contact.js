@@ -54,7 +54,7 @@ export default function ContactPage() {
               {service && <div className="contact-service-context"><span className="tech-label text-cyan">Your selected service</span><strong>{service.title}</strong><Link href={`/services/${service.slug}`}>View service details ↗</Link></div>}
             </div>
             <div className="contact-direct" aria-label="Contact options">
-              <a href={emailHref} className="contact-direct-link"><span className="tech-label text-cyan">Email your brief</span><strong>{email}</strong><span>Send your requirements and available files <span aria-hidden="true">↗</span></span></a>
+              <a href={emailHref} className="contact-direct-link"><span className="tech-label text-cyan">Email your brief</span><strong>{email}</strong><span>What are you building, what stage is it at, and what help do you need? <span aria-hidden="true">↗</span></span></a>
               <div className="contact-copy-row"><button type="button" onClick={copyEmail}>Copy email</button><span role="status">{copyState === "copied" ? "Email copied." : copyState === "error" ? "Select and copy the address below." : ""}</span></div>
               {copyState === "error" && <input className="contact-copy-fallback" aria-label="Email address to copy" readOnly value={email} onFocus={event => event.target.select()} />}
               <a href="https://wa.me/919725417323" className="contact-direct-link contact-whatsapp" target="_blank" rel="noreferrer"><span className="tech-label text-cyan">WhatsApp</span><strong>+91 97254 17323</strong><span>Discuss your requirements <span aria-hidden="true">↗</span></span></a>
