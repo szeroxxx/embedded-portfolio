@@ -18,6 +18,7 @@ export default function ProjectPage({ project, relatedServices }) {
       <main>
         <PageIntro eyebrow={`Case study / ${project.year}`} title={project.title} copy={project.overview}>
           <dl className="case-opening-facts">
+            <div><dt>Year</dt><dd>{project.year}</dd></div>
             <div><dt>My role</dt><dd>{project.contribution}</dd></div>
             <div><dt>Design focus</dt><dd>{project.designFocus}</dd></div>
           </dl>

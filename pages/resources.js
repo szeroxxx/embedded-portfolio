@@ -10,7 +10,6 @@ const sections = [
     title: 'Engineering Notes',
     href: '/blog',
     image: '/media/notes-and-lab/board-routing.svg',
-    figure: '01',
     caption: 'Signal routing',
     copy: 'Practical notes on PCB design, schematic review, and manufacturing handoff.',
     action: 'Read engineering notes',
@@ -19,7 +18,6 @@ const sections = [
     title: 'Device Lab',
     href: '/device-lab',
     image: '/media/notes-and-lab/motor-travel.svg',
-    figure: '02',
     caption: 'End of travel',
     copy: 'Explore working mechanisms through diagrams, firmware, and downloadable build files.',
     action: 'Explore the lab',
@@ -39,21 +37,21 @@ export default function NotesAndLab() {
       <main className={styles.page}>
         <div className="shell">
           <header className={styles.intro}>
-            <span className="tech-label">Dhara Rajpura / Engineering notebook</span>
-            <h1>Notes <i>&amp;</i> Lab</h1>
+
+            <h1>Notes &amp; Lab</h1>
           </header>
           <div className={styles.shelves}>
             {sections.map(section => (
               <article key={section.href}>
                 <Link href={section.href} className={styles.card}>
-                  <div className={styles.cover}>
+                  <figure className={styles.cover}>
                     <Image src={section.image} width={800} height={450} alt="" />
-                    <span className={styles.figure} aria-hidden="true">Fig. {section.figure} / {section.caption}</span>
-                  </div>
+                    <figcaption className={styles.figure}>{section.caption}</figcaption>
+                  </figure>
                   <h2>{section.title}</h2>
                   <p>{section.copy}</p>
                   <span className={styles.action}>
-                    {section.action}<span aria-hidden="true">→</span>
+                    {section.action}
                   </span>
                 </Link>
               </article>
