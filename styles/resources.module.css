@@ -6,12 +6,12 @@
 
   background: var(--notebook-paper);
   color: var(--notebook-ink);
-  padding: 130px 0 80px;
+  padding: var(--space-32) 0 var(--section-space);
   min-height: 75vh;
 }
 
 .intro {
-  padding-bottom: 22px;
+  padding-bottom: var(--space-6);
   border-bottom: 1px solid var(--notebook-ink);
 }
 
@@ -22,8 +22,8 @@
   line-height: 1;
 }
 
-.intro h1 { margin: 15px 0 0; font-size: clamp(2.8rem, 5vw, 4.5rem); }
-.shelves { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: clamp(24px, 3.5vw, 52px); margin-top: 30px; }
+.intro h1 { margin: var(--space-4) 0 0; font-size: clamp(2.8rem, 5vw, 4.5rem); }
+.shelves { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--space-8); margin-top: var(--space-8); }
 .card { display: flex; flex-direction: column; height: 100%; color: inherit; }
 .cover { position: relative; border: 1px solid var(--paper-rule); transition: border-color .18s ease; margin: 0; }
 .cover img { width: 100%; height: auto; aspect-ratio: 16/9; }
@@ -36,7 +36,7 @@
   margin: 0;
 
 
-  padding: 8px 12px;
+  padding: var(--space-3);
 
 
   background: var(--notebook-paper);
@@ -50,14 +50,14 @@
 
   line-height: 1.5;
 }
-.card h2 { margin: 23px 0 9px; font-size: clamp(1.7rem, 2.7vw, 2.6rem); }
-.card p { max-width: 49ch; line-height: 1.55; margin: 0 0 22px; color: var(--ink-soft); }
+.card h2 { margin: var(--space-6) 0 var(--space-3); font-size: clamp(1.7rem, 2.7vw, 2.6rem); }
+.card p { max-width: 49ch; line-height: 1.55; margin: 0 0 var(--space-6); color: var(--ink-soft); margin-bottom: var(--space-6); }
 .action {
   display: flex;
   justify-content: space-between;
   align-items: center;
   margin-top: auto;
-  padding: 11px 0;
+  padding: var(--space-3) 0;
   border-top: 1px solid var(--muted);
   border-bottom: 0;
   font-size: .94rem;
@@ -70,10 +70,10 @@
 .card:focus-visible { outline: 2px solid var(--notebook-teal); outline-offset: 5px; }
 
 @media (max-width: 680px) {
-  .shelves { grid-template-columns: 1fr; gap: 30px; margin-top: 22px; }
-  .page { padding: 102px 0 52px; }
-  .card h2 { margin-top: 16px; }
-  .card p { margin-bottom: 15px; }
+  .shelves { grid-template-columns: 1fr; gap: var(--space-6); margin-top: var(--space-8); }
+  .page { padding: var(--space-28) 0 var(--section-space); }
+  .card h2 { margin-top: var(--space-4); margin: var(--space-4) 0 var(--space-3); }
+  .card p { margin-bottom: var(--space-6); }
 }
 
 @media (prefers-reduced-motion: reduce) {
