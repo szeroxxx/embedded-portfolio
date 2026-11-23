@@ -1,5 +1,10 @@
-import { useState } from "react";
+import { useState, useSyncExternalStore } from "react";
 import { normalizeReview } from "../../lib/reviews.mjs";
+
+// Render one readable list on the server. Enable the scrolling columns after hydration.
+const subscribe = () => () => {};
+const clientReady = () => true;
+const serverReady = () => false;
 
 function ReviewCard({ review }) {
   const item = normalizeReview(review);
@@ -44,11 +49,13 @@ function Columns({ reviews, count, className }) {
 }
 
 export default function TestimonialsColumns({ reviews }) {
+  const enhanced = useSyncExternalStore(subscribe, clientReady, serverReady);
   const [paused, setPaused] = useState(false);
   const [reading, setReading] = useState(false);
 
   return (
-    <div className={`testimonial-showcase${paused ? " is-paused" : ""}${reading ? " is-reading" : ""}`}>
+    <div className={`testimonial-showcase${paused ? " is-paused" : ""}${reading || !enhanced ? " is-reading" : ""}`}>
+      {enhanced && <>
       <div className="testimonial-toolbar">
         <p>Pause the columns or read every review at your own pace.</p>
         <div className="testimonial-controls">
@@ -61,6 +68,7 @@ export default function TestimonialsColumns({ reviews }) {
         <Columns reviews={reviews} count={2} className="testimonial-tablet" />
         <Columns reviews={reviews} count={1} className="testimonial-mobile" />
       </div>
+      </>}
       <ol id="all-client-reviews" className="testimonial-originals">
         {reviews.map((review, index) => <li key={review.id || index}><ReviewCard review={review} /></li>)}
       </ol>
