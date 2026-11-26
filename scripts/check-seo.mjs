@@ -30,7 +30,7 @@ for (const path of paths) {
   if (path.startsWith('/projects/')) {
     const p = projectsData.find(p => path.endsWith(p.slug));
     assert(body.includes(p.title.replaceAll('&', '&amp;')), `Server-rendered case study: ${path}`);
-    assert(body.includes('Role &amp; scope') && body.includes('not photographs'), `Scope and visual disclosure: ${path}`);
+    assert(body.includes('Role &amp; scope') && body.includes('>Illustration</span>') && body.includes(p.imageCaptions[0]), `Scope and visual disclosure: ${path}`);
   }
   if (path.startsWith('/blog/')) {
     const article = articles.find(item => path.endsWith(item.slug));
@@ -83,7 +83,7 @@ assert.equal((await fetch(base + '/blog/not-a-real-article')).status, 404);
 assert.equal((await fetch(base + '/device-lab/not-a-real-study')).status, 404);
 assert((await (await fetch(base + '/resources/pcb-project-brief.txt')).text()).includes('Confirmed requirements:'), 'Reusable project brief is available');
 for (const path of localLinks) { const r = await fetch(base + path, {signal:AbortSignal.timeout(15000)}); assert(r.ok, `Internal link: ${path}`); }
-const image = await fetch(base + '/_next/image?url=%2Fmedia%2Fdhara-rajpura-profile.jpg&w=640&q=75', {signal:AbortSignal.timeout(20000)});
+const image = await fetch(base + '/_next/image?url=%2Fmedia%2Fdhara-portrait.webp&w=640&q=75', {signal:AbortSignal.timeout(20000)});
 assert(image.ok && image.headers.get('content-type').startsWith('image/'), 'Optimized profile image loads');
 const report = { checkedAt: new Date().toISOString(), base, publicPages: paths.length, internalLinksChecked: localLinks.size, status:'PASS', results };
 await fs.writeFile(new URL('../docs/seo-validation.json', import.meta.url), JSON.stringify(report,null,2)+'\n');

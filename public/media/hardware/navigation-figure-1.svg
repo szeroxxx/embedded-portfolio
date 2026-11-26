@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="920" height="520" viewBox="0 0 920 520">
+<defs><marker id="arrow" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto"><path d="m1 1 5 3-5 3" fill="none" stroke="#516d79" stroke-width="1.5"/></marker></defs>
+<rect width="920" height="520" fill="#fafaf6"/>
+<text x="40" y="62" font-family="Arial, sans-serif" text-anchor="start" font-size="38" font-weight="700" fill="#173043">Position and motion</text>
+<path d="M40 90H880" stroke="#c0cac8"/>
+<path d="M257.4 166.9 L655.6 226.8" fill="none" stroke="#516d79" stroke-width="3" marker-end="url(#arrow)"/>
+<path d="M257.2 312.1 L655.8 244.2" fill="none" stroke="#516d79" stroke-width="3" marker-end="url(#arrow)"/>
+<circle cx="205" cy="159" r="45" fill="#e2eee9"/>
+<g transform="translate(205 159)" fill="none" stroke="#22584e" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"><path d="m-26 -12 15 -15 15 15 -15 15z m19 19 15 -15 15 15 -15 15z M-4 -4l12 12 M-12 9q14 1 17 17 M-15 17q7 0 10 11"/></g>
+<text x="205" y="233" font-family="Arial, sans-serif" text-anchor="middle" font-size="22" font-weight="600" fill="#173043">GNSS receiver</text>
+<circle cx="205" cy="321" r="45" fill="#e2eee9"/>
+<g transform="translate(205 321)" fill="none" stroke="#22584e" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"><path d="M-11 18v-44m0 44 36-11m-36 11-16-16 M-16-20l5-8 5 8 M17 3l10 3-6 7"/><circle cx="-11" cy="18" r="4"/></g>
+<text x="205" y="395" font-family="Arial, sans-serif" text-anchor="middle" font-size="22" font-weight="600" fill="#173043">Inertial sensor</text>
+<circle cx="710" cy="235" r="45" fill="#e2eee9"/>
+<g transform="translate(710 235)" fill="none" stroke="#22584e" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"><rect x="-24" y="-24" width="48" height="48" rx="4"/><rect x="-13" y="-13" width="26" height="26" rx="2"/><path d="M-16 -25v-7 M-16 25v7 M-25 -16h-7 M25 -16h7"/><path d="M-5 -25v-7 M-5 25v7 M-25 -5h-7 M25 -5h7"/><path d="M6 -25v-7 M6 25v7 M-25 6h-7 M25 6h7"/><path d="M17 -25v-7 M17 25v7 M-25 17h-7 M25 17h7"/></g>
+<text x="710" y="309" font-family="Arial, sans-serif" text-anchor="middle" font-size="22" font-weight="600" fill="#173043">nRF52840</text>
+<path d="M40 433H880" stroke="#c0cac8"/>
+<text x="40" y="479" font-family="Arial, sans-serif" text-anchor="start" font-size="22" font-weight="500" fill="#173043">The navigation board combines satellite position with inertial measurements.</text>
+</svg>

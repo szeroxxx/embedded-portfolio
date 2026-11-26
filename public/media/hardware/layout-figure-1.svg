@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="920" height="520" viewBox="0 0 920 520">
+<defs><marker id="arrow" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto"><path d="m1 1 5 3-5 3" fill="none" stroke="#516d79" stroke-width="1.5"/></marker></defs>
+<rect width="920" height="520" fill="#fafaf6"/>
+<text x="40" y="62" font-family="Arial, sans-serif" text-anchor="start" font-size="38" font-weight="700" fill="#173043">Four-layer layout scope</text>
+<path d="M40 90H880" stroke="#c0cac8"/>
+<path d="M247.4 225.9 L625.6 167.4" fill="none" stroke="#516d79" stroke-width="3" marker-end="url(#arrow)"/>
+<path d="M247.2 243.4 L625.9 311.3" fill="none" stroke="#516d79" stroke-width="3" marker-end="url(#arrow)"/>
+<circle cx="195" cy="234" r="45" fill="#e2eee9"/>
+<g transform="translate(195 234)" fill="none" stroke="#22584e" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"><path d="M-20-27h29l12 12v42h-41z M9-27v12h12 M-12-4H12m-24 9H9m-21 9H4"/></g>
+<text x="195" y="308" font-family="Arial, sans-serif" text-anchor="middle" font-size="22" font-weight="600" fill="#173043">Client schematic</text>
+<circle cx="680" cy="159" r="45" fill="#e2eee9"/>
+<g transform="translate(680 159)" fill="none" stroke="#22584e" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"><rect x="-30" y="-21" width="60" height="42" rx="4"/><path d="M-9-16v32m18-32v32"/></g>
+<text x="680" y="233" font-family="Arial, sans-serif" text-anchor="middle" font-size="22" font-weight="600" fill="#173043">Three isolated domains</text>
+<circle cx="680" cy="321" r="45" fill="#e2eee9"/>
+<g transform="translate(680 321)" fill="none" stroke="#22584e" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"><rect x="-31" y="-22" width="62" height="44" rx="5"/><rect x="-11" y="-9" width="20" height="16" rx="2"/><path d="M-11-4h-9l-5-5M9 0h12v10"/></g>
+<text x="680" y="395" font-family="Arial, sans-serif" text-anchor="middle" font-size="22" font-weight="600" fill="#173043">400+ components</text>
+<path d="M40 433H880" stroke="#c0cac8"/>
+<text x="40" y="479" font-family="Arial, sans-serif" text-anchor="start" font-size="22" font-weight="500" fill="#173043">My layout work started from the client’s schematic and domain boundaries.</text>
+</svg>

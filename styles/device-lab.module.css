@@ -557,3 +557,29 @@
 .readSection > :last-child {
   margin-bottom: 0;
 }
+/* Keep diagrams, source downloads and the reading column at the centre of the lab. */
+.paper {
+  --lab-ink: var(--headline);
+  --lab-copper: var(--brand-blue);
+  --lab-muted: #515854;
+  --lab-line: #d4d9d4;
+  --lab-sheet: var(--canvas);
+  padding-top: clamp(7.8rem, 10vw, 10rem);
+}
+.paper :is(h1, h2) { font-family: var(--sans); font-weight: 730; }
+.masthead { border-color: var(--lab-line); }
+.mastGrid { align-items: center; }
+.mastGrid h1 { font-size: clamp(3.35rem, 7.2vw, 7rem); letter-spacing: -.065em; }
+.mastGrid p { color: var(--lab-muted); }
+.feature {
+  background: #fff0d1;
+  border-radius: 30px;
+  padding: clamp(1.2rem, 3vw, 2.7rem);
+}
+.coverLink, .figure img, .schematic img, .slot { border-radius: 16px; overflow: hidden; }
+.action { color: #fff; border-radius: 999px; padding-inline: 1.5rem; }
+.fileShelf { padding: .5rem 1rem; border-radius: 18px; background: #e6eef9; border: none; }
+.fileShelf a:last-child { border-bottom: 0; }
+.fileType, .source pre { border-radius: 8px; }
+.articleHero { border-color: var(--lab-line); }
+.readSection { scroll-margin-top: 110px; }

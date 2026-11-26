@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="920" height="520" viewBox="0 0 920 520">
+<defs><marker id="arrow" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto"><path d="m1 1 5 3-5 3" fill="none" stroke="#516d79" stroke-width="1.5"/></marker></defs>
+<rect width="920" height="520" fill="#fafaf6"/>
+<text x="40" y="62" font-family="Arial, sans-serif" text-anchor="start" font-size="38" font-weight="700" fill="#173043">Motor and sensor placement</text>
+<path d="M40 90H880" stroke="#c0cac8"/>
+<path d="M247.4 225.9 L625.6 167.4" fill="none" stroke="#516d79" stroke-width="3" marker-end="url(#arrow)"/>
+<path d="M247.2 243.4 L625.9 311.3" fill="none" stroke="#516d79" stroke-width="3" marker-end="url(#arrow)"/>
+<circle cx="195" cy="234" r="45" fill="#e2eee9"/>
+<g transform="translate(195 234)" fill="none" stroke="#22584e" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"><rect x="-31" y="-22" width="62" height="44" rx="5"/><rect x="-11" y="-9" width="20" height="16" rx="2"/><path d="M-11-4h-9l-5-5M9 0h12v10"/></g>
+<text x="195" y="308" font-family="Arial, sans-serif" text-anchor="middle" font-size="22" font-weight="600" fill="#173043">Controller board</text>
+<circle cx="680" cy="159" r="45" fill="#e2eee9"/>
+<g transform="translate(680 159)" fill="none" stroke="#22584e" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"><rect x="-24" y="-17" width="44" height="34" rx="7"/><path d="M20-6h11V6H20 M-23-8h-7m7 16h-7 M-12-10v20m9-20v20"/></g>
+<text x="680" y="233" font-family="Arial, sans-serif" text-anchor="middle" font-size="22" font-weight="600" fill="#173043">Motor power</text>
+<circle cx="680" cy="321" r="45" fill="#e2eee9"/>
+<g transform="translate(680 321)" fill="none" stroke="#22584e" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"><path d="M-31 20v-40m0 30h62 M-28 5q7 0 12-14t13 2 13 0 14-5"/></g>
+<text x="680" y="395" font-family="Arial, sans-serif" text-anchor="middle" font-size="22" font-weight="600" fill="#173043">Sensor signals</text>
+<path d="M40 433H880" stroke="#c0cac8"/>
+<text x="40" y="479" font-family="Arial, sans-serif" text-anchor="start" font-size="22" font-weight="500" fill="#173043">Motor current and sensor signals occupy separate areas of the controller layout.</text>
+</svg>

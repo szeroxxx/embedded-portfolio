@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="920" height="520" viewBox="0 0 920 520">
+<defs><marker id="arrow" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto"><path d="m1 1 5 3-5 3" fill="none" stroke="#516d79" stroke-width="1.5"/></marker></defs>
+<rect width="920" height="520" fill="#fafaf6"/>
+<text x="40" y="62" font-family="Arial, sans-serif" text-anchor="start" font-size="38" font-weight="700" fill="#173043">Two ends of the wireless link</text>
+<path d="M40 90H880" stroke="#c0cac8"/>
+<path d="M247.4 225.9 L625.6 167.4" fill="none" stroke="#516d79" stroke-width="3" marker-end="url(#arrow)"/>
+<path d="M247.2 243.4 L625.9 311.3" fill="none" stroke="#516d79" stroke-width="3" marker-end="url(#arrow)"/>
+<circle cx="195" cy="234" r="45" fill="#e2eee9"/>
+<g transform="translate(195 234)" fill="none" stroke="#22584e" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"><circle r="4"/><path d="M-10-11q-10 11 0 22 M10-11q10 11 0 22 M-18-20q-17 20 0 40 M18-20q17 20 0 40"/></g>
+<text x="195" y="308" font-family="Arial, sans-serif" text-anchor="middle" font-size="22" font-weight="600" fill="#173043">LoRa link</text>
+<circle cx="680" cy="159" r="45" fill="#e2eee9"/>
+<g transform="translate(680 159)" fill="none" stroke="#22584e" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"><rect x="-28" y="-15" width="52" height="30" rx="4"/><path d="M25-6h5v12h-5 M-20-7v14m10-14v14m10-14v14"/></g>
+<text x="680" y="233" font-family="Arial, sans-serif" text-anchor="middle" font-size="22" font-weight="600" fill="#173043">Battery-powered remote</text>
+<circle cx="680" cy="321" r="45" fill="#e2eee9"/>
+<g transform="translate(680 321)" fill="none" stroke="#22584e" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"><rect x="-30" y="-21" width="60" height="42" rx="3"/><path d="M-22-13h44v24h-44z M-9 27H9"/></g>
+<text x="680" y="395" font-family="Arial, sans-serif" text-anchor="middle" font-size="22" font-weight="600" fill="#173043">Receiver indication</text>
+<path d="M40 433H880" stroke="#c0cac8"/>
+<text x="40" y="479" font-family="Arial, sans-serif" text-anchor="start" font-size="22" font-weight="500" fill="#173043">Battery use matters at the remote. Staff read the alert at the receiver.</text>
+</svg>

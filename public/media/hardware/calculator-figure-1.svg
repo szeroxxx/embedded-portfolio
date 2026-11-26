@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="920" height="520" viewBox="0 0 920 520">
+<defs><marker id="arrow" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto"><path d="m1 1 5 3-5 3" fill="none" stroke="#516d79" stroke-width="1.5"/></marker></defs>
+<rect width="920" height="520" fill="#fafaf6"/>
+<text x="40" y="62" font-family="Arial, sans-serif" text-anchor="start" font-size="38" font-weight="700" fill="#173043">From keypad to receipt</text>
+<path d="M40 90H880" stroke="#c0cac8"/>
+<path d="M163.0 240.0 L370.0 240.0" fill="none" stroke="#516d79" stroke-width="3" marker-end="url(#arrow)"/>
+<path d="M476.5 227.5 L706.5 171.9" fill="none" stroke="#516d79" stroke-width="3" marker-end="url(#arrow)"/>
+<path d="M476.5 252.5 L706.5 308.1" fill="none" stroke="#516d79" stroke-width="3" marker-end="url(#arrow)"/>
+<circle cx="110" cy="240" r="45" fill="#e2eee9"/>
+<g transform="translate(110 240)" fill="none" stroke="#22584e" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"><rect x="-23" y="-29" width="46" height="58" rx="5"/><rect x="-15" y="-19" width="5" height="6" rx="1"/><rect x="-15" y="-6" width="5" height="6" rx="1"/><rect x="-15" y="7" width="5" height="6" rx="1"/><rect x="-15" y="17" width="5" height="6" rx="1"/><rect x="-3" y="-19" width="5" height="6" rx="1"/><rect x="-3" y="-6" width="5" height="6" rx="1"/><rect x="-3" y="7" width="5" height="6" rx="1"/><rect x="-3" y="17" width="5" height="6" rx="1"/><rect x="9" y="-19" width="5" height="6" rx="1"/><rect x="9" y="-6" width="5" height="6" rx="1"/><rect x="9" y="7" width="5" height="6" rx="1"/><rect x="9" y="17" width="5" height="6" rx="1"/></g>
+<text x="110" y="314" font-family="Arial, sans-serif" text-anchor="middle" font-size="22" font-weight="600" fill="#173043">35-key keypad</text>
+<circle cx="425" cy="240" r="45" fill="#e2eee9"/>
+<g transform="translate(425 240)" fill="none" stroke="#22584e" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"><rect x="-24" y="-24" width="48" height="48" rx="4"/><rect x="-13" y="-13" width="26" height="26" rx="2"/><path d="M-16 -25v-7 M-16 25v7 M-25 -16h-7 M25 -16h7"/><path d="M-5 -25v-7 M-5 25v7 M-25 -5h-7 M25 -5h7"/><path d="M6 -25v-7 M6 25v7 M-25 6h-7 M25 6h7"/><path d="M17 -25v-7 M17 25v7 M-25 17h-7 M25 17h7"/></g>
+<text x="425" y="314" font-family="Arial, sans-serif" text-anchor="middle" font-size="22" font-weight="600" fill="#173043">ESP32-S3</text>
+<circle cx="760" cy="159" r="45" fill="#e2eee9"/>
+<g transform="translate(760 159)" fill="none" stroke="#22584e" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"><rect x="-30" y="-21" width="60" height="42" rx="3"/><path d="M-22-13h44v24h-44z M-9 27H9"/></g>
+<text x="760" y="233" font-family="Arial, sans-serif" text-anchor="middle" font-size="22" font-weight="600" fill="#173043">Four-inch TFT</text>
+<circle cx="760" cy="321" r="45" fill="#e2eee9"/>
+<g transform="translate(760 321)" fill="none" stroke="#22584e" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"><path d="M-23-8v-16h39v16 M-26 11h-5v-20h62v20h-7 M-18 4h36v23l-6-3-6 3-6-3-6 3-6-3-6 3z"/></g>
+<text x="760" y="395" font-family="Arial, sans-serif" text-anchor="middle" font-size="22" font-weight="600" fill="#173043">Wireless printer</text>
+<path d="M40 433H880" stroke="#c0cac8"/>
+<text x="40" y="479" font-family="Arial, sans-serif" text-anchor="start" font-size="22" font-weight="500" fill="#173043">The ESP32-S3 reads the keypad, updates the display and links to the printer.</text>
+</svg>

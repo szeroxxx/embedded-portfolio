@@ -1,6 +1,7 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   reactStrictMode: true,
+  experimental: { scrollRestoration: true },
   async redirects() {
     return [
       {source:'/projects/esp32-s3-terminal',destination:'/projects/esp32-s3-smart-gst-calculator',permanent:true},

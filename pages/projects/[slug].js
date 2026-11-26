@@ -12,7 +12,7 @@ export default function ProjectPage({ project, relatedServices }) {
   return (
     <div className="site detail-page">
       <Seo title={project.seoTitle || `${project.title} — Dhara Rajpura`} description={description} path={path}
-        image={project.images[0]} imageAlt={`${project.title} engineering concept`}
+        image={project.images[0]} imageAlt={project.imageCaptions[0]}
         schema={[projectSchema(project), breadcrumbSchema([{ name: "Home", path: "/" }, { name: "Projects", path: "/projects" }, { name: project.title, path }])]} />
       <Header />
       <main>
@@ -34,12 +34,12 @@ export default function ProjectPage({ project, relatedServices }) {
         </section>
         <section className="section section-ink detail-gallery-section" aria-labelledby="project-visuals">
           <div className="shell">
-            <div className="section-title"><div className="tech-label text-cyan">Scope in context</div><h2 id="project-visuals">Engineering concepts.</h2><p>These visuals explain the project’s hardware scope. They are concept presentations, not photographs of fabricated client hardware.</p></div>
-            <div className="detail-gallery">{project.images.map((image, index) => <figure key={image}><div className="detail-gallery-frame"><Image src={image} alt={`${project.title}: ${index === 0 ? "hardware overview" : index === 1 ? "system architecture" : "hardware design detail"} concept illustration`} width={1600} height={900} sizes="(max-width: 700px) 100vw, 50vw" /></div><figcaption><span className="tech-label">Concept / {String(index + 1).padStart(2, "0")}</span><span>{index === 0 ? "Hardware overview" : index === 1 ? "System architecture" : "Design detail"}</span></figcaption></figure>)}</div>
+            <div className="section-title"><div className="tech-label text-cyan">Scope in context</div><h2 id="project-visuals">Hardware and design notes</h2><p>Follow the main hardware blocks and the decisions behind the layout.</p></div>
+            <div className="detail-gallery">{project.images.map((image, index) => <figure key={image}><div className="detail-gallery-frame"><Image src={image} alt={project.imageCaptions[index]} width={project.imageSizes[index][0]} height={project.imageSizes[index][1]} sizes="(max-width: 700px) 100vw, 50vw" /></div><figcaption><span className="tech-label">{index === 0 ? "Illustration" : "Design note"}</span><span>{project.imageCaptions[index]}</span></figcaption></figure>)}</div>
           </div>
         </section>
         {relatedServices.length > 0 && <section className="section section-dark" aria-labelledby="project-services"><div className="shell"><div className="section-title"><div className="tech-label text-cyan">Work with Dhara</div><h2 id="project-services">Related services.</h2></div><div className="detail-link-list">{relatedServices.map((service) => <Link href={`/services/${service.slug}`} key={service.slug}><span>{service.title}</span><span aria-hidden="true">↗</span></Link>)}</div></div></section>}
-        <section className="contact-section"><div className="shell contact-grid"><div><div className="tech-label text-lime">Your next board</div><h2>Bring the requirements.<br />Let’s define the hardware.</h2></div><div><p>Share your product goal, current files and constraints to discuss a defined PCB or embedded hardware engagement.</p><Link href="/contact" className="button button-lime">Discuss your project ↗</Link></div></div></section>
+        <section className="contact-section"><div className="shell contact-grid"><div><div className="tech-label text-lime">Your next board</div><h2>Have a similar project?</h2></div><div><p>Share your product goal, current files and constraints to discuss a defined PCB or embedded hardware engagement.</p><Link href="/contact" className="button button-lime">Discuss your project ↗</Link></div></div></section>
       </main>
       <Footer />
     </div>

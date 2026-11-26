@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="920" height="520" viewBox="0 0 920 520">
+<defs><marker id="arrow" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto"><path d="m1 1 5 3-5 3" fill="none" stroke="#516d79" stroke-width="1.5"/></marker></defs>
+<rect width="920" height="520" fill="#fafaf6"/>
+<text x="40" y="62" font-family="Arial, sans-serif" text-anchor="start" font-size="38" font-weight="700" fill="#173043">The weighing signal path</text>
+<path d="M40 90H880" stroke="#c0cac8"/>
+<path d="M188.0 245.0 L405.0 245.0" fill="none" stroke="#516d79" stroke-width="3" marker-end="url(#arrow)"/>
+<path d="M513.0 245.0 L730.0 245.0" fill="none" stroke="#516d79" stroke-width="3" marker-end="url(#arrow)"/>
+<circle cx="135" cy="245" r="45" fill="#e2eee9"/>
+<g transform="translate(135 245)" fill="none" stroke="#22584e" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"><path d="M-31-13h62M-19-7h38l9 27h-56z"/><rect x="-10" y="2" width="20" height="10" rx="2"/></g>
+<text x="135" y="319" font-family="Arial, sans-serif" text-anchor="middle" font-size="22" font-weight="600" fill="#173043">Load cell</text>
+<circle cx="460" cy="245" r="45" fill="#e2eee9"/>
+<g transform="translate(460 245)" fill="none" stroke="#22584e" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"><path d="M-19-21v42l38-21z M-32-9h13m-13 18h13M19 0h13"/></g>
+<text x="460" y="319" font-family="Arial, sans-serif" text-anchor="middle" font-size="22" font-weight="600" fill="#173043">Analog front end</text>
+<circle cx="785" cy="245" r="45" fill="#e2eee9"/>
+<g transform="translate(785 245)" fill="none" stroke="#22584e" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"><rect x="-31" y="-22" width="62" height="44" rx="5"/><rect x="-11" y="-9" width="20" height="16" rx="2"/><path d="M-11-4h-9l-5-5M9 0h12v10"/></g>
+<text x="785" y="319" font-family="Arial, sans-serif" text-anchor="middle" font-size="22" font-weight="600" fill="#173043">Control board</text>
+<path d="M40 433H880" stroke="#c0cac8"/>
+<text x="40" y="479" font-family="Arial, sans-serif" text-anchor="start" font-size="22" font-weight="500" fill="#173043">The low-level load-cell signal is kept away from the switching motor drives.</text>
+</svg>
